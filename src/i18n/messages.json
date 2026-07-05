@@ -1,0 +1,80 @@
+{
+  "en": {
+    "common": {
+      "brand": "HermesCN 中文社区"
+    },
+    "locale": {
+      "label": "Language",
+      "en": "EN",
+      "zh": "中文"
+    },
+    "mail": {
+      "fallbackName": "there",
+      "greeting": "Hi {userName},",
+      "verifyEmail": {
+        "subject": "Verify your email",
+        "heading": "Verify your email",
+        "intro": "Confirm this email address to finish setting up your account.",
+        "cta": "Verify email",
+        "expiry": "This verification link expires in {minutes} minutes.",
+        "safety": "If this was not you, you can ignore this email."
+      },
+      "changeEmail": {
+        "subject": "Confirm email change",
+        "heading": "Confirm your email change",
+        "intro": "We received a request to change your account email to {email}.",
+        "fallbackEmail": "a new address",
+        "cta": "Confirm email change",
+        "expiry": "This confirmation link expires in {minutes} minutes.",
+        "safety": "If this was not you, secure your account."
+      },
+      "resetPassword": {
+        "subject": "Reset your password",
+        "heading": "Reset your password",
+        "intro": "We received a request to reset your account password.",
+        "cta": "Reset password",
+        "expiry": "This reset link expires in {minutes} minutes.",
+        "safety": "If this was not you, you can ignore this email."
+      }
+    }
+  },
+  "zh": {
+    "common": {
+      "brand": "HermesCN 中文社区"
+    },
+    "locale": {
+      "label": "语言",
+      "en": "EN",
+      "zh": "中文"
+    },
+    "mail": {
+      "fallbackName": "你好",
+      "greeting": "{userName}，你好：",
+      "verifyEmail": {
+        "subject": "验证你的邮箱",
+        "heading": "验证你的邮箱",
+        "intro": "请确认这个邮箱地址，以完成账号设置。",
+        "cta": "验证邮箱",
+        "expiry": "此验证链接将在 {minutes} 分钟后过期。",
+        "safety": "如果这不是你本人操作，可以忽略这封邮件。"
+      },
+      "changeEmail": {
+        "subject": "确认邮箱变更",
+        "heading": "确认你的邮箱变更",
+        "intro": "我们收到请求，要将你的账号邮箱改为 {email}。",
+        "fallbackEmail": "新邮箱",
+        "cta": "确认邮箱变更",
+        "expiry": "此确认链接将在 {minutes} 分钟后过期。",
+        "safety": "如果这不是你本人操作，请检查账号安全。"
+      },
+      "resetPassword": {
+        "subject": "重置你的密码",
+        "heading": "重置你的密码",
+        "intro": "我们收到了一次重置账号密码的请求。",
+        "cta": "重置密码",
+        "expiry": "此重置链接将在 {minutes} 分钟后过期。",
+        "safety": "如果这不是你本人操作，可以忽略这封邮件。"
+      }
+    }
+  }
+}
