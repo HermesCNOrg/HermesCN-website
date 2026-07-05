@@ -1,4 +1,5 @@
-import { Card, Link } from "@heroui/react";
+import Link from "next/link";
+
 import { BannerDescription } from "~/app/_components/banner-description";
 import { InstallTerminal } from "~/app/_components/install-terminal";
 
@@ -90,15 +91,17 @@ export default function Home() {
       <section className="border-y border-[#ece9ff] bg-[#f8f7ff]">
         <div className="mx-auto grid max-w-7xl gap-4 px-5 py-14 sm:px-8 md:grid-cols-3">
           {features.map((feature) => (
-            <Card
-              className="border border-[#e3dfff] bg-white/90"
+            <div
+              className="rounded-lg border border-[#e3dfff] bg-white/90 p-6"
               key={feature.title}
             >
-              <Card.Header>
-                <Card.Title>{feature.title}</Card.Title>
-                <Card.Description>{feature.copy}</Card.Description>
-              </Card.Header>
-            </Card>
+              <h2 className="text-lg font-semibold text-[#111111]">
+                {feature.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-[#4b4b4b]">
+                {feature.copy}
+              </p>
+            </div>
           ))}
         </div>
       </section>

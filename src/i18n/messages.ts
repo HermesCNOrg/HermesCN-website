@@ -71,15 +71,13 @@ export function translate(
   params?: Record<string, string | number>,
 ) {
   const value =
-    readPath(messages[locale] as MessageTree, key) ??
-    readPath(messages[defaultLocale] as MessageTree, key);
+    readPath(messages[locale], key) ?? readPath(messages[defaultLocale], key);
 
   return typeof value === "string" ? interpolate(value, params) : key;
 }
 
 export function getMessageValue(locale: Locale, key: MessageValueKey) {
   return (
-    readPath(messages[locale] as MessageTree, key) ??
-    readPath(messages[defaultLocale] as MessageTree, key)
+    readPath(messages[locale], key) ?? readPath(messages[defaultLocale], key)
   );
 }
