@@ -30,9 +30,6 @@ export default function Home() {
         <div className="mx-auto grid min-h-[max(100vh,720px)] w-full max-w-7xl gap-12 px-5 pt-28 sm:px-8 lg:h-[max(100vh,720px)] lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch lg:pt-24">
           <div className="flex min-h-0 items-center py-10 lg:h-full lg:py-20">
             <div className="max-w-4xl">
-              <p className="mb-6 text-sm tracking-[0.24em] text-[#2202f2] uppercase">
-                Open Source · Self-hosted · AI Native
-              </p>
               <h1 className="max-w-4xl text-5xl leading-[1.15] font-semibold tracking-tight text-[#111111] sm:text-6xl">
                 欢迎加入
                 <br />
@@ -44,7 +41,7 @@ export default function Home() {
                 {communityEntrances.map((item) => (
                   <Link
                     aria-label={item.title}
-                    className="group flex w-full flex-col items-center gap-2 rounded-md border border-[#e6e3ff] bg-white px-2 py-3 text-center shadow-[0_12px_34px_rgba(34,2,242,0.06)] transition hover:-translate-y-0.5 hover:border-[#2202f2]/40 hover:bg-[#fbfaff]"
+                    className="group flex w-full flex-col items-center gap-2 rounded-md border border-[#e6e3ff] bg-white px-2 py-2 text-center shadow-[0_12px_34px_rgba(34,2,242,0.06)] transition hover:-translate-y-0.5 hover:border-[#2202f2]/40 hover:bg-[#fbfaff]"
                     href="/forum"
                     key={item.title}
                   >
@@ -53,7 +50,7 @@ export default function Home() {
                       className="h-full w-full rounded-md bg-white object-cover"
                       src={item.image}
                     />
-                    <span className="text-sm font-medium text-[#111111]">
+                    <span className="text-xs font-medium text-[#111111]">
                       加入{item.title}
                     </span>
                   </Link>
