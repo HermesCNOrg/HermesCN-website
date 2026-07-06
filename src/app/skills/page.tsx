@@ -156,7 +156,7 @@ export default function SkillsPage() {
           <p className="text-sm font-medium tracking-[0.18em] text-[#2202f2] uppercase">
             Skills
           </p>
-          <h1 className="mt-5 max-w-3xl text-4xl leading-tight font-semibold text-[#111111] sm:text-6xl">
+          <h1 className="mt-5 max-w-4xl text-4xl leading-tight font-semibold text-[#111111] sm:text-6xl">
             找到适合你工作流的 Agent Skills
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-[#4b4b4b] sm:text-lg">

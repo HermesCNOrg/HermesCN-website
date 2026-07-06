@@ -95,6 +95,26 @@ export function PracticeCases() {
     [],
   );
 
+  const categoryCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+
+    for (const story of allStories) {
+      counts.set(story.category, (counts.get(story.category) ?? 0) + 1);
+    }
+
+    return counts;
+  }, []);
+
+  const sourceCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+
+    for (const story of allStories) {
+      counts.set(story.source, (counts.get(story.source) ?? 0) + 1);
+    }
+
+    return counts;
+  }, []);
+
   const filteredStories = useMemo(() => {
     const keyword = query.trim().toLowerCase();
 
@@ -232,6 +252,13 @@ export function PracticeCases() {
                         type="button"
                       >
                         {getLabel(categoryLabels, item)}
+                        <span
+                          className={`ml-1 text-xs ${
+                            active ? "text-white/75" : "text-[#8a879a]"
+                          }`}
+                        >
+                          {categoryCounts.get(item) ?? 0}
+                        </span>
                       </button>
                     );
                   })}
@@ -260,6 +287,13 @@ export function PracticeCases() {
                         type="button"
                       >
                         {getLabel(sourceLabels, item)}
+                        <span
+                          className={`ml-1 text-xs ${
+                            active ? "text-white/75" : "text-[#8a879a]"
+                          }`}
+                        >
+                          {sourceCounts.get(item) ?? 0}
+                        </span>
                       </button>
                     );
                   })}
