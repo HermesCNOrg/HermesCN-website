@@ -9,10 +9,10 @@ import { docsHref } from "~/lib/docs-links";
 const navItems = [
   { href: "/", label: "首页" },
   { href: docsHref, label: "文档" },
-  { href: "/forum", label: "论坛" },
   { href: "/skills", label: "Skills" },
   { href: "/best-practices", label: "实践案例" },
   { href: "/services", label: "解决方案" },
+  { href: "/forum", label: "论坛", isExternal: true },
 ];
 
 export function Header() {
@@ -45,7 +45,7 @@ export function Header() {
               return (
                 <Link
                   className={[
-                    "rounded-full px-2.5 py-1 transition",
+                    "inline-flex items-center gap-1 rounded-full px-2.5 py-1 transition",
                     isActive
                       ? "bg-[#2202f2] text-white hover:text-white"
                       : "hover:text-[#2202f2]",
@@ -53,7 +53,13 @@ export function Header() {
                   href={item.href}
                   key={item.href}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.isExternal ? (
+                    <i
+                      aria-hidden="true"
+                      className="ri-external-link-line text-[0.95em] leading-none"
+                    />
+                  ) : null}
                 </Link>
               );
             })}

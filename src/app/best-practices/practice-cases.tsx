@@ -134,7 +134,7 @@ export function PracticeCases() {
   return (
     <div className="min-h-screen bg-white text-[#111111]">
       <section className="border-b border-[#ece9ff] bg-white">
-        <div className="mx-auto flex min-h-[38rem] max-w-7xl items-end px-5 pt-32 pb-16 sm:px-8">
+        <div className="mx-auto flex min-h-[35rem] max-w-7xl items-end px-5 pt-32 pb-16 sm:px-8">
           <div className="max-w-4xl">
             <p className="text-sm tracking-[0.2em] text-[#2202f2] uppercase">
               Practice Cases
@@ -143,8 +143,8 @@ export function PracticeCases() {
               实践案例
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#4b4b4b]">
-              从官方文档迁移来的社区故事与使用案例，按工作流、个人助理、集成、创作、企业协作等方向整理。这里展示人们实际让
-              Hermes Agent 完成了什么。
+              汇集社区真实故事与公开使用案例，覆盖工作流、个人助理、集成连接、创作生产和企业协作等场景，看看人们实际让
+              Hermes Agent 做成了什么。
             </p>
 
             <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
