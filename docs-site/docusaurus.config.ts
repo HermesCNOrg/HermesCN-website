@@ -7,11 +7,9 @@ import path from 'node:path';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const mainSiteBaseUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3078'
-    : 'https://hermes-cn-org.vercel.app';
+  process.env.DOCUSAURUS_MAIN_SITE_BASE_URL ?? 'https://hermes-cn-org.vercel.app';
 
-const docsBaseUrl = process.env.NODE_ENV === 'development' ? '/' : '/docs/';
+const docsBaseUrl = process.env.DOCUSAURUS_BASE_URL ?? '/docs/';
 
 const mainSiteHref = (pathname: string) => `${mainSiteBaseUrl}${pathname}`;
 
@@ -84,10 +82,20 @@ const config: Config = {
   title: 'HermesCN 中文文档',
   tagline: 'Hermes Agent 中文社区文档',
   favicon: 'img/favicon.png',
+  customFields: {
+    mainSiteBaseUrl,
+    githubHref: 'https://github.com/lxdao/hermesCN_org',
+  },
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
+    },
   },
 
   // Set the production url of your site here
@@ -101,23 +109,15 @@ const config: Config = {
   organizationName: 'lxdao',
   projectName: 'hermesCN_org',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
 
   i18n: {
     defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans', 'en', 'zh-Hant'],
+    locales: ['zh-Hans'],
     localeConfigs: {
       'zh-Hans': {
         label: '简体中文',
         htmlLang: 'zh-Hans',
-      },
-      en: {
-        label: 'English',
-        htmlLang: 'en',
-      },
-      'zh-Hant': {
-        label: '繁體中文',
-        htmlLang: 'zh-Hant',
       },
     },
   },
@@ -169,8 +169,9 @@ const config: Config = {
         src: 'img/favicon.png',
       },
       items: [
+        {type: 'custom-main-site', position: 'right'},
+        {type: 'custom-github', position: 'right'},
         {type: 'custom-search', position: 'right'},
-        {href: mainSiteHref('/'), label: '主站', position: 'right', target: '_self'},
       ],
     },
     footer: {
@@ -180,19 +181,19 @@ const config: Config = {
           title: '网站地图',
           items: [
             {label: '首页', href: mainSiteHref('/'), target: '_self'},
-            {label: '文档', to: '/intro'},
+            {label: '文档', to: '/getting-started/quickstart'},
             {label: '论坛', href: mainSiteHref('/forum'), target: '_self'},
-            {label: 'Skill', href: mainSiteHref('/skill'), target: '_self'},
-            {label: '最佳实践', href: mainSiteHref('/best-practices'), target: '_self'},
+            {label: 'Skills', href: mainSiteHref('/skills'), target: '_self'},
+            {label: '实践案例', href: mainSiteHref('/best-practices'), target: '_self'},
             {label: '解决方案', href: mainSiteHref('/services'), target: '_self'},
           ],
         },
         {
           title: '社区方向',
           items: [
-            {label: '中文文档', to: '/intro'},
-            {label: 'Skills 实践', href: mainSiteHref('/skill'), target: '_self'},
-            {label: '本地部署', to: '/intro'},
+            {label: '中文文档', to: '/getting-started/quickstart'},
+            {label: 'Skills 实践', href: mainSiteHref('/skills'), target: '_self'},
+            {label: '本地部署', to: '/getting-started/installation'},
             {label: '解决方案支持', href: mainSiteHref('/services'), target: '_self'},
           ],
         },

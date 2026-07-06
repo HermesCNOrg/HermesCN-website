@@ -54,5 +54,12 @@ a {
 
 .bg-primary,
 .bg-accent {
-  color: var(--primary-foreground);
+  color: var(--primary-foreground) !important;
+}
+
+.hermes-primary-action,
+.hermes-primary-action *,
+[class*="bg-[#2202f2]"],
+[class*="bg-[#2202f2]"] * {
+  color: var(--primary-foreground) !important;
 }

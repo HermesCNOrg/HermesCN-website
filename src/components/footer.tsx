@@ -6,8 +6,8 @@ const sitemap = [
   { href: "/", label: "首页" },
   { href: docsHref, label: "文档" },
   { href: "/forum", label: "论坛" },
-  { href: "/skill", label: "Skill" },
-  { href: "/best-practices", label: "最佳实践" },
+  { href: "/skills", label: "Skills" },
+  { href: "/best-practices", label: "实践案例" },
   { href: "/services", label: "解决方案" },
 ];
 

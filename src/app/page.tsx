@@ -147,7 +147,7 @@ export default function Home() {
               连接更多 AI Native 超级个体，把个人经验变成可复用的生产力系统。
             </h2>
             <p className="mt-6 text-lg leading-8 text-white/80">
-              HermesCN 会围绕中文资料、最佳实践、Skills 生态和自动化工作流，帮助个人与企业把一次次有效协作沉淀下来，让 Agent 真正进入日常工作。
+              HermesCN 会围绕中文资料、实践案例、Skills 生态和自动化工作流，帮助个人与企业把一次次有效协作沉淀下来，让 Agent 真正进入日常工作。
             </p>
           </div>
         </div>

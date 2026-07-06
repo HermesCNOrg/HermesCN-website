@@ -1,7 +1,12 @@
+import { type Metadata } from "next";
+
+import { PracticeCases } from "./practice-cases";
+
+export const metadata: Metadata = {
+  title: "实践案例 | HermesCN 中文社区",
+  description: "来自 Hermes Agent 社区的真实故事与使用案例。",
+};
+
 export default function BestPracticesPage() {
-  return (
-    <main className="grid min-h-screen place-items-center bg-white px-6 text-[#111111]">
-      <h1 className="text-5xl font-semibold text-[#2202f2]">最佳实践</h1>
-    </main>
-  );
+  return <PracticeCases />;
 }
