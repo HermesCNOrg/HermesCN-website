@@ -1,8 +1,8 @@
 import { spawn } from "node:child_process";
 
 const commands = [
-  ["web", "npm", ["run", "dev:web"]],
-  ["docs", "npm", ["run", "docs:dev"]],
+  ["web", "pnpm", ["run", "dev:web"]],
+  ["docs", "pnpm", ["run", "docs:dev"]],
 ];
 
 const children = commands.map(([name, command, args]) => {
