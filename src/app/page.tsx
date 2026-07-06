@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BannerDescription } from "~/app/_components/banner-description";
 import { HermesVsOpenClaw } from "~/app/_components/hermes-vs-openclaw";
 import { InstallTerminal } from "~/app/_components/install-terminal";
+import { docsHref } from "~/lib/docs-links";
 
 const features = [
   {
@@ -88,7 +89,7 @@ export default function Home() {
                 </a>
                 <Link
                   className="rounded-full border border-[#2202f2] px-6 py-3 text-sm font-medium text-[#2202f2] transition hover:bg-[#f1efff]"
-                  href="/docs"
+                  href={docsHref}
                 >
                   阅读文档
                 </Link>

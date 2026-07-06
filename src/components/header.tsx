@@ -1,10 +1,11 @@
 import Link from "next/link";
 
 import { LanguageSwitcher } from "~/components/language-switcher";
+import { docsHref } from "~/lib/docs-links";
 
 const navItems = [
   { href: "/", label: "首页" },
-  { href: "/docs", label: "文档" },
+  { href: docsHref, label: "文档" },
   { href: "/forum", label: "论坛" },
   { href: "/skill", label: "Skill" },
   { href: "/best-practices", label: "最佳实践" },

@@ -21,6 +21,8 @@ next-env.d.ts
 
 # production
 /build
+/docs-site/build
+/public/docs
 
 # misc
 .DS_Store

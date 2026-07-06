@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { openClawMigrationHref } from "~/lib/docs-links";
+
 const gaps = [
   {
     capability: "更安全的执行边界",
@@ -51,7 +53,7 @@ export function HermesVsOpenClaw() {
           </p>
           <a
             className="bg-primary mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white transition hover:-translate-y-0.5"
-            href="https://hermes-agent.nousresearch.com/docs/zh-Hans/guides/migrate-from-openclaw"
+            href={openClawMigrationHref}
             style={{ color: "#ffffff" }}
           >
             查看迁移指南
