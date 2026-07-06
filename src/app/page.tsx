@@ -1,20 +1,39 @@
 import Link from "next/link";
 
 import { BannerDescription } from "~/app/_components/banner-description";
+import { HermesVsOpenClaw } from "~/app/_components/hermes-vs-openclaw";
 import { InstallTerminal } from "~/app/_components/install-terminal";
 
 const features = [
   {
-    title: "长期记忆",
-    copy: "让 Agent 记住你的项目、偏好和工作方式，把一次次协作沉淀为之后可复用的上下文。",
+    icon: "ri-global-line",
+    title: "无处不在",
+    copy: "Telegram、Discord、Slack、WhatsApp、Signal、Email、CLI 等入口都能接入。一个 Agent，一份记忆，覆盖每个使用场景。",
   },
   {
-    title: "Skills 沉淀",
-    copy: "把复杂任务的成功路径整理成技能，帮助个体、团队与社区共享 AI native 的实践能力。",
+    icon: "ri-brain-line",
+    title: "持久记忆",
+    copy: "它会学习你的项目与偏好，自动沉淀 Skills，并记住每一次问题是如何被解决的。",
   },
   {
-    title: "工具与自动化",
-    copy: "连接终端、文件、浏览器、MCP 与消息入口，让 Agent 从聊天框走向真实工作流。",
+    icon: "ri-calendar-check-line",
+    title: "专注自动化",
+    copy: "用自然语言安排报告、备份和简报，让任务通过网关自动运行，稳定交付结果。",
+  },
+  {
+    icon: "ri-git-branch-line",
+    title: "任务委派",
+    copy: "把复杂工作拆给隔离的子 Agent，每个任务都有自己的对话、终端和脚本环境，减少主上下文负担。",
+  },
+  {
+    icon: "ri-search-line",
+    title: "联网搜索",
+    copy: "支持网页搜索、浏览器自动化、视觉理解、图像生成、文本转语音和多模型推理。",
+  },
+  {
+    icon: "ri-shield-check-line",
+    title: "隔离沙箱",
+    copy: "支持本地、Docker、SSH、Singularity、Modal 五种后端，并提供容器加固与隔离运行环境。",
   },
 ];
 
@@ -61,17 +80,17 @@ export default function Home() {
               <InstallTerminal />
 
               <div className="mt-12 flex flex-wrap gap-3">
-                <Link
+                <a
                   className="bg-primary rounded-full px-6 py-3 text-sm font-medium shadow-[0_16px_40px_rgba(34,2,242,0.18)] transition hover:-translate-y-0.5"
+                  href="https://hermes-assets.nousresearch.com/Hermes-Setup.dmg?build=beaa1a08e6ab"
+                >
+                  下载客户端
+                </a>
+                <Link
+                  className="rounded-full border border-[#2202f2] px-6 py-3 text-sm font-medium text-[#2202f2] transition hover:bg-[#f1efff]"
                   href="/docs"
                 >
                   阅读文档
-                </Link>
-                <Link
-                  className="rounded-full border border-[#2202f2] px-6 py-3 text-sm font-medium text-[#2202f2] transition hover:bg-[#f1efff]"
-                  href="/forum"
-                >
-                  加入论坛
                 </Link>
               </div>
             </div>
@@ -89,22 +108,33 @@ export default function Home() {
       </section>
 
       <section className="border-y border-[#ece9ff] bg-[#f8f7ff]">
-        <div className="mx-auto grid max-w-7xl gap-4 px-5 py-14 sm:px-8 md:grid-cols-3">
-          {features.map((feature) => (
-            <div
-              className="rounded-lg border border-[#e3dfff] bg-white/90 p-6"
-              key={feature.title}
-            >
-              <h2 className="text-lg font-semibold text-[#111111]">
-                {feature.title}
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-[#4b4b4b]">
-                {feature.copy}
-              </p>
-            </div>
-          ))}
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+          <h2 className="text-3xl font-semibold text-[#111111]">
+            Hermes Agent 特性
+          </h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {features.map((feature) => (
+              <div
+                className="rounded-lg border border-[#e3dfff] bg-white/90 p-6"
+                key={feature.title}
+              >
+                <i
+                  aria-hidden="true"
+                  className={`${feature.icon} text-3xl text-[#2202f2]`}
+                />
+                <h3 className="mt-4 text-lg font-semibold text-[#111111]">
+                  {feature.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-[#4b4b4b]">
+                  {feature.copy}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
+      <HermesVsOpenClaw />
 
       <section className="bg-primary">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
@@ -113,11 +143,10 @@ export default function Home() {
               Community Thesis
             </p>
             <h2 className="text-3xl leading-tight font-semibold text-white sm:text-5xl">
-              让中文社区里的创造者，不只是使用 Agent，而是和 Agent 一起进化。
+              连接更多 AI Native 超级个体，把个人经验变成可复用的生产力系统。
             </h2>
             <p className="mt-6 text-lg leading-8 text-white/80">
-              我们会围绕中文资料、最佳实践、Skills 生态和解决方案支持，连接更多
-              AI native 超级个体，让每一次解决问题都能成为社区的共同资产。
+              HermesCN 会围绕中文资料、最佳实践、Skills 生态和自动化工作流，帮助个人与企业把一次次有效协作沉淀下来，让 Agent 真正进入日常工作。
             </p>
           </div>
         </div>

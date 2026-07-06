@@ -7,12 +7,12 @@ const installOptions = [
   {
     id: "unix",
     label: "Linux / macOS / WSL2",
-    command: "curl -fsSL https://res1.hermesagent.org.cn/install.sh | bash",
+    command: "curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash",
   },
   {
     id: "windows",
     label: "Windows",
-    command: "irm https://res1.hermesagent.org.cn/install.ps1 | iex",
+    command: "iex (irm https://hermes-agent.nousresearch.com/install.ps1)",
   },
 ];
 
