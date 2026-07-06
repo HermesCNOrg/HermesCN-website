@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const devDocsBase = "http://localhost:3079/docs";
+const devDocsBase = "http://localhost:3079";
 
 export function middleware(request: NextRequest) {
   if (process.env.NODE_ENV === "development") {

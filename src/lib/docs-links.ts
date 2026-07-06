@@ -1,4 +1,4 @@
-const devDocsBase = "http://localhost:3079/docs";
+const devDocsBase = "http://localhost:3079";
 const productionDocsBase = "/docs";
 
 export const docsHref =
