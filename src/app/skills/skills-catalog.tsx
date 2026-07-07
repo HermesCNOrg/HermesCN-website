@@ -56,10 +56,7 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
       .map(([label, count]) => ({ count, label }))
       .sort((a, b) => a.label.localeCompare(b.label, "zh-CN"));
 
-    return [
-      { count: skills.length, label: "全部" },
-      ...topics,
-    ];
+    return [{ count: skills.length, label: "全部" }, ...topics];
   }, [skills]);
 
   const filteredSkills = useMemo(() => {
@@ -106,19 +103,22 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
   }
 
   return (
-    <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-8">
-      <div className="py-10">
+    <section className="bg-white text-[#0000f2]">
+      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="flex items-end justify-between gap-4">
-          <h2 className="text-2xl font-semibold">
-            Skills 目录
-            <span className="ml-2 text-sm font-normal text-[#5f6270]">
-              （共匹配 {filteredSkills.length} 个）
-            </span>
-          </h2>
+          <div>
+            <p className="text-sm text-[#0000f2]/65">02 · Catalog</p>
+            <h2 className="mt-3 text-3xl leading-tight font-normal text-[#0000f2] sm:text-5xl">
+              Skills 目录
+            </h2>
+            <p className="mt-3 text-sm text-[#0000f2]/65">
+              共匹配 {filteredSkills.length} 个
+            </p>
+          </div>
 
           {hasActiveFilters ? (
             <button
-              className="rounded-full border border-[#2202f2] bg-white px-4 py-2 text-sm font-medium text-[#2202f2] transition hover:bg-[#f1efff]"
+              className="border border-[#0000f2] bg-white px-4 py-2 text-sm font-medium text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
               type="button"
               onClick={() => {
                 setSelectedTopics(new Set());
@@ -131,26 +131,26 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
           ) : null}
         </div>
 
-        <div className="mt-6 grid gap-6">
+        <div className="mt-8 border-y border-[#0000f2]/15 py-6">
           <input
             aria-label="搜索 Skills"
-            className="h-12 rounded-md border border-transparent bg-white px-4 text-sm shadow-none outline-none transition placeholder:text-[#8a879a] hover:border-[#2202f2] focus:border-[#2202f2] focus:ring-4 focus:ring-[#2202f2]/10"
+            className="h-12 w-full border border-[#0000f2]/15 bg-white px-4 text-sm text-[#0000f2] shadow-none transition outline-none placeholder:text-[#0000f2]/38 hover:border-[#0000f2] focus:border-[#0000f2]"
             placeholder="搜索名称、用途或分类"
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
 
-          <div className="grid gap-5">
+          <div className="mt-6 grid gap-6">
             <div>
               <div className="flex items-center gap-3">
-                <p className="text-sm font-medium text-[#2f3140]">方向</p>
-                <span className="h-px flex-1 bg-[#ddd8ff]" />
+                <p className="text-sm font-medium text-[#0000f2]">方向</p>
+                <span className="h-px flex-1 bg-[#0000f2]/15" />
               </div>
               <div className="relative mt-3 max-h-40 overflow-hidden">
-                <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-5 bg-gradient-to-b from-[#fbfaff] to-transparent" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-6 bg-gradient-to-t from-[#fbfaff] to-transparent" />
-                <div className="scrollbar-hide max-h-40 overflow-y-auto pr-1 pt-4 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-5 bg-gradient-to-b from-white to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-6 bg-gradient-to-t from-white to-transparent" />
+                <div className="scrollbar-hide max-h-40 [scrollbar-width:none] overflow-y-auto pt-4 pr-1 pb-3 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                   <div className="flex flex-wrap gap-2">
                     {topicOptions.map((topic) => {
                       const active =
@@ -161,10 +161,10 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
                       return (
                         <button
                           aria-pressed={active}
-                          className={`rounded-full border px-3 py-1.5 text-sm transition ${
+                          className={`group border px-3 py-1.5 text-sm transition ${
                             active
-                              ? "border-[#2202f2] bg-[#2202f2] text-white"
-                              : "border-transparent bg-white text-[#4b4b4b] hover:border-[#2202f2] hover:bg-[#f1efff]"
+                              ? "border-[#0000f2] bg-[#0000f2] text-white"
+                              : "border-[#0000f2]/15 bg-white text-[#0000f2]/75 hover:border-[#0000f2] hover:bg-[#0000f2] hover:text-white"
                           }`}
                           key={topic.label}
                           type="button"
@@ -172,8 +172,10 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
                         >
                           {topic.label}
                           <span
-                            className={`ml-1 text-xs ${
-                              active ? "text-white/75" : "text-[#8a879a]"
+                            className={`ml-1 text-xs transition ${
+                              active
+                                ? "text-white/75"
+                                : "text-[#0000f2]/45 group-hover:text-white/70"
                             }`}
                           >
                             {topic.count}
@@ -188,8 +190,8 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
 
             <div>
               <div className="flex items-center gap-3">
-                <p className="text-sm font-medium text-[#2f3140]">排序</p>
-                <span className="h-px flex-1 bg-[#ddd8ff]" />
+                <p className="text-sm font-medium text-[#0000f2]">排序</p>
+                <span className="h-px flex-1 bg-[#0000f2]/15" />
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {sortOptions.map((option) => {
@@ -198,10 +200,10 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
                   return (
                     <button
                       aria-pressed={active}
-                      className={`rounded-full border px-3 py-1.5 text-sm transition ${
+                      className={`border px-3 py-1.5 text-sm transition ${
                         active
-                          ? "border-[#2202f2] bg-[#2202f2] text-white"
-                          : "border-transparent bg-white text-[#4b4b4b] hover:border-[#2202f2] hover:bg-[#f1efff]"
+                          ? "border-[#0000f2] bg-[#0000f2] text-white"
+                          : "border-[#0000f2]/15 bg-white text-[#0000f2]/75 hover:border-[#0000f2] hover:bg-[#0000f2] hover:text-white"
                       }`}
                       key={option.value}
                       type="button"
@@ -215,54 +217,54 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filteredSkills.map((skill) => (
-          <a
-            className="group flex min-h-[17rem] flex-col rounded-lg border border-[#e6e3ff] bg-white p-4 transition hover:-translate-y-0.5 hover:border-[#2202f2]/40 hover:shadow-[0_16px_44px_rgba(34,2,242,0.08)]"
-            href={getSkillUrl(skill)}
-            key={skill.slug}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="line-clamp-2 text-lg leading-6 font-semibold text-[#111111] transition group-hover:text-[#2202f2]">
-                  {skill.name}
-                </h2>
-                <p className="mt-1 text-xs text-[#6b6d78]">
-                  {skill.slug} · v{skill.version}
-                </p>
+        <div className="mt-10 grid gap-0 border-t border-l border-[#0000f2]/15 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {filteredSkills.map((skill) => (
+            <a
+              className="group flex min-h-[17rem] flex-col border-r border-b border-[#0000f2]/15 bg-white p-5 text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
+              href={getSkillUrl(skill)}
+              key={skill.slug}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h2 className="line-clamp-2 origin-left text-lg leading-6 font-normal text-current transition-transform duration-200 group-hover:scale-[1.03]">
+                    {skill.name}
+                  </h2>
+                  <p className="mt-1 text-xs text-[#0000f2]/55 transition group-hover:text-white/65">
+                    {skill.slug} · v{skill.version}
+                  </p>
+                </div>
+                <span className="grid h-8 w-8 shrink-0 origin-right place-items-center border border-[#0000f2]/15 text-[#0000f2] transition-transform duration-200 group-hover:scale-125 group-hover:border-white/35 group-hover:text-white">
+                  <i aria-hidden="true" className="ri-arrow-right-up-line" />
+                </span>
               </div>
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#ded8ff] text-[#2202f2] transition group-hover:bg-[#f4f2ff]">
-                <i aria-hidden="true" className="ri-arrow-right-up-line" />
-              </span>
-            </div>
 
-            <p className="mt-4 line-clamp-4 flex-1 text-sm leading-6 text-[#4b4b4b]">
-              {skill.summary}
-            </p>
+              <p className="mt-4 line-clamp-4 flex-1 text-sm leading-6 text-[#0000f2]/65 transition group-hover:text-white/75">
+                {skill.summary}
+              </p>
 
-            <div className="mt-4 flex flex-wrap gap-2">
-              {(skill.topics.length > 0 ? skill.topics : ["Skill"]).map(
-                (topic) => (
-                  <span
-                    className="rounded-full bg-[#f7f6ff] px-2.5 py-1 text-xs text-[#4b4770]"
-                    key={topic}
-                  >
-                    {topic}
-                  </span>
-                ),
-              )}
-            </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {(skill.topics.length > 0 ? skill.topics : ["Skill"]).map(
+                  (topic) => (
+                    <span
+                      className="border border-[#0000f2]/15 px-2.5 py-1 text-xs text-[#0000f2]/65 transition group-hover:border-white/25 group-hover:text-white/75"
+                      key={topic}
+                    >
+                      {topic}
+                    </span>
+                  ),
+                )}
+              </div>
 
-            <div className="mt-4 flex items-center justify-between border-t border-[#f0eeff] pt-4 text-xs text-[#5f6270]">
-              <span>{formatCount(skill.stars)} stars</span>
-              <span>{formatCount(skill.downloads)} downloads</span>
-            </div>
-          </a>
-        ))}
+              <div className="mt-4 flex items-center justify-between border-t border-[#0000f2]/15 pt-4 text-xs text-[#0000f2]/55 transition group-hover:border-white/25 group-hover:text-white/65">
+                <span>{formatCount(skill.stars)} stars</span>
+                <span>{formatCount(skill.downloads)} downloads</span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );

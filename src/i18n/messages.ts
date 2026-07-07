@@ -14,22 +14,15 @@ type StringPaths<T, Prefix extends string = ""> = T extends string
   ? Prefix
   : T extends object
     ? {
-        [K in Extract<keyof T, string>]: StringPaths<
-          T[K],
-          JoinPath<Prefix, K>
-        >;
+        [K in Extract<keyof T, string>]: StringPaths<T[K], JoinPath<Prefix, K>>;
       }[Extract<keyof T, string>]
     : never;
 
 type ValuePaths<T, Prefix extends string = ""> = T extends object
-  ?
-      | Prefix
-      | {
-          [K in Extract<keyof T, string>]: ValuePaths<
-            T[K],
-            JoinPath<Prefix, K>
-          >;
-        }[Extract<keyof T, string>]
+  ? | Prefix
+    | {
+        [K in Extract<keyof T, string>]: ValuePaths<T[K], JoinPath<Prefix, K>>;
+      }[Extract<keyof T, string>]
   : Prefix;
 
 const messages = messagesJson satisfies Record<Locale, MessageTree>;

@@ -15,7 +15,7 @@ const community = ["中文文档", "Skills 实践", "本地部署", "解决方�
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#e8e5ff] bg-white">
+    <footer className="border-t border-[#f5f5f5]/20 bg-[#0000f2] text-[#f5f5f5]">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <Link className="inline-flex items-center" href="/">
@@ -25,18 +25,18 @@ export function Footer() {
               src="/logo.svg"
             />
           </Link>
-          <p className="mt-5 max-w-md text-sm leading-7 text-[#5f6270]">
+          <p className="mt-5 max-w-md text-sm leading-7 text-[#d8dcff]">
             HermesCN 中文社区连接更多 AI native
             超级个体，沉淀中文资料、实践经验和解决方案。
           </p>
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-[#111111]">网站地图</h2>
-          <nav className="mt-4 grid gap-3 text-sm text-[#5f6270]">
+          <h2 className="text-sm font-semibold text-[#f5f5f5]">网站地图</h2>
+          <nav className="mt-4 grid gap-3 text-sm text-[#d8dcff]">
             {sitemap.map((item) => (
               <Link
-                className="transition hover:text-[#2202f2]"
+                className="transition hover:text-white"
                 href={item.href}
                 key={item.href}
               >
@@ -47,8 +47,8 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-[#111111]">社区方向</h2>
-          <ul className="mt-4 grid gap-3 text-sm text-[#5f6270]">
+          <h2 className="text-sm font-semibold text-[#f5f5f5]">社区方向</h2>
+          <ul className="mt-4 grid gap-3 text-sm text-[#d8dcff]">
             {community.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -56,7 +56,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-[#f0eeff] px-5 py-5 text-center text-xs text-[#6b6d78] sm:px-8">
+      <div className="border-t border-[#f5f5f5]/20 px-5 py-5 text-center text-xs text-[#d8dcff] sm:px-8">
         © {new Date().getFullYear()} HermesCN 中文社区. All rights reserved.
       </div>
     </footer>

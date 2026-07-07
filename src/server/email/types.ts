@@ -18,9 +18,7 @@ export interface MailService {
 }
 
 export type AuthMailKind =
-  | "verify-email"
-  | "change-email-confirmation"
-  | "reset-password";
+  "verify-email" | "change-email-confirmation" | "reset-password";
 
 export type AuthMailPayload = {
   kind: AuthMailKind;

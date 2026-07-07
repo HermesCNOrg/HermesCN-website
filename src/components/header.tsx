@@ -59,7 +59,7 @@ export function Header() {
           "transform 520ms cubic-bezier(0.22, 1, 0.36, 1), opacity 260ms ease",
       }}
     >
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between rounded-full border border-[#e8e5ff] bg-white/95 px-5 shadow-[0_18px_50px_rgba(34,2,242,0.08)] backdrop-blur sm:px-6">
+      <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between border border-[#f5f5f5]/25 bg-[#0000f2]/90 px-5 backdrop-blur-md sm:px-6">
         <div className="flex items-center gap-8">
           <Link className="flex items-center" href="/">
             <img
@@ -69,7 +69,7 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-2 text-sm text-[#2f3140] md:flex lg:gap-3">
+          <nav className="hidden items-center gap-2 text-sm text-[#f5f5f5] md:flex lg:gap-3">
             {navItems.map((item) => {
               const isDocs =
                 item.href === docsHref &&
@@ -84,10 +84,10 @@ export function Header() {
               return (
                 <Link
                   className={[
-                    "inline-flex items-center gap-1 rounded-full px-2.5 py-1 transition",
+                    "inline-flex items-center gap-1 border border-transparent px-2.5 py-1 transition",
                     isActive
-                      ? "bg-[#2202f2] text-white hover:text-white"
-                      : "hover:text-[#2202f2]",
+                      ? "border-[#f5f5f5]/70 bg-[#2d2dff] text-[#f5f5f5]"
+                      : "text-[#f5f5f5] hover:border-white hover:bg-white hover:text-[#0000f2]",
                   ].join(" ")}
                   href={item.href}
                   key={item.href}

@@ -61,7 +61,8 @@ const fallbackSkills: SkillCard[] = [
   {
     slug: "self-improving-agent",
     name: "self-improving agent",
-    summary: "把失败、纠错和新发现沉淀成可复用经验，让 Agent 在长期项目里持续变聪明。",
+    summary:
+      "把失败、纠错和新发现沉淀成可复用经验，让 Agent 在长期项目里持续变聪明。",
     description:
       "适合长期项目、反复迭代的开发任务，以及需要把经验沉淀成规则的个人工作流。",
     topics: ["自我改进"],
@@ -76,7 +77,8 @@ const fallbackSkills: SkillCard[] = [
   {
     slug: "skill-vetter",
     name: "Skill Vetter",
-    summary: "安装第三方 skill 前做安全审查，快速检查权限范围、可疑模式和潜在风险。",
+    summary:
+      "安装第三方 skill 前做安全审查，快速检查权限范围、可疑模式和潜在风险。",
     description:
       "适合在安装 ClawHub、GitHub 或其他来源的 skill 前进行快速安全复核。",
     topics: ["安全", "权限"],
@@ -91,7 +93,8 @@ const fallbackSkills: SkillCard[] = [
   {
     slug: "multi-search-engine",
     name: "Multi Search Engine",
-    summary: "聚合多个搜索引擎，支持中文与全球信息源，适合调研、比对和网页检索。",
+    summary:
+      "聚合多个搜索引擎，支持中文与全球信息源，适合调研、比对和网页检索。",
     description:
       "支持多搜索引擎、时间过滤、站内搜索和隐私搜索，适合研究与资料收集。",
     topics: ["搜索", "隐私"],
@@ -150,18 +153,20 @@ export default function SkillsPage() {
   const skills = getSkills();
 
   return (
-    <main className="min-h-screen bg-[#fbfaff] pt-40 text-[#111111]">
-      <section className="mx-auto max-w-7xl px-5 pb-10 sm:px-8 lg:pb-14">
-        <div className="max-w-4xl">
-          <p className="text-sm font-medium tracking-[0.18em] text-[#2202f2] uppercase">
-            Skills
-          </p>
-          <h1 className="mt-5 max-w-4xl text-4xl leading-tight font-semibold text-[#111111] sm:text-6xl">
-            找到适合你工作流的 Agent Skills
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-[#4b4b4b] sm:text-lg">
-            浏览可复用的 Agent 能力包，按用途筛选，查看说明、版本、热度和更新记录，再决定是否安装到自己的 Hermes 工作流里。
-          </p>
+    <main className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
+      <section className="border-b border-[#f5f5f5]/20 bg-[#0000f2]">
+        <div className="mx-auto max-w-7xl px-5 pt-32 pb-16 sm:px-8">
+          <div className="max-w-4xl">
+            <p className="text-sm text-[#d8dcff]">01 · Skills Library</p>
+            <h1 className="mt-5 text-5xl leading-[1.02] font-normal text-[#f5f5f5] sm:text-6xl">
+              找到适合你工作流的 Agent Skills
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#d8dcff]">
+              浏览可复用的 Agent
+              能力包，按用途筛选，查看说明、版本、热度和更新记录，再决定是否安装到自己的
+              Hermes 工作流里。
+            </p>
+          </div>
         </div>
       </section>
 

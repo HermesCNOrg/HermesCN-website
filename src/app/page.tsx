@@ -8,31 +8,37 @@ import { docsHref } from "~/lib/docs-links";
 const features = [
   {
     icon: "ri-global-line",
+    order: "01",
     title: "无处不在",
     copy: "Telegram、Discord、Slack、WhatsApp、Signal、Email、CLI 等入口都能接入。一个 Agent，一份记忆，覆盖每个使用场景。",
   },
   {
     icon: "ri-brain-line",
+    order: "02",
     title: "持久记忆",
     copy: "它会学习你的项目与偏好，自动沉淀 Skills，并记住每一次问题是如何被解决的。",
   },
   {
     icon: "ri-calendar-check-line",
+    order: "03",
     title: "专注自动化",
     copy: "用自然语言安排报告、备份和简报，让任务通过网关自动运行，稳定交付结果。",
   },
   {
     icon: "ri-git-branch-line",
+    order: "04",
     title: "任务委派",
     copy: "把复杂工作拆给隔离的子 Agent，每个任务都有自己的对话、终端和脚本环境，减少主上下文负担。",
   },
   {
     icon: "ri-search-line",
+    order: "05",
     title: "联网搜索",
     copy: "支持网页搜索、浏览器自动化、视觉理解、图像生成、文本转语音和多模型推理。",
   },
   {
     icon: "ri-shield-check-line",
+    order: "06",
     title: "隔离沙箱",
     copy: "支持本地、Docker、SSH、Singularity、Modal 五种后端，并提供容器加固与隔离运行环境。",
   },
@@ -46,32 +52,32 @@ const communityEntrances = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-[#111111]">
-      <section className="relative isolate overflow-hidden bg-white">
-        <div className="mx-auto grid min-h-[max(100vh,720px)] w-full max-w-7xl gap-12 px-5 pt-28 sm:px-8 lg:h-[max(100vh,720px)] lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch lg:pt-24">
-          <div className="flex min-h-0 items-center py-10 lg:h-full lg:py-20">
+    <div className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
+      <section className="relative isolate overflow-hidden border-b border-[#f5f5f5]/20 bg-[#0000f2]">
+        <div className="mx-auto grid min-h-[max(100vh,720px)] w-full max-w-7xl gap-12 px-5 pt-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:pt-24">
+          <div className="relative z-10 flex min-h-0 items-center py-12 lg:h-full lg:py-20">
             <div className="max-w-4xl">
-              <h1 className="max-w-4xl text-5xl leading-[1.15] font-semibold tracking-tight text-[#111111] sm:text-6xl">
-                欢迎加入
+              <h1 className="max-w-4xl text-5xl leading-[0.98] font-normal text-[#f5f5f5] sm:text-6xl lg:text-7xl">
+                HermesCN
                 <br />
-                <span className="text-[#2202f2]"> HermesCN </span>中文社区
+                中文社区
               </h1>
               <BannerDescription />
 
-              <div className="mt-10 grid max-w-sm grid-cols-3 gap-2">
+              <div className="mt-10 grid w-full max-w-sm grid-cols-1 gap-0 overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30 sm:grid-cols-[repeat(3,minmax(0,1fr))]">
                 {communityEntrances.map((item) => (
                   <Link
                     aria-label={item.title}
-                    className="group flex w-full flex-col items-center gap-2 rounded-md border border-[#e6e3ff] bg-white px-2 py-2 text-center shadow-[0_12px_34px_rgba(34,2,242,0.06)] transition hover:-translate-y-0.5 hover:border-[#2202f2]/40 hover:bg-[#fbfaff]"
+                    className="group flex min-w-0 flex-col items-center gap-2 border-b border-[#f5f5f5]/20 px-2 py-3 text-center transition last:border-b-0 hover:bg-white sm:border-r sm:border-b-0 sm:last:border-r-0"
                     href="/forum"
                     key={item.title}
                   >
                     <img
                       alt={`${item.title}二维码占位`}
-                      className="h-full w-full rounded-md bg-white object-cover"
+                      className="aspect-square w-full min-w-0 bg-white object-cover"
                       src={item.image}
                     />
-                    <span className="text-xs font-medium text-[#111111]">
+                    <span className="text-xs font-medium text-[#f5f5f5] transition group-hover:text-[#0000f2]">
                       加入{item.title}
                     </span>
                   </Link>
@@ -82,13 +88,13 @@ export default function Home() {
 
               <div className="mt-12 flex flex-wrap gap-3">
                 <a
-                  className="bg-primary rounded-full px-6 py-3 text-sm font-medium shadow-[0_16px_40px_rgba(34,2,242,0.18)] transition hover:-translate-y-0.5"
+                  className="border border-white bg-white px-6 py-3 text-sm font-medium text-[#0000f2] transition hover:-translate-y-0.5 hover:bg-[#0000f2] hover:text-white"
                   href="https://hermes-assets.nousresearch.com/Hermes-Setup.dmg?build=beaa1a08e6ab"
                 >
                   下载客户端
                 </a>
                 <Link
-                  className="rounded-full border border-[#2202f2] px-6 py-3 text-sm font-medium text-[#2202f2] transition hover:bg-[#f1efff]"
+                  className="border border-[#f5f5f5]/70 px-6 py-3 text-sm font-medium text-[#f5f5f5] transition hover:border-white hover:bg-white hover:text-[#0000f2]"
                   href={docsHref}
                 >
                   阅读文档
@@ -97,36 +103,42 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex min-h-[30rem] items-end justify-center lg:h-full lg:min-h-0 lg:justify-end">
+          <div className="relative flex min-h-[30rem] items-center justify-center lg:h-full lg:min-h-0 lg:justify-end">
             <img
               alt=""
               aria-hidden="true"
-              className="h-auto max-h-[62vh] w-auto max-w-full object-contain object-right-bottom lg:max-h-[calc(100vh-14rem)] lg:max-w-[36rem]"
-              src="/logo_ip.svg"
+              className="relative h-auto max-h-[60vh] w-auto max-w-full object-contain object-center lg:max-h-[calc(100vh-11rem)] lg:max-w-[40rem]"
+              src="/logo_ip2.png"
             />
           </div>
         </div>
       </section>
 
-      <section className="border-y border-[#ece9ff] bg-[#f8f7ff]">
-        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
-          <h2 className="text-3xl font-semibold text-[#111111]">
-            Hermes Agent 特性
-          </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+      <section className="border-y border-[#f5f5f5]/20 bg-[#0000f2]">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+          <div>
+            <p className="text-sm text-[#d8dcff]">01 · Feature Preview</p>
+            <h2 className="mt-4 text-3xl leading-tight font-normal text-[#f5f5f5] sm:text-5xl">
+              Hermes Agent 特性
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-0 border-t border-l border-[#0000f2]/15 md:grid-cols-3">
             {features.map((feature) => (
               <div
-                className="rounded-lg border border-[#e3dfff] bg-white/90 p-6"
+                className="group border-r border-b border-[#0000f2]/15 bg-white p-6 text-[#0000f2]"
                 key={feature.title}
               >
-                <i
-                  aria-hidden="true"
-                  className={`${feature.icon} text-3xl text-[#2202f2]`}
-                />
-                <h3 className="mt-4 text-lg font-semibold text-[#111111]">
+                <div className="flex items-center justify-between text-[#0000f2]/65">
+                  <span className="text-xs">{feature.order}</span>
+                  <i
+                    aria-hidden="true"
+                    className={`${feature.icon} origin-right text-2xl transition-transform duration-200 group-hover:scale-125`}
+                  />
+                </div>
+                <h3 className="mt-10 origin-left text-2xl font-normal text-current transition-transform duration-200 group-hover:scale-[1.04]">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-[#4b4b4b]">
+                <p className="mt-3 text-sm leading-6 text-[#0000f2]/65">
                   {feature.copy}
                 </p>
               </div>
@@ -137,17 +149,19 @@ export default function Home() {
 
       <HermesVsOpenClaw />
 
-      <section className="bg-primary">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-          <div className="max-w-3xl">
-            <p className="mb-4 text-sm tracking-[0.2em] text-white/70 uppercase">
-              Community Thesis
+      <section className="bg-white text-[#0000f2]">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+          <div className="max-w-4xl">
+            <p className="mb-6 text-sm text-[#0000f2]/65">
+              03 · Community Thesis
             </p>
-            <h2 className="text-3xl leading-tight font-semibold text-white sm:text-5xl">
+            <h2 className="text-3xl leading-tight font-normal text-[#0000f2] sm:text-5xl">
               连接更多 AI Native 超级个体，把个人经验变成可复用的生产力系统。
             </h2>
-            <p className="mt-6 text-lg leading-8 text-white/80">
-              HermesCN 会围绕中文资料、实践案例、Skills 生态和自动化工作流，帮助个人与企业把一次次有效协作沉淀下来，让 Agent 真正进入日常工作。
+            <p className="mt-8 max-w-3xl text-lg leading-8 text-[#0000f2]/65">
+              HermesCN 会围绕中文资料、实践案例、Skills
+              生态和自动化工作流，帮助个人与企业把一次次有效协作沉淀下来，让
+              Agent 真正进入日常工作。
             </p>
           </div>
         </div>

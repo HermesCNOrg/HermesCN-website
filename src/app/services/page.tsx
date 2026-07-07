@@ -53,75 +53,86 @@ const industries = [
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-[#fbfbfe] px-5 pt-40 pb-20 text-[#111111] sm:px-8">
-      <section className="mx-auto max-w-6xl pb-12">
-        <p className="text-sm font-medium tracking-[0.24em] text-[#2202f2] uppercase">
-          Industry Solutions
-        </p>
-        <h1 className="mt-5 max-w-4xl text-4xl leading-tight font-semibold tracking-tight text-[#111111] sm:text-6xl">
-          为每个行业找到
-          <br />
-          <span className="text-[#2202f2]">能落地的 Agent 场景</span>
-        </h1>
-        <p className="mt-7 max-w-3xl text-lg leading-8 text-[#3f3f46]">
-          你提供真实业务问题，我们提供场景诊断、工作流设计、工具选型、原型搭建和落地陪跑，帮助团队把 AI / Agent
-          从“尝试一下”变成稳定可复用的工作方式。
-        </p>
+    <main className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
+      <section className="border-b border-[#f5f5f5]/20 bg-[#0000f2]">
+        <div className="mx-auto max-w-7xl px-5 pt-32 pb-16 sm:px-8">
+          <div className="max-w-4xl">
+            <p className="text-sm text-[#d8dcff]">01 · Industry Solutions</p>
+            <h1 className="mt-5 text-5xl leading-[1.02] font-normal text-[#f5f5f5] sm:text-6xl">
+              为每个行业找到
+              <br />
+              能落地的 Agent 场景
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#d8dcff]">
+              你提供真实业务问题，我们提供场景诊断、工作流设计、工具选型、原型搭建和落地陪跑，帮助团队把
+              AI / Agent 从“尝试一下”变成稳定可复用的工作方式。
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="mx-auto mt-12 max-w-6xl">
-        <div className="grid gap-4">
-          {industries.map((industry) => (
-            <article
-              className="group grid gap-6 rounded-lg border border-[#e3e0f7] bg-white p-5 shadow-[0_16px_50px_rgba(34,2,242,0.06)] transition hover:-translate-y-0.5 hover:border-[#2202f2]/35 hover:shadow-[0_24px_70px_rgba(34,2,242,0.1)] md:grid-cols-[1fr_7.5rem] md:items-center lg:p-6"
-              key={industry.title}
-            >
-              <div>
-                <div className="flex items-start gap-4">
-                  <div className="flex size-11 shrink-0 items-center justify-center text-[#2202f2]">
-                    <i
-                      aria-hidden="true"
-                      className={`${industry.icon} text-3xl leading-none`}
-                    />
+      <section className="bg-white text-[#0000f2]">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+          <div>
+            <p className="text-sm text-[#0000f2]/65">02 · Service Matrix</p>
+            <h2 className="mt-3 text-3xl leading-tight font-normal text-[#0000f2] sm:text-5xl">
+              解决方案
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-0 border-t border-l border-[#0000f2]/15">
+            {industries.map((industry) => (
+              <article
+                className="group grid gap-6 border-r border-b border-[#0000f2]/15 bg-white p-5 text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white md:grid-cols-[1fr_7.5rem] md:items-center lg:p-6"
+                key={industry.title}
+              >
+                <div>
+                  <div className="flex items-start gap-4">
+                    <div className="flex size-11 shrink-0 origin-left items-center justify-center text-[#0000f2] transition-transform duration-200 group-hover:scale-125 group-hover:text-white">
+                      <i
+                        aria-hidden="true"
+                        className={`${industry.icon} text-3xl leading-none`}
+                      />
+                    </div>
+                    <div>
+                      <h3 className="origin-left text-2xl leading-snug font-normal text-current transition-transform duration-200 group-hover:scale-[1.03]">
+                        {industry.title}
+                      </h3>
+                      <p className="mt-3 max-w-3xl text-base leading-7 text-[#0000f2]/65 transition group-hover:text-white/75">
+                        {industry.copy}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h2 className="text-2xl leading-snug font-semibold text-[#111111]">
-                      {industry.title}
-                    </h2>
-                    <p className="mt-3 max-w-3xl text-base leading-7 text-[#4b4b4b]">
-                      {industry.copy}
+
+                  <div className="mt-5 flex flex-wrap gap-2 pl-[3.75rem]">
+                    {industry.services.map((service) => (
+                      <span
+                        className="border border-[#0000f2]/15 px-3 py-1 text-sm font-medium text-[#0000f2]/65 transition group-hover:border-white/25 group-hover:text-white/75"
+                        key={service}
+                      >
+                        {service}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="justify-self-start md:justify-self-end">
+                  <div className="w-28 border border-[#0000f2]/15 bg-white p-2 text-center text-[#0000f2] transition group-hover:border-white/35">
+                    <Image
+                      alt={`扫码加入${industry.title}群聊`}
+                      className="aspect-square w-full bg-white object-cover"
+                      height={96}
+                      src="/code.png"
+                      width={96}
+                    />
+                    <p className="mt-2 text-xs font-medium text-[#0000f2]/65">
+                      扫码入群
                     </p>
                   </div>
                 </div>
-
-                <div className="mt-5 flex flex-wrap gap-2 pl-[3.75rem]">
-                  {industry.services.map((service) => (
-                    <span
-                      className="rounded-full bg-[#f1efff] px-3 py-1 text-sm font-medium text-[#2202f2]"
-                      key={service}
-                    >
-                      {service}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="justify-self-start md:justify-self-end">
-                <div className="w-28 rounded-lg border border-[#e6e3ff] bg-[#fbfbfe] p-2 text-center transition group-hover:border-[#2202f2]/40">
-                  <Image
-                    alt={`扫码加入${industry.title}群聊`}
-                    className="aspect-square w-full rounded-md bg-white object-cover"
-                    height={96}
-                    src="/code.png"
-                    width={96}
-                  />
-                  <p className="mt-2 text-xs font-medium text-[#6b6b76]">
-                    扫码入群
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>

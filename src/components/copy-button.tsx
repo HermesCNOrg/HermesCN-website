@@ -19,7 +19,7 @@ export function CopyButton({ text, label = "复制" }: CopyButtonProps) {
   return (
     <button
       aria-label={copied ? "已复制" : label}
-      className="inline-flex size-8 shrink-0 items-center justify-center rounded-md border border-[#e6e3ff] bg-white text-[#2202f2] transition hover:border-[#2202f2]/40 hover:bg-[#f7f6ff]"
+      className="inline-flex size-8 shrink-0 items-center justify-center border border-[#0000f2]/15 bg-white text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
       onClick={handleCopy}
       type="button"
     >

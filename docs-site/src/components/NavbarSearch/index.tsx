@@ -1,5 +1,5 @@
-import {useEffect, useMemo, useState} from 'react';
-import useBaseUrl, {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
+import { useEffect, useMemo, useState } from "react";
+import useBaseUrl, { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 
 type SearchIndexItem = {
   title: string;
@@ -8,10 +8,10 @@ type SearchIndexItem = {
 };
 
 export default function NavbarSearch() {
-  const searchIndexUrl = useBaseUrl('/search-index.json');
-  const {withBaseUrl} = useBaseUrlUtils();
+  const searchIndexUrl = useBaseUrl("/search-index.json");
+  const { withBaseUrl } = useBaseUrlUtils();
   const [items, setItems] = useState<SearchIndexItem[]>([]);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     let isMounted = true;
@@ -68,7 +68,8 @@ export default function NavbarSearch() {
               className="hermes-doc-search__result"
               href={withBaseUrl(item.url)}
               key={item.url}
-              onClick={() => setQuery('')}>
+              onClick={() => setQuery("")}
+            >
               {item.title}
             </a>
           ))}

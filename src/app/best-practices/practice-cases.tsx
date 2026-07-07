@@ -1,6 +1,5 @@
 "use client";
 
-import { Button, Input } from "@heroui/react";
 import { type Dispatch, type SetStateAction } from "react";
 import { useMemo, useState } from "react";
 
@@ -152,58 +151,38 @@ export function PracticeCases() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-[#111111]">
-      <section className="border-b border-[#ece9ff] bg-white">
-        <div className="mx-auto flex min-h-[35rem] max-w-7xl items-end px-5 pt-32 pb-16 sm:px-8">
+    <div className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
+      <section className="border-b border-[#f5f5f5]/20 bg-[#0000f2]">
+        <div className="mx-auto max-w-7xl px-5 pt-32 pb-16 sm:px-8">
           <div className="max-w-4xl">
-            <p className="text-sm tracking-[0.2em] text-[#2202f2] uppercase">
-              Practice Cases
-            </p>
-            <h1 className="mt-5 text-5xl leading-[1.12] font-semibold tracking-tight sm:text-6xl">
+            <p className="text-sm text-[#d8dcff]">01 · Practice Cases</p>
+            <h1 className="mt-5 text-5xl leading-[1.02] font-normal text-[#f5f5f5] sm:text-6xl">
               实践案例
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#4b4b4b]">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#d8dcff]">
               汇集社区真实故事与公开使用案例，覆盖工作流、个人助理、集成连接、创作生产和企业协作等场景，看看人们实际让
               Hermes Agent 做成了什么。
             </p>
-
-            <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
-              <div className="rounded-lg border border-[#e6e3ff] bg-[#fbfaff] p-4">
-                <p className="text-3xl font-semibold text-[#2202f2]">
-                  {allStories.length}
-                </p>
-                <p className="mt-1 text-sm text-[#5f6270]">stories</p>
-              </div>
-              <div className="rounded-lg border border-[#e6e3ff] bg-[#fbfaff] p-4">
-                <p className="text-3xl font-semibold text-[#2202f2]">
-                  {categories.length}
-                </p>
-                <p className="mt-1 text-sm text-[#5f6270]">categories</p>
-              </div>
-              <div className="rounded-lg border border-[#e6e3ff] bg-[#fbfaff] p-4">
-                <p className="text-3xl font-semibold text-[#2202f2]">
-                  {sources.length}
-                </p>
-                <p className="mt-1 text-sm text-[#5f6270]">sources</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#f8f7ff]">
-        <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
+      <section className="bg-white text-[#0000f2]">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
           <div className="flex items-end justify-between gap-4">
-            <h2 className="text-2xl font-semibold">
-              案例库
-              <span className="ml-2 text-sm font-normal text-[#5f6270]">
-                （共匹配 {filteredStories.length} 条）
-              </span>
-            </h2>
+            <div>
+              <p className="text-sm text-[#0000f2]/65">02 · Library</p>
+              <h2 className="mt-3 text-3xl leading-tight font-normal text-[#0000f2] sm:text-5xl">
+                案例库
+              </h2>
+              <p className="mt-3 text-sm text-[#0000f2]/65">
+                共匹配 {filteredStories.length} 条
+              </p>
+            </div>
 
             {hasActiveFilters && (
-              <Button
-                className="rounded-full border border-[#2202f2] bg-white px-4 py-2 text-sm font-medium text-[#2202f2] transition hover:bg-[#f1efff]"
+              <button
+                className="border border-[#0000f2] bg-white px-4 py-2 text-sm font-medium text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
                 onClick={() => {
                   setSelectedCategories(new Set());
                   setSelectedSources(new Set());
@@ -212,26 +191,25 @@ export function PracticeCases() {
                 type="button"
               >
                 清空筛选
-              </Button>
+              </button>
             )}
           </div>
 
-          <div className="mt-6 grid gap-6">
-            <Input
+          <div className="mt-8 border-y border-[#0000f2]/15 py-6">
+            <input
               aria-label="搜索案例"
-              className="h-12 rounded-md border border-transparent bg-white text-sm shadow-none transition outline-none focus-within:border-[#2202f2] focus-within:ring-4 focus-within:ring-[#2202f2]/10 hover:border-[#2202f2]"
-              fullWidth
+              className="h-12 w-full border border-[#0000f2]/15 bg-white px-4 text-sm text-[#0000f2] shadow-none transition outline-none placeholder:text-[#0000f2]/38 hover:border-[#0000f2] focus:border-[#0000f2]"
               onChange={(event) => setQuery(event.target.value)}
               placeholder="搜索场景、作者或关键词"
               type="search"
               value={query}
             />
 
-            <div className="grid gap-5">
+            <div className="mt-6 grid gap-6">
               <div>
                 <div className="flex items-center gap-3">
-                  <p className="text-sm font-medium text-[#2f3140]">方向</p>
-                  <span className="h-px flex-1 bg-[#ddd8ff]" />
+                  <p className="text-sm font-medium text-[#0000f2]">方向</p>
+                  <span className="h-px flex-1 bg-[#0000f2]/15" />
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {categories.map((item) => {
@@ -240,10 +218,10 @@ export function PracticeCases() {
                     return (
                       <button
                         aria-pressed={active}
-                        className={`rounded-full border px-3 py-1.5 text-sm transition ${
+                        className={`group border px-3 py-1.5 text-sm transition ${
                           active
-                            ? "border-[#2202f2] bg-[#2202f2] text-white"
-                            : "border-transparent bg-white text-[#4b4b4b] hover:border-[#2202f2] hover:bg-[#f1efff]"
+                            ? "border-[#0000f2] bg-[#0000f2] text-white"
+                            : "border-[#0000f2]/15 bg-white text-[#0000f2]/75 hover:border-[#0000f2] hover:bg-[#0000f2] hover:text-white"
                         }`}
                         key={item}
                         onClick={() =>
@@ -253,8 +231,10 @@ export function PracticeCases() {
                       >
                         {getLabel(categoryLabels, item)}
                         <span
-                          className={`ml-1 text-xs ${
-                            active ? "text-white/75" : "text-[#8a879a]"
+                          className={`ml-1 text-xs transition ${
+                            active
+                              ? "text-white/75"
+                              : "text-[#0000f2]/45 group-hover:text-white/70"
                           }`}
                         >
                           {categoryCounts.get(item) ?? 0}
@@ -267,8 +247,8 @@ export function PracticeCases() {
 
               <div>
                 <div className="flex items-center gap-3">
-                  <p className="text-sm font-medium text-[#2f3140]">来源</p>
-                  <span className="h-px flex-1 bg-[#ddd8ff]" />
+                  <p className="text-sm font-medium text-[#0000f2]">来源</p>
+                  <span className="h-px flex-1 bg-[#0000f2]/15" />
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {sources.map((item) => {
@@ -277,10 +257,10 @@ export function PracticeCases() {
                     return (
                       <button
                         aria-pressed={active}
-                        className={`rounded-full border px-3 py-1.5 text-sm transition ${
+                        className={`group border px-3 py-1.5 text-sm transition ${
                           active
-                            ? "border-[#2202f2] bg-[#2202f2] text-white"
-                            : "border-transparent bg-white text-[#4b4b4b] hover:border-[#2202f2] hover:bg-[#f1efff]"
+                            ? "border-[#0000f2] bg-[#0000f2] text-white"
+                            : "border-[#0000f2]/15 bg-white text-[#0000f2]/75 hover:border-[#0000f2] hover:bg-[#0000f2] hover:text-white"
                         }`}
                         key={item}
                         onClick={() => toggleFilter(item, setSelectedSources)}
@@ -288,8 +268,10 @@ export function PracticeCases() {
                       >
                         {getLabel(sourceLabels, item)}
                         <span
-                          className={`ml-1 text-xs ${
-                            active ? "text-white/75" : "text-[#8a879a]"
+                          className={`ml-1 text-xs transition ${
+                            active
+                              ? "text-white/75"
+                              : "text-[#0000f2]/45 group-hover:text-white/70"
                           }`}
                         >
                           {sourceCounts.get(item) ?? 0}
@@ -302,10 +284,10 @@ export function PracticeCases() {
             </div>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid gap-0 border-t border-l border-[#0000f2]/15 md:grid-cols-2 xl:grid-cols-3">
             {filteredStories.map((story) => (
               <a
-                className="group flex min-h-[19rem] flex-col rounded-lg border border-[#e3dfff] bg-white p-5 transition hover:-translate-y-0.5 hover:border-[#2202f2]/40 hover:shadow-[0_18px_50px_rgba(34,2,242,0.08)]"
+                className="group flex min-h-[19rem] flex-col border-r border-b border-[#0000f2]/15 bg-white p-5 text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
                 href={story.url}
                 key={story.id}
                 rel="noopener noreferrer"
@@ -313,26 +295,26 @@ export function PracticeCases() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex flex-wrap gap-2">
-                    <span className="rounded-full bg-[#f1efff] px-3 py-1 text-xs font-medium text-[#2202f2]">
+                    <span className="border border-[#0000f2]/15 px-3 py-1 text-xs font-medium text-[#0000f2]/75 transition group-hover:border-white/25 group-hover:text-white/75">
                       {getLabel(categoryLabels, story.category)}
                     </span>
-                    <span className="rounded-full bg-[#f8f7ff] px-3 py-1 text-xs text-[#5f6270]">
+                    <span className="border border-[#0000f2]/15 px-3 py-1 text-xs text-[#0000f2]/55 transition group-hover:border-white/25 group-hover:text-white/65">
                       {getLabel(sourceLabels, story.source)}
                     </span>
                   </div>
-                  <span className="shrink-0 text-xs text-[#777985]">
+                  <span className="shrink-0 text-xs text-[#0000f2]/55 transition group-hover:text-white/65">
                     {formatDate(story.date)}
                   </span>
                 </div>
 
-                <h3 className="mt-4 text-lg leading-7 font-semibold transition group-hover:text-[#2202f2] group-hover:underline group-hover:decoration-[#2202f2] group-hover:underline-offset-4">
+                <h3 className="mt-4 origin-left text-lg leading-7 font-normal text-current transition-transform duration-200 group-hover:scale-[1.03]">
                   {story.headline}
                 </h3>
-                <p className="mt-3 line-clamp-4 text-sm leading-6 text-[#4b4b4b]">
+                <p className="mt-3 line-clamp-4 text-sm leading-6 text-[#0000f2]/65 transition group-hover:text-white/75">
                   {story.quote}
                 </p>
 
-                <p className="mt-auto pt-5 text-xs text-[#777985]">
+                <p className="mt-auto pt-5 text-xs text-[#0000f2]/55 transition group-hover:text-white/65">
                   {story.author}
                 </p>
               </a>

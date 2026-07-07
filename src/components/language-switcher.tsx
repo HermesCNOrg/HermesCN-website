@@ -7,7 +7,7 @@ export function LanguageSwitcher() {
     <Dropdown>
       <Dropdown.Trigger
         aria-label="切换语言"
-        className="inline-flex items-center gap-2 rounded-full border border-[#e6e3ff] bg-[#f7f6ff] px-3.5 py-1.5 text-sm font-medium text-[#2202f2] transition hover:border-[#2202f2]/40 hover:bg-[#f1efff]"
+        className="inline-flex items-center gap-2 border border-[#f5f5f5]/30 bg-transparent px-3.5 py-1.5 text-sm font-medium text-[#f5f5f5] transition hover:border-white hover:bg-white hover:text-[#0000f2]"
       >
         <i aria-hidden="true" className="ri-translate-2 text-base" />
         简中
