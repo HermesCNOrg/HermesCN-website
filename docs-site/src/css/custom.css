@@ -12,6 +12,8 @@
     --ifm-navbar-link-color: #2f3140;
     --ifm-navbar-link-hover-color: #2202f2;
     --ifm-menu-color-active: #2202f2;
+    --ifm-font-family-base: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "Heiti SC", Arial, sans-serif;
+    --ifm-heading-font-family: var(--ifm-font-family-base);
     --ifm-code-font-size: 95%;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
     --hermes-border: #e8e5ff;

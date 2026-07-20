@@ -3,7 +3,8 @@
 
 @theme {
   --font-sans:
-    "Songti SC", "STSong", "Noto Serif CJK SC", "Noto Serif SC", SimSun, serif;
+    "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC",
+    "Source Han Sans SC", "Heiti SC", Arial, sans-serif;
   --color-background: #0000f2;
   --color-foreground: #f5f5f5;
   --color-surface: #ffffff;
@@ -36,7 +37,8 @@
   --heroui-radius-medium: 0px;
   --heroui-radius-large: 0px;
   --font-cn:
-    "Songti SC", "STSong", "Noto Serif CJK SC", "Noto Serif SC", SimSun, serif;
+    "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC",
+    "Source Han Sans SC", "Heiti SC", Arial, sans-serif;
 }
 
 * {

@@ -23,15 +23,15 @@ HermesCN should feel like a Chinese companion edition of the Hermes Agent site, 
 
 ## Tokens — Typography
 
-### Display Serif
+### Display Sans
 
-- **Substitute:** Songti SC, STSong, Noto Serif CJK SC, Georgia, serif
+- **Substitute:** PingFang SC, Microsoft YaHei, Noto Sans CJK SC, Noto Sans SC, Source Han Sans SC, sans-serif
 - **Weights:** 400, 600 only when the Chinese font needs emphasis
 - **Role:** H1, H2, large feature titles. On blue, use large, calm type with no gradient and no heavy shadow.
 
-### UI Serif
+### UI Sans
 
-- **Substitute:** Songti SC, STSong, Noto Serif CJK SC, serif
+- **Substitute:** PingFang SC, Microsoft YaHei, Noto Sans CJK SC, Noto Sans SC, Source Han Sans SC, sans-serif
 - **Weights:** 400, 500
 - **Role:** Body copy, nav labels, buttons, card text. Keep Chinese copy short and direct.
 
