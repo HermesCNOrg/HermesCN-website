@@ -16,7 +16,7 @@
         "dev:web": "next dev --turbo --port 3078",
         "build:doc": "pnpm run docs:build && pnpm run docs:sync",
         "brand:check": "node scripts/check-branding.mjs",
-        "docs:build": "DOCUSAURUS_BASE_URL=/docs/ DOCUSAURUS_MAIN_SITE_BASE_URL=https://hermes-cn-org.vercel.app pnpm --filter docs-site build",
+        "docs:build": "DOCUSAURUS_BASE_URL=/docs/ DOCUSAURUS_MAIN_SITE_BASE_URL=https://hermescn.org pnpm --filter docs-site build",
         "docs:dev": "DOCUSAURUS_BASE_URL=/ DOCUSAURUS_MAIN_SITE_BASE_URL=http://localhost:3078 pnpm --filter docs-site exec docusaurus start --host localhost --port 3079 --no-open",
         "docs:sync": "node scripts/sync-docs.mjs",
         "skills:sync": "node scripts/sync-skills.mjs",

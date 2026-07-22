@@ -46,8 +46,11 @@ const features = [
 
 const communityEntrances = [
   { title: "微信群", image: "/code.png" },
-  { title: "知识星球", image: "/code.png" },
-  { title: "飞书群", image: "/code.png" },
+  {
+    title: "知识星球",
+    image: "/knowledge-planet-qr.png",
+    href: "https://t.zsxq.com/PI2or",
+  },
 ];
 
 export default function Home() {
@@ -57,30 +60,43 @@ export default function Home() {
         <div className="mx-auto grid min-h-[max(100vh,720px)] w-full max-w-7xl gap-12 px-5 pt-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:pt-24">
           <div className="relative z-10 flex min-h-0 items-center py-12 lg:h-full lg:py-20">
             <div className="max-w-4xl">
-              <h1 className="max-w-4xl text-5xl leading-[0.98] font-normal text-[#f5f5f5] sm:text-6xl lg:text-7xl">
+              <h1 className="max-w-4xl text-5xl leading-[1.2] font-bold text-[#f5f5f5] sm:text-6xl lg:text-7xl">
                 HermesCN
                 <br />
                 中文社区
               </h1>
               <BannerDescription />
 
-              <div className="mt-10 grid w-full max-w-sm grid-cols-1 gap-0 overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30 sm:grid-cols-[repeat(3,minmax(0,1fr))]">
+              <div className="mt-10 grid w-full max-w-sm grid-cols-1 gap-0 overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30 sm:grid-cols-2">
                 {communityEntrances.map((item) => (
-                  <Link
-                    aria-label={item.title}
-                    className="group flex min-w-0 flex-col items-center gap-2 border-b border-[#f5f5f5]/20 px-2 py-3 text-center transition last:border-b-0 hover:bg-white sm:border-r sm:border-b-0 sm:last:border-r-0"
-                    href="/forum"
+                  <div
+                    className="flex min-w-0 flex-col items-center gap-2 border-b border-[#f5f5f5]/20 px-2 py-3 text-center last:border-b-0 sm:border-r sm:border-b-0 sm:last:border-r-0"
                     key={item.title}
                   >
                     <img
-                      alt={`${item.title}二维码占位`}
-                      className="aspect-square w-full min-w-0 bg-white object-cover"
+                      alt={`${item.title}二维码`}
+                      className="h-36 w-36 bg-white object-contain"
                       src={item.image}
                     />
-                    <span className="text-xs font-medium text-[#f5f5f5] transition group-hover:text-[#0000f2]">
-                      加入{item.title}
-                    </span>
-                  </Link>
+                    {item.href ? (
+                      <a
+                        className="group inline-flex items-center gap-1 text-xs font-medium text-[#f5f5f5] transition hover:-translate-y-px hover:text-[#ecfe4a] hover:underline hover:underline-offset-4"
+                        href={item.href}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <span>加入{item.title}</span>
+                        <i
+                          aria-hidden="true"
+                          className="ri-arrow-right-up-line text-sm leading-none transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
+                      </a>
+                    ) : (
+                      <span className="text-xs font-medium text-[#f5f5f5]">
+                        加入{item.title}
+                      </span>
+                    )}
+                  </div>
                 ))}
               </div>
 
@@ -94,10 +110,16 @@ export default function Home() {
                   下载客户端
                 </a>
                 <Link
-                  className="border border-[#f5f5f5]/70 px-6 py-3 text-sm font-medium text-[#f5f5f5] transition hover:border-white hover:bg-white hover:text-[#0000f2]"
+                  className="inline-flex items-center gap-1.5 border border-[#f5f5f5]/70 px-6 py-3 text-sm font-medium text-[#f5f5f5] transition hover:border-white hover:bg-white hover:text-[#0000f2]"
                   href={docsHref}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  阅读文档
+                  <span>阅读文档</span>
+                  <i
+                    aria-hidden="true"
+                    className="ri-arrow-right-up-line text-base leading-none"
+                  />
                 </Link>
               </div>
             </div>
@@ -114,7 +136,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-[#f5f5f5]/20 bg-[#0000f2]">
+      <section className="border-b border-[#f5f5f5]/20 bg-[#0000f2]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <div>
             <p className="text-sm text-[#d8dcff]">01 · Feature Preview</p>

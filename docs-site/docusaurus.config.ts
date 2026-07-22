@@ -8,7 +8,7 @@ import path from "node:path";
 
 const mainSiteBaseUrl =
   process.env.DOCUSAURUS_MAIN_SITE_BASE_URL ??
-  "https://hermes-cn-org.vercel.app";
+  "https://hermescn.org";
 
 const docsBaseUrl = process.env.DOCUSAURUS_BASE_URL ?? "/docs/";
 
@@ -90,7 +90,7 @@ const config: Config = {
   favicon: "img/favicon.png",
   customFields: {
     mainSiteBaseUrl,
-    githubHref: "https://github.com/lxdao/hermesCN_org",
+    githubHref: "https://github.com/HermesCNOrg",
   },
 
   markdown: {
@@ -105,7 +105,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: "https://hermes-cn-org.vercel.app",
+  url: "https://hermescn.org",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: docsBaseUrl,
@@ -188,7 +188,6 @@ const config: Config = {
           items: [
             { label: "首页", href: mainSiteHref("/"), target: "_self" },
             { label: "文档", to: "/getting-started/quickstart" },
-            { label: "论坛", href: mainSiteHref("/forum"), target: "_self" },
             { label: "Skills", href: mainSiteHref("/skills"), target: "_self" },
             {
               label: "实践案例",

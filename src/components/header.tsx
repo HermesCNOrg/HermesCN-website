@@ -9,11 +9,10 @@ import { docsHref } from "~/lib/docs-links";
 
 const navItems = [
   { href: "/", label: "首页" },
-  { href: docsHref, label: "文档" },
   { href: "/skills", label: "Skills" },
   { href: "/best-practices", label: "实践案例" },
   { href: "/services", label: "解决方案" },
-  { href: "/forum", label: "论坛", isExternal: true },
+  { href: docsHref, label: "文档", opensInNewTab: true },
 ];
 
 export function Header() {
@@ -59,7 +58,7 @@ export function Header() {
           "transform 520ms cubic-bezier(0.22, 1, 0.36, 1), opacity 260ms ease",
       }}
     >
-      <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between border border-[#f5f5f5]/25 bg-[#0000f2]/90 px-5 backdrop-blur-md sm:px-6">
+      <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between border border-white/30 bg-[#0000f2]/90 px-5 backdrop-blur-md sm:px-6">
         <div className="flex items-center gap-8">
           <Link className="flex items-center" href="/">
             <img
@@ -69,17 +68,13 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-2 text-sm text-[#f5f5f5] md:flex lg:gap-3">
+          <nav className="hidden items-center gap-2 text-sm text-white md:flex lg:gap-3">
             {navItems.map((item) => {
-              const isDocs =
-                item.href === docsHref &&
-                (pathname === "/docs" || pathname.startsWith("/docs/"));
               const isActive =
-                isDocs ||
-                (item.href === "/"
+                item.href === "/"
                   ? pathname === item.href
                   : pathname === item.href ||
-                    pathname.startsWith(`${item.href}/`));
+                    pathname.startsWith(`${item.href}/`);
 
               return (
                 <Link
@@ -91,12 +86,14 @@ export function Header() {
                   ].join(" ")}
                   href={item.href}
                   key={item.href}
+                  rel={item.opensInNewTab ? "noopener noreferrer" : undefined}
+                  target={item.opensInNewTab ? "_blank" : undefined}
                 >
                   <span>{item.label}</span>
-                  {item.isExternal ? (
+                  {item.opensInNewTab ? (
                     <i
                       aria-hidden="true"
-                      className="ri-external-link-line text-[0.95em] leading-none"
+                      className="ri-arrow-right-up-line text-base leading-none"
                     />
                   ) : null}
                 </Link>

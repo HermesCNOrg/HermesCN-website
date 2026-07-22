@@ -131,7 +131,7 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
           ) : null}
         </div>
 
-        <div className="mt-8 border-y border-[#0000f2]/15 py-6">
+        <div className="py-6">
           <input
             aria-label="搜索 Skills"
             className="h-12 w-full border border-[#0000f2]/15 bg-white px-4 text-sm text-[#0000f2] shadow-none transition outline-none placeholder:text-[#0000f2]/38 hover:border-[#0000f2] focus:border-[#0000f2]"

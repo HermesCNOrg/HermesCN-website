@@ -39,7 +39,7 @@ function GithubIcon() {
 
 export function MainSiteLink() {
   const { siteConfig } = useDocusaurusContext();
-  const { mainSiteBaseUrl = "https://hermes-cn-org.vercel.app" } =
+  const { mainSiteBaseUrl = "https://hermescn.org" } =
     siteConfig.customFields as CustomFields;
 
   return (
@@ -55,7 +55,7 @@ export function MainSiteLink() {
 
 export function GithubLink() {
   const { siteConfig } = useDocusaurusContext();
-  const { githubHref = "https://github.com/lxdao/hermesCN_org" } =
+  const { githubHref = "https://github.com/HermesCNOrg" } =
     siteConfig.customFields as CustomFields;
 
   return (
