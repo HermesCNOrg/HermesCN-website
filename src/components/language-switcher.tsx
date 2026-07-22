@@ -2,12 +2,23 @@
 
 import { Dropdown } from "@heroui/react";
 
-export function LanguageSwitcher() {
+type LanguageSwitcherProps = {
+  variant?: "dark" | "light";
+};
+
+export function LanguageSwitcher({ variant = "dark" }: LanguageSwitcherProps) {
+  const isLight = variant === "light";
+
   return (
     <Dropdown>
       <Dropdown.Trigger
         aria-label="切换语言"
-        className="inline-flex items-center gap-2 border border-[#f5f5f5]/30 bg-transparent px-3.5 py-1.5 text-sm font-medium text-[#f5f5f5] transition hover:border-white hover:bg-white hover:text-[#0000f2]"
+        className={[
+          "inline-flex items-center gap-2 border px-3.5 py-1.5 text-sm font-medium transition",
+          isLight
+            ? "border-[#0000f2]/30 text-[#0000f2] hover:border-[#0000f2] hover:bg-[#0000f2] hover:text-white"
+            : "border-[#f5f5f5]/30 bg-transparent text-[#f5f5f5] hover:border-white hover:bg-white hover:text-[#0000f2]",
+        ].join(" ")}
       >
         <i aria-hidden="true" className="ri-translate-2 text-base" />
         简中

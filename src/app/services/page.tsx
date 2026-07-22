@@ -116,7 +116,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
 
-                <div className="justify-self-start md:justify-self-end">
+                <div className="justify-self-center md:justify-self-end">
                   <div className="w-28 border border-[#0000f2]/15 bg-white p-2 text-center text-[#0000f2] transition group-hover:border-white/35">
                     <Image
                       alt={`扫码加入${industry.title}群聊`}

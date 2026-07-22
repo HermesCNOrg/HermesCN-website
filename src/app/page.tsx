@@ -57,7 +57,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
       <section className="relative isolate overflow-hidden border-b border-[#f5f5f5]/20 bg-[#0000f2]">
-        <div className="mx-auto grid min-h-[max(100vh,720px)] w-full max-w-7xl gap-12 px-5 pt-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:pt-24">
+        <div className="mx-auto md:grid min-h-[max(100vh,720px)] max-w-7xl gap-12 px-5 pt-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:pt-24">
           <div className="relative z-10 flex min-h-0 items-center py-12 lg:h-full lg:py-20">
             <div className="max-w-4xl">
               <h1 className="max-w-4xl text-5xl leading-[1.2] font-bold text-[#f5f5f5] sm:text-6xl lg:text-7xl">
@@ -67,7 +67,7 @@ export default function Home() {
               </h1>
               <BannerDescription />
 
-              <div className="mt-10 grid w-full max-w-sm grid-cols-1 gap-0 overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30 sm:grid-cols-2">
+              <div className="mt-10 grid w-full max-w-sm grid-cols-2 gap-0 overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30">
                 {communityEntrances.map((item) => (
                   <div
                     className="flex min-w-0 flex-col items-center gap-2 border-b border-[#f5f5f5]/20 px-2 py-3 text-center last:border-b-0 sm:border-r sm:border-b-0 sm:last:border-r-0"
@@ -75,7 +75,7 @@ export default function Home() {
                   >
                     <img
                       alt={`${item.title}二维码`}
-                      className="h-36 w-36 bg-white object-contain"
+                      className="h-30 w-30 bg-white object-contain"
                       src={item.image}
                     />
                     {item.href ? (
@@ -125,14 +125,22 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative flex min-h-[30rem] items-center justify-center lg:h-full lg:min-h-0 lg:justify-end">
+          <div className="hidden md:flex relative flex items-center justify-center md:min-h-[30rem] lg:h-full lg:min-h-0 lg:justify-end">
             <img
               alt=""
               aria-hidden="true"
-              className="relative h-auto max-h-[60vh] w-auto max-w-full object-contain object-center lg:max-h-[calc(100vh-11rem)] lg:max-w-[40rem]"
+              className="relative h-auto w-full max-w-full object-contain object-center md:max-h-[60vh] md:w-auto lg:max-h-[calc(100vh-11rem)] lg:max-w-[40rem]"
               src="/logo_ip2.png"
             />
           </div>
+
+          <img
+            alt=""
+            aria-hidden="true"
+            className="md:hidden w-full block pb-8"
+            src="/logo_ip2.png"
+          />
+
         </div>
       </section>
 

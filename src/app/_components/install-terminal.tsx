@@ -48,7 +48,7 @@ export function InstallTerminal() {
   }, [activeOption.command]);
 
   return (
-    <div className="mt-8 w-full max-w-2xl overflow-hidden border border-[#0000f2]/15 bg-white">
+    <div className="mt-8 w-full md:max-w-2xl overflow-hidden border border-[#0000f2]/15 bg-white max-w-[60%]">
       <div className="flex min-h-11 items-center justify-between gap-3 border-b border-[#0000f2]/10 bg-white px-4 py-2">
         <div className="flex items-center gap-2">
           <span className="size-2.5 rounded-full bg-[#d64040]" />

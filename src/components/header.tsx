@@ -6,8 +6,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { LanguageSwitcher } from "~/components/language-switcher";
 import { docsHref } from "~/lib/docs-links";
+import { MobileMenu, type MobileMenuItem } from "~/components/mobile-menu";
 
-const navItems = [
+const navItems: MobileMenuItem[] = [
   { href: "/", label: "首页" },
   { href: "/skills", label: "Skills" },
   { href: "/best-practices", label: "实践案例" },
@@ -102,7 +103,10 @@ export function Header() {
           </nav>
         </div>
 
-        <LanguageSwitcher />
+        <div className="hidden md:block">
+          <LanguageSwitcher />
+        </div>
+        <MobileMenu items={navItems} pathname={pathname} />
       </div>
     </header>
   );
