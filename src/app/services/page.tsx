@@ -130,7 +130,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
 
-                <div className="justify-self-center md:justify-self-end">
+                <div className="hidden md:block md:justify-self-end">
                   <div
                     aria-label={`${industry.title}交流群即将开通`}
                     className="relative w-28 overflow-hidden border border-[#0000f2]/15 bg-white p-2 text-center text-[#0000f2]"

@@ -23,20 +23,23 @@ const navItems: MobileMenuItem[] = [
 
 const communityLinks = [
   {
-    href: "https://x.com/hermescn_org",
-    icon: "ri-twitter-x-line",
-    label: "X（Twitter）",
+    href: "https://t.zsxq.com/PI2or",
+    icon: "ri-planet-line",
+    label: "知识星球",
+    mobileLabel: "星球",
+    qrImage: "/knowledge-planet-qr.png",
   },
   {
     href: "https://github.com/HermesCNOrg",
     icon: "ri-github-fill",
     label: "GitHub",
+    mobileLabel: "GitHub",
   },
   {
-    href: "https://t.zsxq.com/PI2or",
-    icon: "ri-planet-line",
-    label: "知识星球",
-    qrImage: "/knowledge-planet-qr.png",
+    href: "https://x.com/hermescn_org",
+    icon: "ri-twitter-x-line",
+    label: "X（Twitter）",
+    mobileLabel: "X",
   },
 ];
 
@@ -185,7 +188,11 @@ export function Header() {
           </nav>
           <LanguageSwitcher />
         </div>
-        <MobileMenu items={navItems} pathname={pathname} />
+        <MobileMenu
+          communityLinks={communityLinks}
+          items={navItems}
+          pathname={pathname}
+        />
       </div>
     </header>
   );

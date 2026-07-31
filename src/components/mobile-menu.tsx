@@ -11,12 +11,24 @@ export type MobileMenuItem = {
   opensInNewTab?: boolean;
 };
 
+export type MobileCommunityLink = {
+  href: string;
+  icon: string;
+  label: string;
+  mobileLabel: string;
+};
+
 type MobileMenuProps = {
+  communityLinks: MobileCommunityLink[];
   items: MobileMenuItem[];
   pathname: string;
 };
 
-export function MobileMenu({ items, pathname }: MobileMenuProps) {
+export function MobileMenu({
+  communityLinks,
+  items,
+  pathname,
+}: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -76,6 +88,28 @@ export function MobileMenu({ items, pathname }: MobileMenuProps) {
                 </Link>
               );
             })}
+          </nav>
+
+          <nav
+            aria-label="社区链接"
+            className="mt-3 grid grid-cols-3 border-t border-[#0000f2]/20 pt-3"
+          >
+            {communityLinks.map((item) => (
+              <a
+                className="flex min-w-0 flex-col items-center gap-1.5 px-2 py-2 text-xs text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
+                href={item.href}
+                key={item.href}
+                onClick={() => setIsOpen(false)}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i
+                  aria-hidden="true"
+                  className={`${item.icon} text-xl leading-none`}
+                />
+                <span>{item.mobileLabel}</span>
+              </a>
+            ))}
           </nav>
 
           <div className="mt-3 border-t border-[#0000f2]/20 pt-3">

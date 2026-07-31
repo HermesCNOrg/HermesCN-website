@@ -70,26 +70,26 @@ export default function Home() {
     <div className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
       <section className="relative isolate overflow-hidden border-b border-[#f5f5f5]/20 bg-[#0000f2]">
         <div className="px-5 sm:px-6">
-          <div className="mx-auto grid min-h-[max(100svh,760px)] w-full max-w-7xl items-center gap-8 pt-28 pb-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
-            <div className="relative z-10 flex min-h-0 items-center justify-center py-4 lg:h-full lg:py-0">
-              <div className="w-full max-w-xl">
-                <h1 className="max-w-4xl text-5xl leading-[1.2] font-bold text-[#f5f5f5] sm:text-6xl lg:text-6xl">
+          <div className="mx-auto grid min-h-[max(100svh,760px)] w-full max-w-7xl items-center gap-8 pt-28 pb-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10 lg:py-24">
+            <div className="relative z-10 flex min-h-0 min-w-0 items-center justify-center py-4 lg:h-full lg:py-0">
+              <div className="w-full max-w-lg min-w-0">
+                <h1 className="max-w-4xl text-[clamp(1.75rem,8vw,3rem)] leading-[1.2] font-bold whitespace-nowrap text-[#f5f5f5] xl:text-[3.5rem]">
                   HermesCN 中文社区
                 </h1>
                 <BannerDescription />
 
-                <div className="mt-6 w-full space-y-5">
-                  <div className="grid w-full grid-cols-[9rem_minmax(0,1fr)] overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30">
+                <div className="mt-6 w-full max-w-full min-w-0 space-y-5">
+                  <div className="grid w-full max-w-full min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.8fr)] overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30">
                     <a
                       aria-label="加入知识星球"
-                      className="group flex flex-col items-center justify-center border-r border-[#f5f5f5]/20 px-3 py-3"
+                      className="group flex min-w-0 flex-col items-center justify-center overflow-hidden border-r border-[#f5f5f5]/20 p-2 sm:px-3 sm:py-3"
                       href="https://t.zsxq.com/PI2or"
                       rel="noopener noreferrer"
                       target="_blank"
                     >
                       <img
                         alt="知识星球二维码"
-                        className="size-24 bg-white object-contain"
+                        className="aspect-square w-full max-w-24 bg-white object-contain"
                         src="/knowledge-planet-qr.png"
                       />
                       <span className="mt-2 text-xs text-[#d8dcff] group-hover:text-white">
@@ -97,7 +97,7 @@ export default function Home() {
                       </span>
                     </a>
 
-                    <div className="grid grid-rows-2">
+                    <div className="grid min-w-0 grid-rows-2">
                       {communityLinks.map((item) => (
                         <a
                           className="group flex min-w-0 transform-gpu items-center gap-3 border-b border-[#f5f5f5]/20 px-4 py-3 transition-transform duration-200 ease-out last:border-b-0 hover:scale-[1.02] motion-reduce:transform-none"
@@ -148,11 +148,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative hidden min-w-0 items-center justify-center overflow-hidden lg:flex">
+            <div className="relative hidden min-w-0 translate-y-5 items-center justify-center overflow-hidden pl-12 lg:flex xl:pl-16">
               <img
                 alt=""
                 aria-hidden="true"
-                className="relative h-auto w-full max-w-[36rem] object-contain object-center"
+                className="relative h-auto w-full object-contain object-center"
                 src="/logo_ip2.png"
               />
             </div>
@@ -160,7 +160,7 @@ export default function Home() {
             <img
               alt=""
               aria-hidden="true"
-              className="mx-auto block w-full max-w-[24rem] pb-8 lg:hidden"
+              className="mx-auto block w-full pb-8 lg:hidden"
               src="/logo_ip2.png"
             />
           </div>

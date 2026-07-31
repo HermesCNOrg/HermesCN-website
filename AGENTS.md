@@ -14,3 +14,9 @@
 
 - When adding a page, UI flow, form, navigation item, or user-facing copy, check whether the change needs multilingual or internationalized handling.
 - Prefer existing localization patterns when present. If no localization system exists for the touched surface, keep copy simple and make the limitation explicit in the implementation or follow-up notes.
+
+## Validation
+
+- Keep validation lightweight and targeted by default.
+- Do not run full builds, full test suites, or repository-wide type and lint checks unless the user explicitly requests full validation.
+- For small UI and style changes, prefer focused formatting and diff checks, and state which broader checks were not run.
