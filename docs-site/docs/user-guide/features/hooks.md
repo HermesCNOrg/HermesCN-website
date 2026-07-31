@@ -1,10 +1,10 @@
 ---
 sidebar_position: 6
-title: "Event Hooks"
+title: "事件钩子"
 description: "在关键生命周期节点运行自定义代码——记录活动、发送告警、推送到 webhook"
 ---
 
-# Event Hooks
+# 事件钩子
 
 Hermes 有三套 hook 系统，可在关键生命周期节点运行自定义代码：
 

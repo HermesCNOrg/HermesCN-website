@@ -4,7 +4,7 @@ const sidebars: SidebarsConfig = {
   docs: [
     {
       type: "category",
-      label: "Getting Started",
+      label: "快速开始",
       collapsed: true,
       items: [
         "getting-started/quickstart",
@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Using Hermes",
+      label: "使用 Hermes",
       collapsed: true,
       items: [
         "user-guide/cli",
@@ -31,7 +31,7 @@ const sidebars: SidebarsConfig = {
         "user-guide/configuring-models",
         {
           type: "category",
-          label: "Secrets",
+          label: "密钥管理",
           collapsed: true,
           items: ["user-guide/secrets/index", "user-guide/secrets/bitwarden"],
         },
@@ -47,14 +47,14 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Features",
+      label: "功能",
       collapsed: true,
       items: [
         "user-guide/features/overview",
         "user-guide/features/tool-gateway",
         {
           type: "category",
-          label: "Core",
+          label: "核心能力",
           items: [
             "user-guide/features/tools",
             "user-guide/features/tool-search",
@@ -75,7 +75,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Automation",
+          label: "自动化",
           items: [
             "user-guide/features/cron",
             "reference/automation-blueprints-catalog",
@@ -92,7 +92,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Media & Web",
+          label: "媒体与 Web",
           items: [
             "user-guide/features/voice-mode",
             "user-guide/features/web-search",
@@ -109,7 +109,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Management",
+          label: "管理",
           items: [
             "user-guide/features/web-dashboard",
             "user-guide/features/extending-the-dashboard",
@@ -126,12 +126,12 @@ const sidebars: SidebarsConfig = {
             "reference/optional-skills-catalog",
             {
               type: "category",
-              label: "Bundled",
+              label: "内置",
               collapsed: true,
               items: [
                 {
                   type: "category",
-                  label: "apple",
+                  label: "Apple",
                   key: "skills-bundled-apple",
                   collapsed: true,
                   items: [
@@ -144,7 +144,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "autonomous-ai-agents",
+                  label: "自主智能体",
                   key: "skills-bundled-autonomous-ai-agents",
                   collapsed: true,
                   items: [
@@ -156,7 +156,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "creative",
+                  label: "创意",
                   key: "skills-bundled-creative",
                   collapsed: true,
                   items: [
@@ -180,7 +180,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "data-science",
+                  label: "数据科学",
                   key: "skills-bundled-data-science",
                   collapsed: true,
                   items: [
@@ -189,21 +189,21 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "dogfood",
+                  label: "内部试用",
                   key: "skills-bundled-dogfood",
                   collapsed: true,
                   items: ["user-guide/skills/bundled/dogfood/dogfood-dogfood"],
                 },
                 {
                   type: "category",
-                  label: "email",
+                  label: "邮件",
                   key: "skills-bundled-email",
                   collapsed: true,
                   items: ["user-guide/skills/bundled/email/email-himalaya"],
                 },
                 {
                   type: "category",
-                  label: "github",
+                  label: "GitHub",
                   key: "skills-bundled-github",
                   collapsed: true,
                   items: [
@@ -217,7 +217,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "media",
+                  label: "媒体",
                   key: "skills-bundled-media",
                   collapsed: true,
                   items: [
@@ -229,7 +229,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "mlops",
+                  label: "MLOps",
                   key: "skills-bundled-mlops",
                   collapsed: true,
                   items: [
@@ -244,7 +244,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "note-taking",
+                  label: "笔记",
                   key: "skills-bundled-note-taking",
                   collapsed: true,
                   items: [
@@ -253,7 +253,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "productivity",
+                  label: "效率工具",
                   key: "skills-bundled-productivity",
                   collapsed: true,
                   items: [
@@ -270,7 +270,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "research",
+                  label: "研究",
                   key: "skills-bundled-research",
                   collapsed: true,
                   items: [
@@ -283,7 +283,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "smart-home",
+                  label: "智能家居",
                   key: "skills-bundled-smart-home",
                   collapsed: true,
                   items: [
@@ -292,7 +292,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "social-media",
+                  label: "社交媒体",
                   key: "skills-bundled-social-media",
                   collapsed: true,
                   items: [
@@ -301,7 +301,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "software-development",
+                  label: "软件开发",
                   key: "skills-bundled-software-development",
                   collapsed: true,
                   items: [
@@ -318,7 +318,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "yuanbao",
+                  label: "元宝",
                   key: "skills-bundled-yuanbao",
                   collapsed: true,
                   items: ["user-guide/skills/bundled/yuanbao/yuanbao-yuanbao"],
@@ -327,12 +327,12 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Optional",
+              label: "可选",
               collapsed: true,
               items: [
                 {
                   type: "category",
-                  label: "autonomous-ai-agents",
+                  label: "自主智能体",
                   key: "skills-optional-autonomous-ai-agents",
                   collapsed: true,
                   items: [
@@ -345,7 +345,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "blockchain",
+                  label: "区块链",
                   key: "skills-optional-blockchain",
                   collapsed: true,
                   items: [
@@ -356,7 +356,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "communication",
+                  label: "沟通",
                   key: "skills-optional-communication",
                   collapsed: true,
                   items: [
@@ -365,7 +365,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "creative",
+                  label: "创意",
                   key: "skills-optional-creative",
                   collapsed: true,
                   items: [
@@ -382,7 +382,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "devops",
+                  label: "DevOps",
                   key: "skills-optional-devops",
                   collapsed: true,
                   items: [
@@ -395,7 +395,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "dogfood",
+                  label: "内部试用",
                   key: "skills-optional-dogfood",
                   collapsed: true,
                   items: [
@@ -404,14 +404,14 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "email",
+                  label: "邮件",
                   key: "skills-optional-email",
                   collapsed: true,
                   items: ["user-guide/skills/optional/email/email-agentmail"],
                 },
                 {
                   type: "category",
-                  label: "finance",
+                  label: "金融",
                   key: "skills-optional-finance",
                   collapsed: true,
                   items: [
@@ -427,7 +427,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "gaming",
+                  label: "游戏",
                   key: "skills-optional-gaming",
                   collapsed: true,
                   items: [
@@ -437,7 +437,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "health",
+                  label: "健康",
                   key: "skills-optional-health",
                   collapsed: true,
                   items: [
@@ -447,7 +447,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "mcp",
+                  label: "MCP",
                   key: "skills-optional-mcp",
                   collapsed: true,
                   items: [
@@ -457,7 +457,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "migration",
+                  label: "迁移",
                   key: "skills-optional-migration",
                   collapsed: true,
                   items: [
@@ -466,7 +466,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "mlops",
+                  label: "MLOps",
                   key: "skills-optional-mlops",
                   collapsed: true,
                   items: [
@@ -504,7 +504,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "payments",
+                  label: "支付",
                   key: "skills-optional-payments",
                   collapsed: true,
                   items: [
@@ -515,7 +515,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "productivity",
+                  label: "效率工具",
                   key: "skills-optional-productivity",
                   collapsed: true,
                   items: [
@@ -530,7 +530,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "research",
+                  label: "研究",
                   key: "skills-optional-research",
                   collapsed: true,
                   items: [
@@ -549,7 +549,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "security",
+                  label: "安全",
                   key: "skills-optional-security",
                   collapsed: true,
                   items: [
@@ -562,7 +562,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "software-development",
+                  label: "软件开发",
                   key: "skills-optional-software-development",
                   collapsed: true,
                   items: [
@@ -573,7 +573,7 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "web-development",
+                  label: "Web 开发",
                   key: "skills-optional-web-development",
                   collapsed: true,
                   items: [
@@ -588,13 +588,13 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Messaging Platforms",
+      label: "消息平台",
       collapsed: true,
       items: [
         "user-guide/messaging/index",
         {
           type: "category",
-          label: "Popular",
+          label: "常用",
           items: [
             "user-guide/messaging/telegram",
             "user-guide/messaging/discord",
@@ -617,7 +617,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Chinese platforms",
+          label: "中文平台",
           items: [
             "user-guide/messaging/dingtalk",
             "user-guide/messaging/feishu",
@@ -630,7 +630,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Other",
+          label: "其他",
           items: [
             "user-guide/messaging/homeassistant",
             "user-guide/messaging/mattermost",
@@ -650,7 +650,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Integrations",
+      label: "集成",
       collapsed: true,
       items: [
         "integrations/index",
@@ -665,7 +665,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Guides & Tutorials",
+      label: "指南与教程",
       collapsed: true,
       items: [
         "guides/run-nemotron-3-ultra-free",
@@ -699,13 +699,13 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Developer Guide",
+      label: "开发者指南",
       collapsed: true,
       items: [
         "developer-guide/contributing",
         {
           type: "category",
-          label: "Architecture",
+          label: "架构",
           items: [
             "developer-guide/architecture",
             "developer-guide/agent-loop",
@@ -719,7 +719,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Extending",
+          label: "扩展开发",
           items: [
             "developer-guide/adding-tools",
             "developer-guide/adding-providers",
@@ -737,7 +737,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Internals",
+          label: "内部原理",
           items: [
             "developer-guide/tools-runtime",
             "developer-guide/browser-supervisor",
@@ -750,11 +750,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Reference",
+      label: "参考资料",
       items: [
         {
           type: "category",
-          label: "Command Reference",
+          label: "命令参考",
           items: [
             "reference/cli-commands",
             "reference/slash-commands",
@@ -763,7 +763,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Configuration Reference",
+          label: "配置参考",
           items: [
             "reference/environment-variables",
             "reference/mcp-config-reference",
@@ -772,7 +772,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "Tools & Skills Reference",
+          label: "工具与 Skills 参考",
           items: [
             "reference/tools-reference",
             "reference/toolsets-reference",
@@ -781,6 +781,62 @@ const sidebars: SidebarsConfig = {
           ],
         },
         "reference/faq",
+      ],
+    },
+  ],
+  tutorials: [
+    "tutorials/index",
+    {
+      type: "category",
+      label: "第一阶段 · 成功与安全",
+      collapsed: false,
+      items: [
+        "tutorials/guide/what-is-hermes",
+        "tutorials/guide/install-and-first-run",
+        "tutorials/guide/first-real-task",
+        "tutorials/guide/how-hermes-works",
+        "tutorials/guide/permissions-security-credentials",
+      ],
+    },
+    {
+      type: "category",
+      label: "第二阶段 · 日常方法",
+      collapsed: true,
+      items: [
+        "tutorials/guide/executable-task-spec",
+        "tutorials/guide/sessions-context-resume",
+        "tutorials/guide/tools-and-toolsets",
+        "tutorials/guide/memory-and-skills",
+        "tutorials/guide/troubleshooting-update-recovery",
+      ],
+    },
+    {
+      type: "category",
+      label: "第三阶段 · 接入与自动化",
+      collapsed: true,
+      items: [
+        "tutorials/guide/connect-domestic-messaging",
+        "tutorials/guide/scheduled-tasks-cron",
+        "tutorials/guide/voice-images-files",
+      ],
+    },
+    {
+      type: "category",
+      label: "第四阶段 · 扩展与协作",
+      collapsed: true,
+      items: [
+        "tutorials/guide/delegation-subagents",
+        "tutorials/guide/profiles-isolate-identities",
+        "tutorials/guide/choose-extension-path",
+      ],
+    },
+    {
+      type: "category",
+      label: "第五阶段 · 综合实战",
+      collapsed: true,
+      items: [
+        "tutorials/guide/verifiable-research-organizing",
+        "tutorials/guide/daily-research-assistant",
       ],
     },
   ],

@@ -47,6 +47,10 @@ export function MainSiteLink() {
       className="navbar__item navbar__link hermes-doc-nav-link"
       href={mainSiteBaseUrl}
     >
+      <i
+        aria-hidden="true"
+        className="hermes-doc-nav-link__remix-icon ri-home-4-line"
+      />
       <span>主站</span>
       <ArrowUpRightIcon />
     </a>

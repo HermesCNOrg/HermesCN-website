@@ -1,10 +1,10 @@
 ---
 sidebar_position: 3
-title: "Managed Scope"
+title: "托管范围"
 description: "Administrator-pinned, user-immutable config and secrets via a system-level managed directory"
 ---
 
-# Managed Scope
+# 托管范围
 
 **Managed scope** lets an administrator push a baseline of configuration and
 secrets that a standard (non-root) user **cannot override**. It is intended for

@@ -1,10 +1,10 @@
 ---
 sidebar_position: 11
-title: "Pets (Petdex Mascots)"
+title: "宠物（Petdex 吉祥物）"
 description: "Adopt an animated mascot that reacts to agent activity across the CLI, TUI, and desktop app"
 ---
 
-# Pets
+# 宠物（Petdex 吉祥物）
 
 Hermes can show an animated **pet** — a small mascot sprite that reacts to what
 the agent is doing (idle, running a tool, thinking, finishing, failing) across

@@ -1,10 +1,10 @@
 ---
 sidebar_position: 16
-title: "Yuanbao"
+title: "腾讯元宝"
 description: "通过 WebSocket gateway 将 Hermes Agent 连接到元宝企业消息平台"
 ---
 
-# Yuanbao
+# 腾讯元宝
 
 将 Hermes 连接到腾讯企业消息平台 [元宝（Yuanbao）](https://yuanbao.tencent.com/)。该适配器使用 WebSocket gateway 实现实时消息传递，支持单聊（C2C）和群聊两种会话模式。
 

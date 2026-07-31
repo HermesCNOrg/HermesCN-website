@@ -4,7 +4,7 @@ title: "WhatsApp Business (Cloud API)"
 description: "Set up Hermes Agent as a WhatsApp bot via Meta's official Business Cloud API"
 ---
 
-# WhatsApp Business Cloud API Setup
+# WhatsApp Business Cloud API 配置
 
 Hermes can connect to WhatsApp through Meta's **official** WhatsApp Business Cloud API. This is the production-grade path: no Node.js bridge subprocess, no QR codes, no account-ban risk.
 

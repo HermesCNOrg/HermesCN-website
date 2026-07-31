@@ -1,4 +1,4 @@
-# Browser CDP Supervisor — 设计文档
+# 浏览器 CDP Supervisor 设计文档
 
 **状态：** 已发布（PR 14540）
 **最后更新：** 2026-04-23

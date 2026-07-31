@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BannerDescription } from "~/app/_components/banner-description";
 import { HermesVsOpenClaw } from "~/app/_components/hermes-vs-openclaw";
 import { InstallTerminal } from "~/app/_components/install-terminal";
-import { docsHref } from "~/lib/docs-links";
+import { tutorialHref } from "~/lib/docs-links";
 
 const features = [
   {
@@ -44,12 +44,16 @@ const features = [
   },
 ];
 
-const communityEntrances = [
-  { title: "微信群", image: "/code.png" },
+const communityLinks = [
   {
-    title: "知识星球",
-    image: "/knowledge-planet-qr.png",
-    href: "https://t.zsxq.com/PI2or",
+    href: "https://x.com/hermescn_org",
+    icon: "ri-twitter-x-line",
+    label: "X（Twitter）",
+  },
+  {
+    href: "https://github.com/HermesCNOrg",
+    icon: "ri-github-fill",
+    label: "GitHub",
   },
 ];
 
@@ -57,90 +61,101 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
       <section className="relative isolate overflow-hidden border-b border-[#f5f5f5]/20 bg-[#0000f2]">
-        <div className="mx-auto md:grid min-h-[max(100vh,720px)] max-w-7xl gap-12 px-5 pt-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:pt-24">
-          <div className="relative z-10 flex min-h-0 items-center py-12 lg:h-full lg:py-20">
-            <div className="max-w-4xl">
-              <h1 className="max-w-4xl text-5xl leading-[1.2] font-bold text-[#f5f5f5] sm:text-6xl lg:text-7xl">
-                HermesCN
-                <br />
-                中文社区
-              </h1>
-              <BannerDescription />
+        <div className="px-5 sm:px-6">
+          <div className="mx-auto grid min-h-[max(100svh,760px)] w-full max-w-7xl items-center gap-8 pt-28 pb-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
+            <div className="relative z-10 flex min-h-0 items-center justify-center py-4 lg:h-full lg:py-0">
+              <div className="w-full max-w-xl">
+                <h1 className="max-w-4xl text-5xl leading-[1.2] font-bold text-[#f5f5f5] sm:text-6xl lg:text-6xl">
+                  HermesCN 中文社区
+                </h1>
+                <BannerDescription />
 
-              <div className="mt-10 grid w-full max-w-sm grid-cols-2 gap-0 overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30">
-                {communityEntrances.map((item) => (
-                  <div
-                    className="flex min-w-0 flex-col items-center gap-2 border-b border-[#f5f5f5]/20 px-2 py-3 text-center last:border-b-0 sm:border-r sm:border-b-0 sm:last:border-r-0"
-                    key={item.title}
-                  >
-                    <img
-                      alt={`${item.title}二维码`}
-                      className="h-30 w-30 bg-white object-contain"
-                      src={item.image}
-                    />
-                    {item.href ? (
-                      <a
-                        className="group inline-flex items-center gap-1 text-xs font-medium text-[#f5f5f5] transition hover:-translate-y-px hover:text-[#ecfe4a] hover:underline hover:underline-offset-4"
-                        href={item.href}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <span>加入{item.title}</span>
-                        <i
-                          aria-hidden="true"
-                          className="ri-arrow-right-up-line text-sm leading-none transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        />
-                      </a>
-                    ) : (
-                      <span className="text-xs font-medium text-[#f5f5f5]">
-                        加入{item.title}
+                <div className="mt-6 w-full space-y-5">
+                  <div className="grid w-full grid-cols-[9rem_minmax(0,1fr)] overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30">
+                    <a
+                      aria-label="加入知识星球"
+                      className="group flex flex-col items-center justify-center border-r border-[#f5f5f5]/20 px-3 py-3"
+                      href="https://t.zsxq.com/PI2or"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <img
+                        alt="知识星球二维码"
+                        className="size-24 bg-white object-contain"
+                        src="/knowledge-planet-qr.png"
+                      />
+                      <span className="mt-2 text-xs text-[#d8dcff] group-hover:text-white">
+                        知识星球
                       </span>
-                    )}
+                    </a>
+
+                    <div className="grid grid-rows-2">
+                      {communityLinks.map((item) => (
+                        <a
+                          className="group flex min-w-0 transform-gpu items-center gap-3 border-b border-[#f5f5f5]/20 px-4 py-3 transition-transform duration-200 ease-out last:border-b-0 hover:scale-[1.02] motion-reduce:transform-none"
+                          href={item.href}
+                          key={item.href}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <i
+                            aria-hidden="true"
+                            className={`${item.icon} text-xl leading-none`}
+                          />
+                          <span className="min-w-0 flex-1 truncate text-sm">
+                            {item.label}
+                          </span>
+                          <i
+                            aria-hidden="true"
+                            className="ri-arrow-right-up-line text-base leading-none text-[#d8dcff]"
+                          />
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div>
 
-              <InstallTerminal />
+                  <InstallTerminal />
+                </div>
 
-              <div className="mt-12 flex flex-wrap gap-3">
-                <a
-                  className="border border-white bg-white px-6 py-3 text-sm font-medium text-[#0000f2] transition hover:-translate-y-0.5 hover:bg-[#0000f2] hover:text-white"
-                  href="https://hermes-assets.nousresearch.com/Hermes-Setup.dmg?build=beaa1a08e6ab"
-                >
-                  下载客户端
-                </a>
-                <Link
-                  className="inline-flex items-center gap-1.5 border border-[#f5f5f5]/70 px-6 py-3 text-sm font-medium text-[#f5f5f5] transition hover:border-white hover:bg-white hover:text-[#0000f2]"
-                  href={docsHref}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <span>阅读文档</span>
-                  <i
-                    aria-hidden="true"
-                    className="ri-arrow-right-up-line text-base leading-none"
-                  />
-                </Link>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a
+                    className="border border-white bg-white px-6 py-3 text-sm font-medium text-[#0000f2] transition hover:-translate-y-0.5 hover:bg-[#0000f2] hover:text-white"
+                    href="https://hermes-assets.nousresearch.com/Hermes-Setup.dmg?build=beaa1a08e6ab"
+                  >
+                    下载客户端
+                  </a>
+                  <Link
+                    className="inline-flex items-center gap-1.5 border border-[#f5f5f5]/70 px-6 py-3 text-sm font-medium text-[#f5f5f5] transition hover:border-white hover:bg-white hover:text-[#0000f2]"
+                    href={tutorialHref}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span>从入门到精通</span>
+                    <i
+                      aria-hidden="true"
+                      className="ri-arrow-right-up-line text-base leading-none"
+                    />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="hidden md:flex relative flex items-center justify-center md:min-h-[30rem] lg:h-full lg:min-h-0 lg:justify-end">
+            <div className="relative hidden min-w-0 items-center justify-center overflow-hidden lg:flex">
+              <img
+                alt=""
+                aria-hidden="true"
+                className="relative h-auto w-full max-w-[36rem] object-contain object-center"
+                src="/logo_ip2.png"
+              />
+            </div>
+
             <img
               alt=""
               aria-hidden="true"
-              className="relative h-auto w-full max-w-full object-contain object-center md:max-h-[60vh] md:w-auto lg:max-h-[calc(100vh-11rem)] lg:max-w-[40rem]"
+              className="mx-auto block w-full max-w-[24rem] pb-8 lg:hidden"
               src="/logo_ip2.png"
             />
           </div>
-
-          <img
-            alt=""
-            aria-hidden="true"
-            className="md:hidden w-full block pb-8"
-            src="/logo_ip2.png"
-          />
-
         </div>
       </section>
 

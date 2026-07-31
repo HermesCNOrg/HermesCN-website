@@ -1,10 +1,10 @@
 ---
 sidebar_position: 0
-title: "Run Nemotron 3 Ultra free in Hermes Agent"
+title: "在 Hermes Agent 中免费运行 Nemotron 3 Ultra"
 description: "Try NVIDIA Nemotron 3 Ultra on Nous Portal — free June 4–18 — with day 0 support in Hermes Agent"
 ---
 
-# Run Nemotron 3 Ultra free in Hermes Agent
+# 在 Hermes Agent 中免费运行 Nemotron 3 Ultra
 
 Nous Research has been inducted into the **Nemotron Coalition** of leading AI labs working with **NVIDIA** to advance open frontier foundation models. In honor of this, we've partnered with **Nebius** to provide **Nemotron 3 Ultra** free on [Nous Portal](https://portal.nousresearch.com) for two weeks (**June 4th – June 18th**). Follow the instructions below to try the model in your Hermes Agent today.
 

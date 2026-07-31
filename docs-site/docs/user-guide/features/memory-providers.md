@@ -1,10 +1,10 @@
 ---
 sidebar_position: 4
-title: "Memory Providers"
+title: "记忆提供商"
 description: "外部记忆提供者插件 — Honcho、OpenViking、Mem0、Hindsight、Holographic、RetainDB、ByteRover、Supermemory"
 ---
 
-# Memory Providers
+# 记忆提供商
 
 Hermes Agent 内置 8 个外部记忆提供者插件，为 Agent 提供跨会话的持久化知识，超越内置的 MEMORY.md 和 USER.md。同一时间只能激活**一个**外部提供者——内置记忆始终与其并行工作。
 

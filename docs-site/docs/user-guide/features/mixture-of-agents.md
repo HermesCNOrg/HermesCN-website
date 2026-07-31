@@ -1,10 +1,10 @@
 ---
 sidebar_position: 7
-title: "Mixture of Agents"
+title: "多 Agent 协作"
 description: "Create named MoA presets that appear as selectable models under the Mixture of Agents provider"
 ---
 
-# Mixture of Agents
+# 多 Agent 协作
 
 Mixture of Agents is a virtual model provider. Each named MoA preset appears as a selectable model under the `moa` provider.
 

@@ -1,11 +1,11 @@
 ---
 sidebar_position: 9
 sidebar_label: "Context References"
-title: "Context References"
+title: "上下文引用"
 description: "用于将文件、文件夹、git diff 及 URL 直接附加到消息中的内联 @-语法"
 ---
 
-# Context References
+# 上下文引用
 
 输入 `@` 后跟一个引用，即可将内容直接注入消息。Hermes 会将引用内联展开，并在 `--- Attached Context ---` 区块下追加相应内容。
 

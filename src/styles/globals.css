@@ -1,67 +1,64 @@
 @import "tailwindcss";
 @import "@heroui/styles";
-
 @theme {
-  --font-sans:
-    SimSun, "Songti SC", STSong, "Noto Serif CJK SC", "Noto Serif SC", serif;
-  --color-background: #0000f2;
-  --color-foreground: #f5f5f5;
-  --color-surface: #ffffff;
-  --color-surface-secondary: #ffffff;
-  --color-surface-tertiary: #d8dcff;
-  --color-muted: #d8dcff;
-  --color-primary: #ffffff;
-  --color-primary-foreground: #0000f2;
+    --font-sans: SimSun, "Songti SC", STSong, "Noto Serif CJK SC", "Noto Serif SC", serif;
+    --color-background: #0000f2;
+    --color-foreground: #f5f5f5;
+    --color-surface: #ffffff;
+    --color-surface-secondary: #ffffff;
+    --color-surface-tertiary: #d8dcff;
+    --color-muted: #d8dcff;
+    --color-primary: #ffffff;
+    --color-primary-foreground: #0000f2;
 }
 
 :root {
-  color-scheme: light;
-  --background: #0000f2;
-  --foreground: #f5f5f5;
-  --surface: #ffffff;
-  --surface-secondary: #ffffff;
-  --surface-tertiary: #d8dcff;
-  --muted: #d8dcff;
-  --accent: #ffffff;
-  --accent-foreground: #0000f2;
-  --primary: var(--accent);
-  --primary-foreground: var(--accent-foreground);
-  --border: rgba(245, 245, 245, 0.22);
-  --brass: #d9c46a;
-  --radius: 0px;
-  --radius-small: 0px;
-  --radius-medium: 0px;
-  --radius-large: 0px;
-  --heroui-radius-small: 0px;
-  --heroui-radius-medium: 0px;
-  --heroui-radius-large: 0px;
-  --font-cn:
-    SimSun, "Songti SC", STSong, "Noto Serif CJK SC", "Noto Serif SC", serif;
+    color-scheme: light;
+    --background: #0000f2;
+    --foreground: #f5f5f5;
+    --surface: #ffffff;
+    --surface-secondary: #ffffff;
+    --surface-tertiary: #d8dcff;
+    --muted: #d8dcff;
+    --accent: #ffffff;
+    --accent-foreground: #0000f2;
+    --primary: var(--accent);
+    --primary-foreground: var(--accent-foreground);
+    --border: rgba(245, 245, 245, 0.22);
+    --brass: #d9c46a;
+    --radius: 0px;
+    --radius-small: 0px;
+    --radius-medium: 0px;
+    --radius-large: 0px;
+    --heroui-radius-small: 0px;
+    --heroui-radius-medium: 0px;
+    --heroui-radius-large: 0px;
+    --font-cn: SimSun, "Songti SC", STSong, "Noto Serif CJK SC", "Noto Serif SC", serif;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  min-height: 100%;
+    min-height: 100%;
 }
 
 body {
-  margin: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-cn);
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-cn);
 }
 
 ::selection {
-  background: #ecfe4a;
-  color: var(--background);
+    background: #ecfe4a;
+    color: var(--background);
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 [data-slot],
@@ -74,7 +71,7 @@ button,
 input,
 textarea,
 select {
-  border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 [data-slot="popover"],
@@ -83,17 +80,17 @@ select {
 [data-slot="dropdown-menu"],
 [role="menu"],
 [role="listbox"] {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 242, 0.16) !important;
-  color: #0000f2 !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 242, 0.16) !important;
+    color: #0000f2 !important;
 }
 
 [role="menuitem"],
 [role="menuitemradio"],
 [data-slot="menu-item"],
 [role="option"] {
-  color: #0000f2 !important;
-  opacity: 1 !important;
+    color: #0000f2 !important;
+    opacity: 1 !important;
 }
 
 [role="menuitem"][data-hover="true"],
@@ -105,44 +102,44 @@ select {
 [data-slot="menu-item"][data-hover="true"],
 [data-slot="menu-item"][data-focus="true"],
 [data-selected="true"] {
-  background: #0000f2 !important;
-  color: #ffffff !important;
+    background: #0000f2 !important;
+    color: #ffffff !important;
 }
 
 [aria-disabled="true"],
 [data-disabled="true"] {
-  color: rgba(0, 0, 242, 0.38) !important;
-  opacity: 1 !important;
+    color: rgba(0, 0, 242, 0.38) !important;
+    opacity: 1 !important;
 }
 
 [data-slot="menu-item-indicator"],
 [data-slot="menu-item-indicator--checkmark"] {
-  color: currentColor !important;
+    color: currentColor !important;
 }
 
 button[data-hover="true"][class*="bg-white"],
 [role="button"][data-hover="true"][class*="bg-white"],
 [data-slot="button"][data-hover="true"][class*="bg-white"],
 [data-slot="base"][data-hover="true"][class*="bg-white"] {
-  background: #0000f2 !important;
-  color: #ffffff !important;
+    background: #0000f2 !important;
+    color: #ffffff !important;
 }
 
 button[data-hover="true"] *,
 [role="button"][data-hover="true"] *,
 [data-slot="button"][data-hover="true"] *,
 [data-slot="base"][data-hover="true"] * {
-  color: currentColor !important;
+    color: currentColor !important;
 }
 
 .bg-primary,
 .bg-accent {
-  color: var(--primary-foreground) !important;
+    color: var(--primary-foreground) !important;
 }
 
 .hermes-primary-action,
 .hermes-primary-action *,
 [class*="bg-[#2202f2]"],
 [class*="bg-[#2202f2]"] * {
-  color: var(--primary-foreground) !important;
+    color: var(--primary-foreground) !important;
 }

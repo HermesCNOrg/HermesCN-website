@@ -1,9 +1,9 @@
 ---
-title: Tool Search
+title: "工具搜索"
 sidebar_position: 95
 ---
 
-# Tool Search
+# 工具搜索
 
 When you have many MCP servers or non-core plugin tools attached to a
 session, their JSON schemas can consume a substantial fraction of the

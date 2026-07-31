@@ -1,11 +1,12 @@
 "use client";
 
+import { Tooltip } from "@heroui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { LanguageSwitcher } from "~/components/language-switcher";
-import { docsHref } from "~/lib/docs-links";
+import { tutorialHref } from "~/lib/docs-links";
 import { MobileMenu, type MobileMenuItem } from "~/components/mobile-menu";
 
 const navItems: MobileMenuItem[] = [
@@ -13,12 +14,38 @@ const navItems: MobileMenuItem[] = [
   { href: "/skills", label: "Skills" },
   { href: "/best-practices", label: "实践案例" },
   { href: "/services", label: "解决方案" },
-  { href: docsHref, label: "文档", opensInNewTab: true },
+  {
+    href: tutorialHref,
+    label: "文档 & 教程",
+    opensInNewTab: true,
+  },
+];
+
+const communityLinks = [
+  {
+    href: "https://x.com/hermescn_org",
+    icon: "ri-twitter-x-line",
+    label: "X（Twitter）",
+  },
+  {
+    href: "https://github.com/HermesCNOrg",
+    icon: "ri-github-fill",
+    label: "GitHub",
+  },
+  {
+    href: "https://t.zsxq.com/PI2or",
+    icon: "ri-planet-line",
+    label: "知识星球",
+    qrImage: "/knowledge-planet-qr.png",
+  },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const lastScrollY = useRef(0);
+  const [activeCommunityTooltip, setActiveCommunityTooltip] = useState<
+    string | null
+  >(null);
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
@@ -82,7 +109,7 @@ export function Header() {
                   className={[
                     "inline-flex items-center gap-1 border border-transparent px-2.5 py-1 transition",
                     isActive
-                      ? "border-[#f5f5f5]/70 bg-[#2d2dff] text-[#f5f5f5]"
+                      ? "border-white bg-white text-[#0000f2]"
                       : "text-[#f5f5f5] hover:border-white hover:bg-white hover:text-[#0000f2]",
                   ].join(" ")}
                   href={item.href}
@@ -103,7 +130,59 @@ export function Header() {
           </nav>
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <nav aria-label="社区链接" className="flex items-center">
+            {communityLinks.map((item) => (
+              <Tooltip
+                closeDelay={100}
+                delay={200}
+                isOpen={activeCommunityTooltip === item.href}
+                key={item.href}
+                onOpenChange={(isOpen) =>
+                  setActiveCommunityTooltip(isOpen ? item.href : null)
+                }
+                trigger="hover"
+              >
+                <Tooltip.Trigger>
+                  <a
+                    aria-label={item.label}
+                    className="grid size-10 place-items-center text-xl text-[#d8dcff] transition-transform duration-200 hover:scale-110 hover:text-white"
+                    href={item.href}
+                    onBlur={() => setActiveCommunityTooltip(null)}
+                    onFocus={() => setActiveCommunityTooltip(item.href)}
+                    onMouseEnter={() => setActiveCommunityTooltip(item.href)}
+                    onMouseLeave={() => setActiveCommunityTooltip(null)}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <i aria-hidden="true" className={item.icon} />
+                  </a>
+                </Tooltip.Trigger>
+                <Tooltip.Content
+                  className="border border-[#0000f2]/15 bg-white p-2 text-[#0000f2]"
+                  offset={10}
+                  placement="bottom"
+                >
+                  {item.qrImage ? (
+                    <div className="w-40">
+                      <img
+                        alt="知识星球二维码"
+                        className="w-full bg-white"
+                        src={item.qrImage}
+                      />
+                      <p className="mt-2 text-center text-xs font-medium">
+                        微信扫码加入
+                      </p>
+                    </div>
+                  ) : (
+                    <span className="px-1 text-xs font-medium">
+                      {item.label}
+                    </span>
+                  )}
+                </Tooltip.Content>
+              </Tooltip>
+            ))}
+          </nav>
           <LanguageSwitcher />
         </div>
         <MobileMenu items={navItems} pathname={pathname} />

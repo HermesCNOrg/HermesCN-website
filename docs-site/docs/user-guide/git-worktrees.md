@@ -1,11 +1,11 @@
 ---
 sidebar_position: 3
 sidebar_label: "Git Worktrees"
-title: "Git Worktrees"
+title: "Git 工作树"
 description: "使用 git worktrees 和隔离检出在同一仓库中安全运行多个 Hermes agent"
 ---
 
-# Git Worktrees
+# Git 工作树
 
 Hermes Agent 常用于大型、长期维护的仓库。当你需要：
 

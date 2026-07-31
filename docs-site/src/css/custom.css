@@ -1,3 +1,5 @@
+@import "remixicon/fonts/remixicon.css";
+
 :root {
   --ifm-color-primary: #2202f2;
   --ifm-color-primary-dark: #1f02da;
@@ -54,6 +56,12 @@ body {
   border-right-color: var(--hermes-border) !important;
 }
 
+.theme-doc-sidebar-menu .menu__link {
+  line-height: 1.55;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
 .menu__link--active,
 .menu__link:hover {
   color: var(--ifm-color-primary);
@@ -98,6 +106,50 @@ body {
   flex: 0 0 auto;
   height: 1rem;
   width: 1rem;
+}
+
+.hermes-doc-nav-link__remix-icon {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 1.1rem;
+  height: 1.1rem;
+  justify-content: center;
+  line-height: 1;
+  width: 1.1rem;
+}
+
+.hermes-section-link {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.hermes-section-link::before {
+  align-items: center;
+  content: "";
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-family: "remixicon";
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 400;
+  height: 1.1rem;
+  justify-content: center;
+  line-height: 1;
+  width: 1.1rem;
+}
+
+.hermes-section-link--documentation::before {
+  content: "\eadb";
+}
+
+.hermes-section-link--tutorial::before {
+  content: "\f333";
+}
+
+.hermes-section-link--blog::before {
+  content: "\ea7e";
 }
 
 .hermes-doc-home-actions {

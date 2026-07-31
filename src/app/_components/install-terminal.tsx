@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CopyButton } from "~/components/copy-button";
 
 const installOptions = [
@@ -17,38 +17,30 @@ const installOptions = [
   },
 ];
 
-const longestCommand = installOptions.reduce(
-  (longest, option) =>
-    option.command.length > longest.length ? option.command : longest,
-  "",
-);
 const defaultInstallOption = installOptions[0]!;
+
+function MiddleEllipsis({ text }: { text: string }) {
+  const tailLength = 18;
+  const head = text.slice(0, -tailLength);
+  const tail = text.slice(-tailLength);
+
+  return (
+    <span aria-hidden="true" className="flex min-w-0 flex-1 whitespace-nowrap">
+      <span className="overflow-hidden">{head}</span>
+      <span>…</span>
+      <span className="shrink-0">{tail}</span>
+    </span>
+  );
+}
 
 export function InstallTerminal() {
   const [activeId, setActiveId] = useState(defaultInstallOption.id);
-  const [typedCommand, setTypedCommand] = useState("");
   const activeOption =
     installOptions.find((option) => option.id === activeId) ??
     defaultInstallOption;
 
-  useEffect(() => {
-    let index = 0;
-    setTypedCommand("");
-
-    const timer = window.setInterval(() => {
-      index += 1;
-      setTypedCommand(activeOption.command.slice(0, index));
-
-      if (index >= activeOption.command.length) {
-        window.clearInterval(timer);
-      }
-    }, 32);
-
-    return () => window.clearInterval(timer);
-  }, [activeOption.command]);
-
   return (
-    <div className="mt-8 w-full md:max-w-2xl overflow-hidden border border-[#0000f2]/15 bg-white max-w-[60%]">
+    <div className="w-full overflow-hidden border border-[#0000f2]/15 bg-white">
       <div className="flex min-h-11 items-center justify-between gap-3 border-b border-[#0000f2]/10 bg-white px-4 py-2">
         <div className="flex items-center gap-2">
           <span className="size-2.5 rounded-full bg-[#d64040]" />
@@ -74,13 +66,15 @@ export function InstallTerminal() {
         </div>
       </div>
       <div className="flex h-16 items-center gap-3 px-4 text-sm leading-6 text-[#0000f2]">
-        <code className="min-w-0 flex-1 overflow-hidden whitespace-pre">
-          <span className="invisible block h-0">
-            <span className="text-[#0000f2]/55">$ </span>
-            {longestCommand}
+        <code
+          aria-label={`$ ${activeOption.command}`}
+          className="flex min-w-0 flex-1"
+          title={`$ ${activeOption.command}`}
+        >
+          <span aria-hidden="true" className="shrink-0 text-[#0000f2]/55">
+            $&nbsp;
           </span>
-          <span className="text-[#0000f2]/55">$ </span>
-          {typedCommand}
+          <MiddleEllipsis text={activeOption.command} />
         </code>
         <CopyButton
           key={activeOption.id}

@@ -1,11 +1,11 @@
 ---
-title: Provider Routing
+title: "Provider 路由"
 description: 配置 OpenRouter provider 偏好，以优化成本、速度或质量。
 sidebar_label: Provider Routing
 sidebar_position: 7
 ---
 
-# Provider Routing
+# Provider 路由
 
 使用 [OpenRouter](https://openrouter.ai) 作为 LLM provider 时，Hermes Agent 支持 **provider routing**（提供商路由）——对哪些底层 AI provider 处理你的请求以及如何排列优先级进行精细控制。
 

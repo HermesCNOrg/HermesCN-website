@@ -10,7 +10,7 @@ const mainSiteBaseUrl =
   process.env.DOCUSAURUS_MAIN_SITE_BASE_URL ??
   "https://hermescn.org";
 
-const docsBaseUrl = process.env.DOCUSAURUS_BASE_URL ?? "/docs/";
+const docsBaseUrl = process.env.DOCUSAURUS_BASE_URL ?? "/";
 
 const mainSiteHref = (pathname: string) => `${mainSiteBaseUrl}${pathname}`;
 
@@ -54,7 +54,9 @@ function getDocsFiles(dir: string): string[] {
 function getDocUrl(filePath: string) {
   const relativePath = path.relative(docsDir, filePath);
   const withoutExtension = relativePath.replace(/\.(md|mdx)$/, "");
-  const segments = withoutExtension.split(path.sep);
+  const segments = withoutExtension
+    .split(path.sep)
+    .map((segment) => segment.replace(/^\d+-/, ""));
   const fileName = segments.at(-1);
 
   if (fileName === "index") {
@@ -137,7 +139,15 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           editUrl: undefined,
         },
-        blog: false,
+        blog: {
+          routeBasePath: "blog",
+          blogTitle: "HermesCN 博客",
+          blogDescription: "记录 HermesCN 的社区建设、实践方法与行业观察。",
+          showReadingTime: true,
+          blogSidebarTitle: "全部文章",
+          blogSidebarCount: "ALL",
+          postsPerPage: 10,
+        },
         theme: {
           customCss: "./src/css/custom.css",
         },
@@ -169,12 +179,33 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: "HermesCN 文档",
+      title: "HermesCN",
       logo: {
         alt: "HermesCN 中文社区",
         src: "img/favicon.png",
       },
       items: [
+        {
+          type: "docSidebar",
+          sidebarId: "docs",
+          label: "文档",
+          position: "left",
+          className:
+            "hermes-section-link hermes-section-link--documentation",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "tutorials",
+          label: "教程",
+          position: "left",
+          className: "hermes-section-link hermes-section-link--tutorial",
+        },
+        {
+          to: "/blog",
+          label: "博客",
+          position: "left",
+          className: "hermes-section-link hermes-section-link--blog",
+        },
         { type: "custom-main-site", position: "right" },
         { type: "custom-github", position: "right" },
         { type: "custom-search", position: "right" },
@@ -188,6 +219,8 @@ const config: Config = {
           items: [
             { label: "首页", href: mainSiteHref("/"), target: "_self" },
             { label: "文档", to: "/getting-started/quickstart" },
+            { label: "教程", to: "/tutorials/" },
+            { label: "博客", to: "/blog" },
             { label: "Skills", href: mainSiteHref("/skills"), target: "_self" },
             {
               label: "实践案例",

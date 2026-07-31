@@ -1,10 +1,10 @@
 ---
 sidebar_position: 2.5
-title: "Platform Support"
+title: "平台支持"
 description: "Which operating systems, distribution methods, and features Hermes Agent supports."
 ---
 
-# Platform Support
+# 平台支持
 
 Hermes Agent maintains support for many platforms and distribution methods, but we can't support every possible install method.
 
