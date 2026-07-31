@@ -1,3 +1,12 @@
+---
+title: "Hermes Agent 接入飞书教程：机器人与 Gateway"
+sidebar_label: "11 · 接入飞书"
+description: "配置飞书机器人和 Hermes Gateway，从移动端发送首个任务，并验证消息接收、执行与回复链路。"
+keywords: [Hermes 飞书, Hermes Gateway, 飞书 AI Agent]
+last_update:
+  date: 2026-07-31
+---
+
 # 11 · 将 Hermes 接入飞书，完成首个移动端任务
 
 *不再守在电脑前：从飞书发出一个边界清楚的任务，并收到可核对的回复。*

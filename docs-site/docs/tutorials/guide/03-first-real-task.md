@@ -1,3 +1,12 @@
+---
+title: "使用 Hermes Agent 完成第一个可验证任务"
+sidebar_label: "03 · 第一个真实任务"
+description: "通过受控文件练习，让 Hermes Agent 读取输入、生成结果并按存在性、完整性、准确性和边界进行验收。"
+keywords: [Hermes Agent 教程, AI Agent 文件任务, Agent 任务验收]
+last_update:
+  date: 2026-07-31
+---
+
 # 03 · 使用 Hermes 完成第一个可验证任务
 
 *不是继续聊天，而是读取输入、写出文件，再由你验收。*

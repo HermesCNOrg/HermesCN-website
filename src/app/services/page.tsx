@@ -1,4 +1,14 @@
+import { type Metadata } from "next";
 import Image from "next/image";
+
+import { createPageMetadata } from "~/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "企业 AI Agent 生态服务与行业解决方案",
+  description:
+    "连接 HermesCN 社区能力与真实业务需求，为软件、教育、电商、制造和法律等行业提供 AI Agent 场景判断、原型验证与持续落地服务。",
+  path: "/services",
+});
 
 const industries = [
   {

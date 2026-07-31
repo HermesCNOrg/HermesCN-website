@@ -1,3 +1,12 @@
+---
+title: "Hermes Agent 可验证研究与资料整理实战"
+sidebar_label: "17 · 可验证资料整理"
+description: "让 Hermes 整理带来源和冲突标记的资料摘要，通过检查脚本验证章节、来源标签和原始输入完整性。"
+keywords: [Hermes Agent 研究, AI 资料整理, 可验证 AI]
+last_update:
+  date: 2026-07-31
+---
+
 # 17 · 综合练习：整理一组可验证资料
 
 *从受控输入、带来源整理，到自动检查与失败重试。*

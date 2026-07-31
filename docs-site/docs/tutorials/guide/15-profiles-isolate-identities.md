@@ -1,3 +1,12 @@
+---
+title: "Hermes Profiles 教程：隔离身份、配置与会话"
+sidebar_label: "15 · Profiles 隔离"
+description: "使用 Hermes Profiles 隔离工作与个人 Agent 的配置、记忆、会话和工作目录，并理解仍然共享的系统权限。"
+keywords: [Hermes Profiles, Hermes 多账号, AI Agent 隔离]
+last_update:
+  date: 2026-07-31
+---
+
 # 15 · 用 Profiles 隔离身份与配置
 
 *工作 Agent、个人 Agent 和不同机器人，怎样不混用配置、记忆与会话？*

@@ -7,3 +7,18 @@ community:
   label: 社区
   permalink: /community
   description: 中文 Agent 社区的实践与思考
+
+hermes:
+  label: Hermes Agent
+  permalink: /hermes-agent
+  description: Hermes Agent 能力、生态与实践
+
+comparison:
+  label: 产品对比
+  permalink: /comparison
+  description: AI Agent 产品定位与适用场景对比
+
+agent:
+  label: AI Agent
+  permalink: /ai-agent
+  description: AI Agent 技术、工具与工作方式

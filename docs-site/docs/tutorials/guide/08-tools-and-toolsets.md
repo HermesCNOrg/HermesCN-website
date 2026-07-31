@@ -1,3 +1,12 @@
+---
+title: "Hermes Agent 工具选择：按任务配置最小 Toolset"
+sidebar_label: "08 · 工具与 Toolsets"
+description: "根据文件、终端、网页、浏览器和图像任务选择最小工具集，缩小 Hermes Agent 的能力与权限范围。"
+keywords: [Hermes Agent 工具, Hermes Toolsets, AI Agent 权限]
+last_update:
+  date: 2026-07-31
+---
+
 # 08 · 按任务选择最小工具集
 
 *能用更多工具，不等于应该让这次任务看到更多工具。*

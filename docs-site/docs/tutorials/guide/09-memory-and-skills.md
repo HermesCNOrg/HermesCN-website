@@ -1,3 +1,12 @@
+---
+title: "Hermes Memory 与 Skills：跨会话复用边界"
+sidebar_label: "09 · Memory 与 Skills"
+description: "区分 Hermes Memory、Skills、当前会话和交接文件，判断事实、流程、临时状态与原始材料应保存在哪里。"
+keywords: [Hermes Memory, Hermes Skills, AI Agent 记忆]
+last_update:
+  date: 2026-07-31
+---
+
 # 09 · Memory、Skill 与会话信息的边界
 
 *跨会话复用不是“把所有东西都永久保存”。*

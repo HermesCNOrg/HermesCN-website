@@ -7,12 +7,13 @@ import path from "node:path";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const mainSiteBaseUrl =
-  process.env.DOCUSAURUS_MAIN_SITE_BASE_URL ??
-  "https://hermescn.org";
+  process.env.DOCUSAURUS_MAIN_SITE_BASE_URL ?? "https://hermescn.org";
 
 const docsBaseUrl = process.env.DOCUSAURUS_BASE_URL ?? "/";
 
 const mainSiteHref = (pathname: string) => `${mainSiteBaseUrl}${pathname}`;
+const siteDescription =
+  "Hermes Agent 中文社区与协作网络，提供中文文档、实践教程、Agent Skills、项目案例与企业落地经验。";
 
 type SearchIndexItem = {
   title: string;
@@ -88,8 +89,28 @@ function createSearchIndex(): SearchIndexItem[] {
 
 const config: Config = {
   title: "HermesCN 中文文档",
-  tagline: "Hermes Agent 中文社区文档",
+  tagline: "Hermes Agent 中文社区与实践网络",
   favicon: "img/favicon.png",
+  headTags: [
+    {
+      tagName: "script",
+      attributes: {
+        type: "application/ld+json",
+      },
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://hermescn.org/#website",
+        url: "https://hermescn.org",
+        name: "HermesCN 中文社区",
+        description: siteDescription,
+        inLanguage: "zh-CN",
+        publisher: {
+          "@id": "https://hermescn.org/#organization",
+        },
+      }),
+    },
+  ],
   customFields: {
     mainSiteBaseUrl,
     githubHref: "https://github.com/HermesCNOrg",
@@ -142,14 +163,23 @@ const config: Config = {
         blog: {
           routeBasePath: "blog",
           blogTitle: "HermesCN 博客",
-          blogDescription: "记录 HermesCN 的社区建设、实践方法与行业观察。",
+          blogDescription:
+            "记录 HermesCN 的社区建设、个人实践、项目协作与行业观察。",
           showReadingTime: true,
-          blogSidebarTitle: "全部文章",
-          blogSidebarCount: "ALL",
+          blogSidebarCount: 0,
           postsPerPage: 10,
         },
         theme: {
           customCss: "./src/css/custom.css",
+        },
+        sitemap: {
+          ignorePatterns: [
+            "/blog/archive",
+            "/blog/tags/**",
+            "/docs/blog/archive",
+            "/docs/blog/tags/**",
+          ],
+          lastmod: "date",
         },
       } satisfies Preset.Options,
     ],
@@ -172,7 +202,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "img/docusaurus-social-card.jpg",
+    image: "img/hermescn-social-card.png",
     colorMode: {
       defaultMode: "light",
       disableSwitch: true,
@@ -190,8 +220,7 @@ const config: Config = {
           sidebarId: "docs",
           label: "文档",
           position: "left",
-          className:
-            "hermes-section-link hermes-section-link--documentation",
+          className: "hermes-section-link hermes-section-link--documentation",
         },
         {
           type: "docSidebar",

@@ -1,3 +1,12 @@
+---
+title: "Hermes Agent 安装教程：完成第一次对话"
+sidebar_label: "02 · 安装与首次运行"
+description: "从 Desktop 与 CLI 中选择合适入口，安装 Hermes Agent、配置模型来源并完成首次对话和环境检查。"
+keywords: [Hermes Agent 安装, Hermes CLI, Hermes Desktop]
+last_update:
+  date: 2026-07-31
+---
+
 # 02 · 安装 Hermes，并完成第一次对话
 
 *Desktop 还是 CLI？模型从哪里来？怎样知道安装真的成功？*

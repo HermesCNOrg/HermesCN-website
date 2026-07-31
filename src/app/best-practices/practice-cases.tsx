@@ -5,6 +5,8 @@ import { useMemo, useState } from "react";
 
 import stories from "~/data/user-stories.json";
 
+type LocalizedText = string | { en: string; zh: string };
+
 type Story = {
   id: string;
   source: string;
@@ -12,8 +14,8 @@ type Story = {
   url: string;
   date: string;
   category: string;
-  headline: string;
-  quote: string;
+  headline: LocalizedText;
+  quote: LocalizedText;
   size: "sm" | "md" | "lg";
 };
 
@@ -59,6 +61,14 @@ function formatDate(value: string) {
   if (!value) return "社区记录";
 
   return value;
+}
+
+function getLocalizedText(value: LocalizedText) {
+  return typeof value === "string" ? value : value.zh;
+}
+
+function getSearchableText(value: LocalizedText) {
+  return typeof value === "string" ? value : `${value.en} ${value.zh}`;
 }
 
 export function PracticeCases() {
@@ -123,7 +133,7 @@ export function PracticeCases() {
       const matchesSource =
         selectedSources.size === 0 || selectedSources.has(story.source);
       const searchable =
-        `${story.headline} ${story.quote} ${story.author} ${story.source}`.toLowerCase();
+        `${getSearchableText(story.headline)} ${getSearchableText(story.quote)} ${story.author} ${story.source}`.toLowerCase();
       const matchesQuery = !keyword || searchable.includes(keyword);
 
       return matchesCategory && matchesSource && matchesQuery;
@@ -308,10 +318,10 @@ export function PracticeCases() {
                 </div>
 
                 <h3 className="mt-4 origin-left text-lg leading-7 font-normal text-current transition-transform duration-200 group-hover:scale-[1.03]">
-                  {story.headline}
+                  {getLocalizedText(story.headline)}
                 </h3>
                 <p className="mt-3 line-clamp-4 text-sm leading-6 text-[#0000f2]/65 transition group-hover:text-white/75">
-                  {story.quote}
+                  {getLocalizedText(story.quote)}
                 </p>
 
                 <p className="mt-auto pt-5 text-xs text-[#0000f2]/55 transition group-hover:text-white/65">

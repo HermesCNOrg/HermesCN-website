@@ -1,3 +1,12 @@
+---
+title: "Hermes Agent 安全指南：权限、凭据与审批"
+sidebar_label: "05 · 权限与凭据"
+description: "学习判断文件、命令、网络和外部操作风险，安全添加、检查与撤销 Hermes Agent 使用的凭据。"
+keywords: [Hermes Agent 安全, Agent 权限, AI 凭据管理]
+last_update:
+  date: 2026-07-31
+---
+
 # 05 · Hermes 的权限、凭据与审批
 
 *安全不是“一律不让它做”，而是让权限、范围和后果匹配。*

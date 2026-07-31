@@ -1,3 +1,12 @@
+---
+title: "用飞书向 Hermes 发送语音、图片和文件"
+sidebar_label: "13 · 语音、图片与文件"
+description: "验证飞书中的语音转写、图片分析和文件处理链路，让 Hermes Agent 汇总多媒体输入并标记不确定项。"
+keywords: [Hermes 飞书, Hermes 语音, Hermes 图片识别]
+last_update:
+  date: 2026-07-31
+---
+
 # 13 · 用飞书向 Hermes 发送语音、图片和文件
 
 *多媒体输入不是“模型自动全懂”：先看清下载、转写、分析和回复分别发生在哪里。*

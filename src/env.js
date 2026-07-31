@@ -15,6 +15,11 @@ export const env = createEnv({
     BETTER_AUTH_GITHUB_CLIENT_ID: z.string(),
     BETTER_AUTH_GITHUB_CLIENT_SECRET: z.string(),
     BETTER_AUTH_TRUSTED_ORIGINS: z.string().optional(),
+    CLAWHUB_API_TOKEN: z.string().startsWith("clh_").optional(),
+    INDEXNOW_KEY: z
+      .string()
+      .regex(/^[A-Za-z0-9-]{8,128}$/)
+      .optional(),
     MAIL_FROM: z.string().optional(),
     MAIL_PROVIDER: z.enum(["console", "smtp"]).optional(),
     SES_PASS: z.string().optional(),
@@ -45,6 +50,8 @@ export const env = createEnv({
     BETTER_AUTH_GITHUB_CLIENT_SECRET:
       process.env.BETTER_AUTH_GITHUB_CLIENT_SECRET,
     BETTER_AUTH_TRUSTED_ORIGINS: process.env.BETTER_AUTH_TRUSTED_ORIGINS,
+    CLAWHUB_API_TOKEN: process.env.CLAWHUB_API_TOKEN,
+    INDEXNOW_KEY: process.env.INDEXNOW_KEY,
     MAIL_FROM: process.env.MAIL_FROM,
     MAIL_PROVIDER: process.env.MAIL_PROVIDER,
     SES_PASS: process.env.SES_PASS,

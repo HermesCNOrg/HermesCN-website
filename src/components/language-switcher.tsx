@@ -21,7 +21,7 @@ export function LanguageSwitcher({ variant = "dark" }: LanguageSwitcherProps) {
         ].join(" ")}
       >
         <i aria-hidden="true" className="ri-translate-2 text-base" />
-        简中
+        简体中文
         <i aria-hidden="true" className="ri-arrow-down-s-line" />
       </Dropdown.Trigger>
       <Dropdown.Popover placement="bottom end">
@@ -36,11 +36,11 @@ export function LanguageSwitcher({ variant = "dark" }: LanguageSwitcherProps) {
               简体中文
             </span>
           </Dropdown.Item>
-          <Dropdown.Item id="zh-TW" isDisabled textValue="繁體中文">
-            繁體中文
+          <Dropdown.Item id="zh-TW" isDisabled textValue="繁體中文（即将上线）">
+            繁體中文（即将上线）
           </Dropdown.Item>
-          <Dropdown.Item id="en" isDisabled textValue="English">
-            English
+          <Dropdown.Item id="en" isDisabled textValue="English（即将上线）">
+            English（即将上线）
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>

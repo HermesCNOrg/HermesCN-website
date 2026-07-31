@@ -1,3 +1,12 @@
+---
+title: "Hermes Delegation 教程：使用子代理并行研究"
+sidebar_label: "14 · 子代理委派"
+description: "将独立研究任务分派给 Hermes 子代理，控制上下文、并发、成本和停止条件，并由父 Agent 复核结果。"
+keywords: [Hermes Delegation, Hermes 子代理, 多 Agent 协作]
+last_update:
+  date: 2026-07-31
+---
+
 # 14 · 将独立研究分派给 Delegation 子代理
 
 *并行可以节省等待时间，但不会替你补上下文，也不会自动保证结论正确。*

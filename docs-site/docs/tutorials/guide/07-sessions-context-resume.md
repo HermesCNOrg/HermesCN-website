@@ -1,3 +1,12 @@
+---
+title: "Hermes Agent 会话管理：上下文、恢复与任务续接"
+sidebar_label: "07 · 会话与续接"
+description: "学习何时继续、压缩或新建 Hermes 会话，并用交接文件在正确目录和上下文中安全恢复任务。"
+keywords: [Hermes Agent 会话, AI Agent 上下文, Hermes 会话恢复]
+last_update:
+  date: 2026-07-31
+---
+
 # 07 · 管理会话、上下文与任务续接
 
 *什么时候继续旧会话，什么时候压缩，什么时候应该重新开始？*

@@ -1,9 +1,17 @@
+import { type Metadata } from "next";
 import Link from "next/link";
 
 import { BannerDescription } from "~/app/_components/banner-description";
 import { HermesVsOpenClaw } from "~/app/_components/hermes-vs-openclaw";
 import { InstallTerminal } from "~/app/_components/install-terminal";
 import { tutorialHref } from "~/lib/docs-links";
+import { createPageMetadata, siteConfig } from "~/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Hermes Agent 中文社区与协作网络",
+  description: siteConfig.description,
+  path: "/",
+});
 
 const features = [
   {
@@ -201,12 +209,12 @@ export default function Home() {
               03 · Community Thesis
             </p>
             <h2 className="text-3xl leading-tight font-normal text-[#0000f2] sm:text-5xl">
-              连接更多 AI Native 超级个体，把个人经验变成可复用的生产力系统。
+              让个人在真实实践中成长，让有价值的能力进入更大的项目网络。
             </h2>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-[#0000f2]/65">
-              HermesCN 会围绕中文资料、实践案例、Skills
-              生态和自动化工作流，帮助个人与企业把一次次有效协作沉淀下来，让
-              Agent 真正进入日常工作。
+              HermesCN 会持续沉淀中文资料、实践案例、Skills
+              与自动化工作流，连接开发者、创作者、行业专家和真实项目，逐步形成开放的
+              Project Network，并为企业提供可验证、可持续的 Agent 生态服务。
             </p>
           </div>
         </div>

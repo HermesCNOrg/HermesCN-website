@@ -1,3 +1,12 @@
+---
+title: "Hermes 每日研究助手：Cron、飞书与成本控制"
+sidebar_label: "18 · 每日研究助手"
+description: "构建可暂停的 Hermes 每日研究助手，仅在来源变化时调用模型，通过 Cron 生成摘要并交付到飞书。"
+keywords: [Hermes 研究助手, AI Agent 自动化, Hermes Cron 飞书]
+last_update:
+  date: 2026-07-31
+---
+
 # 18 · 综合实战：构建可暂停的每日研究助手
 
 *从本地信息源、变化状态、定时运行，到飞书交付与费用止损。*

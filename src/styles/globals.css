@@ -61,6 +61,18 @@ a {
     text-decoration: none;
 }
 
+a,
+button,
+[role="button"] {
+    cursor: pointer;
+}
+
+[aria-disabled="true"],
+[data-disabled="true"],
+button:disabled {
+    cursor: not-allowed;
+}
+
 [data-slot],
 [data-open],
 [role="button"],

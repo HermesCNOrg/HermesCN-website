@@ -42,7 +42,12 @@ async function fetchPage(cursor) {
   }
 
   const response = await fetch(url, {
-    headers: { Accept: "application/json" },
+    headers: {
+      Accept: "application/json",
+      ...(process.env.CLAWHUB_API_TOKEN
+        ? { Authorization: `Bearer ${process.env.CLAWHUB_API_TOKEN}` }
+        : {}),
+    },
   });
 
   if (!response.ok) {

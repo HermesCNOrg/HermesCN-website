@@ -52,6 +52,10 @@ body {
   object-fit: contain;
 }
 
+html.blog-wrapper .avatar.margin-bottom--sm .avatar__photo {
+  --ifm-avatar-photo-size: 2.5rem;
+}
+
 .theme-doc-sidebar-container {
   border-right-color: var(--hermes-border) !important;
 }

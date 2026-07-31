@@ -1,3 +1,12 @@
+---
+title: "Hermes Agent 工作原理：模型、工具与执行循环"
+sidebar_label: "04 · Hermes 如何工作"
+description: "理解 Hermes Agent 如何利用模型、上下文和工具把目标转化为操作，以及权限确认与结果验收为什么不同。"
+keywords: [Hermes Agent 原理, Agent 工具调用, AI Agent 执行循环]
+last_update:
+  date: 2026-07-31
+---
+
 # 04 · Hermes 如何把目标转化为操作
 
 *模型、上下文、工具、Agent 循环和权限确认分别负责什么？*

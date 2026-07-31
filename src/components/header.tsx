@@ -11,8 +11,8 @@ import { MobileMenu, type MobileMenuItem } from "~/components/mobile-menu";
 
 const navItems: MobileMenuItem[] = [
   { href: "/", label: "首页" },
-  { href: "/skills", label: "Skills" },
   { href: "/best-practices", label: "实践案例" },
+  { href: "/skills", label: "Skills" },
   { href: "/services", label: "解决方案" },
   {
     href: tutorialHref,

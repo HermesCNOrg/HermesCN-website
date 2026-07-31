@@ -1,10 +1,11 @@
 import Link from "next/link";
 
-import { docsHref } from "~/lib/docs-links";
+import { blogHref, docsHref } from "~/lib/docs-links";
 
 const sitemap = [
   { href: "/", label: "首页" },
   { href: docsHref, label: "文档" },
+  { href: blogHref, label: "博客" },
   { href: "/skills", label: "Skills" },
   { href: "/best-practices", label: "实践案例" },
   { href: "/services", label: "解决方案" },
@@ -44,8 +45,8 @@ export function Footer() {
             />
           </Link>
           <p className="mt-5 max-w-md text-sm leading-7 text-[#d8dcff]">
-            HermesCN 中文社区连接更多 AI native
-            超级个体，沉淀中文资料、实践经验和解决方案。
+            Hermes Agent
+            中文社区与协作网络，帮助个人探索前沿实践，连接生态伙伴与真实项目。
           </p>
         </div>
 

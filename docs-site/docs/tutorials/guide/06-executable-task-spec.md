@@ -1,3 +1,12 @@
+---
+title: "如何为 Hermes Agent 编写可执行任务"
+sidebar_label: "06 · 可执行任务"
+description: "用背景、目标、输入、限制、交付物和验收六部分结构，把模糊需求转化为 Hermes Agent 可执行任务。"
+keywords: [Hermes Agent 提示词, Agent 任务拆解, AI 任务验收]
+last_update:
+  date: 2026-07-31
+---
+
 # 06 · 将模糊需求变为可执行任务
 
 *不是把提示词写得更长，而是让目标、边界和验收可以被检查。*

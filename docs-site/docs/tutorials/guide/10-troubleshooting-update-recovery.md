@@ -1,3 +1,12 @@
+---
+title: "Hermes Agent 故障排查、更新与恢复指南"
+sidebar_label: "10 · 排错与恢复"
+description: "按停止、状态、配置、凭据、日志和文档的顺序排查 Hermes 故障，并安全更新和恢复受控文件任务。"
+keywords: [Hermes 故障排查, Hermes 更新, Hermes Agent 恢复]
+last_update:
+  date: 2026-07-31
+---
+
 # 10 · Hermes 故障排查、更新与恢复
 
 *先保住现场，再缩小故障层；恢复不是重装，也不是让 Agent 继续试。*

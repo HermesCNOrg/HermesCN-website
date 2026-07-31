@@ -1,3 +1,12 @@
+---
+title: "Hermes Cron 教程：创建和管理定时任务"
+sidebar_label: "12 · 定时任务"
+description: "创建、触发、检查、暂停、恢复与删除 Hermes Cron 定时任务，理解模型成本、交付位置和停止方式。"
+keywords: [Hermes Cron, AI Agent 定时任务, Hermes 自动化]
+last_update:
+  date: 2026-07-31
+---
+
 # 12 · 创建、检查、暂停与删除定时任务
 
 *自动运行不等于放任运行：先做一个有输出、有限时长、知道送到哪里的 Cron 练习。*

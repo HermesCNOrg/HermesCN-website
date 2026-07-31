@@ -1,11 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import Link from "next/link";
+import { useCallback, useMemo, useState } from "react";
+
+import { SkillDrawer } from "./skill-drawer";
 
 export type SkillCard = {
   slug: string;
   name: string;
   summary: string;
+  sourceSummary?: string;
   description: string;
   topics: string[];
   version: string;
@@ -34,13 +38,10 @@ function formatCount(value: number) {
   return value.toLocaleString("zh-CN");
 }
 
-function getSkillUrl(skill: SkillCard) {
-  return `https://clawhub.ai/skills?q=${encodeURIComponent(skill.slug)}`;
-}
-
 export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
   const [query, setQuery] = useState("");
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
+  const [selectedSkill, setSelectedSkill] = useState<SkillCard | null>(null);
   const [sortBy, setSortBy] = useState<SortValue>("recommended");
 
   const topicOptions = useMemo(() => {
@@ -83,6 +84,7 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
 
   const hasActiveFilters =
     selectedTopics.size > 0 || sortBy !== "recommended" || Boolean(query);
+  const closeDrawer = useCallback(() => setSelectedSkill(null), []);
 
   function toggleTopic(topic: string) {
     setSelectedTopics((current) => {
@@ -220,12 +222,22 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
 
         <div className="mt-10 grid gap-0 border-t border-l border-[#0000f2]/15 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredSkills.map((skill) => (
-            <a
+            <Link
               className="group flex min-h-[17rem] flex-col border-r border-b border-[#0000f2]/15 bg-white p-5 text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
-              href={getSkillUrl(skill)}
+              href={`/skills/${encodeURIComponent(skill.slug)}`}
               key={skill.slug}
-              rel="noreferrer"
-              target="_blank"
+              onClick={(event) => {
+                if (
+                  event.button === 0 &&
+                  !event.metaKey &&
+                  !event.ctrlKey &&
+                  !event.shiftKey &&
+                  !event.altKey
+                ) {
+                  event.preventDefault();
+                  setSelectedSkill(skill);
+                }
+              }}
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -262,10 +274,11 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
                 <span>{formatCount(skill.stars)} stars</span>
                 <span>{formatCount(skill.downloads)} downloads</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
+      <SkillDrawer skill={selectedSkill} onClose={closeDrawer} />
     </section>
   );
 }

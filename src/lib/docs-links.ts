@@ -11,6 +11,11 @@ export const tutorialHref =
     ? `${productionDocsBase}/tutorials/`
     : `${devDocsBase}/tutorials/`;
 
+export const blogHref =
+  process.env.NODE_ENV === "production"
+    ? `${productionDocsBase}/blog`
+    : `${devDocsBase}/blog`;
+
 export const openClawMigrationHref =
   process.env.NODE_ENV === "production"
     ? `${productionDocsBase}/zh-Hans/guides/migrate-from-openclaw`

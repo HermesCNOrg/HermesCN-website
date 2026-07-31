@@ -1,3 +1,12 @@
+---
+title: "Hermes 扩展选择：Tool、Skill、MCP 还是 Plugin"
+sidebar_label: "16 · 选择扩展方式"
+description: "比较 Hermes Tool、Skill、MCP 与 Plugin 的适用场景、权限和维护成本，为新需求选择最小扩展层。"
+keywords: [Hermes MCP, Hermes Skills, Hermes Plugin]
+last_update:
+  date: 2026-07-31
+---
+
 # 16 · 新需求该选 Tool、Skill、MCP 还是 Plugin
 
 *先选择最小扩展层，再决定要不要安装。*
