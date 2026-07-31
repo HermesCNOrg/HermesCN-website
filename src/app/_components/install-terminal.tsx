@@ -48,13 +48,13 @@ export function InstallTerminal() {
           <span className="size-2.5 rounded-full bg-[#0000f2]" />
         </div>
 
-        <div className="grid w-full min-w-0 grid-cols-2 border border-[#0000f2]/15 bg-white p-0.5 text-[11px] sm:text-xs">
+        <div className="flex min-w-0 justify-self-end border border-[#0000f2]/15 bg-white p-0.5 text-[11px] sm:text-xs">
           {installOptions.map((option) => (
             <button
               className={
                 option.id === activeId
-                  ? "min-w-0 bg-[#0000f2] px-1.5 py-1 leading-4 text-white sm:px-2"
-                  : "min-w-0 px-1.5 py-1 leading-4 text-[#0000f2]/65 transition hover:bg-[#0000f2] hover:text-white sm:px-2"
+                  ? "min-w-0 bg-[#0000f2] px-1.5 py-1 leading-4 whitespace-nowrap text-white sm:px-2"
+                  : "min-w-0 px-1.5 py-1 leading-4 whitespace-nowrap text-[#0000f2]/65 transition hover:bg-[#0000f2] hover:text-white sm:px-2"
               }
               key={option.id}
               onClick={() => setActiveId(option.id)}

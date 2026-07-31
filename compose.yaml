@@ -1,0 +1,18 @@
+name: hermescn-website
+
+services:
+  web:
+    image: hermescn-website:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    init: true
+    restart: unless-stopped
