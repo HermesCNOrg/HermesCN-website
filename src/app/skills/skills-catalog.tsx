@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { SkillDrawer } from "./skill-drawer";
 
@@ -30,6 +30,9 @@ const sortOptions = [
 
 type SortValue = (typeof sortOptions)[number]["value"];
 
+const INITIAL_VISIBLE_SKILLS = 48;
+const VISIBLE_SKILLS_STEP = 48;
+
 function formatCount(value: number) {
   if (value >= 10000) {
     return `${(value / 10000).toFixed(value >= 100000 ? 0 : 1)}万`;
@@ -43,6 +46,7 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
   const [selectedSkill, setSelectedSkill] = useState<SkillCard | null>(null);
   const [sortBy, setSortBy] = useState<SortValue>("recommended");
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_SKILLS);
 
   const topicOptions = useMemo(() => {
     const counts = new Map<string, number>();
@@ -81,6 +85,13 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
       return 0;
     });
   }, [query, selectedTopics, skills, sortBy]);
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE_SKILLS);
+  }, [query, selectedTopics, sortBy]);
+
+  const visibleSkills = filteredSkills.slice(0, visibleCount);
+  const hasMoreSkills = visibleCount < filteredSkills.length;
 
   const hasActiveFilters =
     selectedTopics.size > 0 || sortBy !== "recommended" || Boolean(query);
@@ -221,7 +232,7 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
         </div>
 
         <div className="mt-10 grid gap-0 border-t border-l border-[#0000f2]/15 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredSkills.map((skill) => (
+          {visibleSkills.map((skill) => (
             <Link
               className="group flex min-h-[17rem] flex-col border-r border-b border-[#0000f2]/15 bg-white p-5 text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
               href={`/skills/${encodeURIComponent(skill.slug)}`}
@@ -277,6 +288,21 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
             </Link>
           ))}
         </div>
+
+        {hasMoreSkills ? (
+          <div className="mt-10 flex justify-center">
+            <button
+              className="border border-[#0000f2] bg-white px-6 py-3 text-sm font-medium text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
+              type="button"
+              onClick={() =>
+                setVisibleCount((current) => current + VISIBLE_SKILLS_STEP)
+              }
+            >
+              加载更多（已显示 {visibleSkills.length} / {filteredSkills.length}
+              ）
+            </button>
+          </div>
+        ) : null}
       </div>
       <SkillDrawer skill={selectedSkill} onClose={closeDrawer} />
     </section>

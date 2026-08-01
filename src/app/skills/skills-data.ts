@@ -3,15 +3,13 @@ import "server-only";
 import skillsCatalog from "~/data/skills-catalog.json";
 import type { SkillCard } from "./skills-catalog";
 
-const clawHubApiToken = process.env.CLAWHUB_API_TOKEN;
-
-type ClawHubSkill = {
+type CatalogSkill = {
   slug: string;
   displayName?: string;
   summary?: string | null;
   description?: string | null;
   topics?: string[];
-  tags?: { latest?: string };
+  tags?: { latest?: string | null };
   stats?: {
     comments?: number;
     downloads?: number;
@@ -20,20 +18,11 @@ type ClawHubSkill = {
     versions?: number;
   };
   latestVersion?: {
-    version?: string;
-    changelog?: string;
+    version?: string | null;
+    changelog?: string | null;
     license?: string | null;
   };
 };
-
-type SkillsResponse = {
-  items?: ClawHubSkill[];
-  nextCursor?: string | null;
-};
-
-const CLAWHUB_SKILLS_URL = "https://clawhub.ai/api/v1/skills";
-const PAGE_SIZE = 100;
-const CATALOG_SIZE = 240;
 
 const localizedSummaries: Record<string, string> = {
   "self-improving-agent":
@@ -68,7 +57,7 @@ function localizeTopics(topics: string[]) {
   return topics.slice(0, 4).map((topic) => topicLabels[topic] ?? topic);
 }
 
-function toSkillCard(skill: ClawHubSkill): SkillCard {
+function toSkillCard(skill: CatalogSkill): SkillCard {
   const slug = skill.slug;
 
   return {
@@ -94,69 +83,12 @@ function toSkillCard(skill: ClawHubSkill): SkillCard {
   };
 }
 
-async function fetchPage(cursor?: string) {
-  const url = new URL(CLAWHUB_SKILLS_URL);
-  url.searchParams.set("limit", String(PAGE_SIZE));
-  url.searchParams.set("sort", "recommended");
-  url.searchParams.set("nonSuspiciousOnly", "true");
-
-  if (cursor) {
-    url.searchParams.set("cursor", cursor);
-  }
-
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      ...(clawHubApiToken
-        ? { Authorization: `Bearer ${clawHubApiToken}` }
-        : {}),
-    },
-    next: {
-      revalidate: 3600,
-      tags: ["clawhub-skills"],
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(`ClawHub API returned ${response.status}`);
-  }
-
-  return (await response.json()) as SkillsResponse;
-}
-
-async function fetchSkills() {
-  const items: ClawHubSkill[] = [];
-  let cursor: string | undefined;
-
-  while (items.length < CATALOG_SIZE) {
-    const page = await fetchPage(cursor);
-    const pageItems = page.items ?? [];
-    items.push(...pageItems.slice(0, CATALOG_SIZE - items.length));
-
-    if (!page.nextCursor || pageItems.length === 0) {
-      break;
-    }
-
-    cursor = page.nextCursor;
-  }
-
-  return items.map(toSkillCard);
-}
-
-function getFallbackSkills() {
-  return (skillsCatalog.items as ClawHubSkill[]).map(toSkillCard);
-}
+const preparedSkills = (skillsCatalog.items as CatalogSkill[]).map(toSkillCard);
 
 export async function getSkills() {
-  try {
-    const skills = await fetchSkills();
-    return skills.length > 0 ? skills : getFallbackSkills();
-  } catch {
-    return getFallbackSkills();
-  }
+  return preparedSkills;
 }
 
 export async function getSkill(slug: string) {
-  const skills = await getSkills();
-  return skills.find((item) => item.slug === slug);
+  return preparedSkills.find((item) => item.slug === slug);
 }
