@@ -18,6 +18,8 @@
     "build:web": "next build && pnpm run clean:build-cache",
     "brand:check": "node scripts/check-branding.mjs",
     "clean:build-cache": "node scripts/clean-build-cache.mjs",
+    "clean:after-deploy": "node scripts/clean-after-deploy.mjs",
+    "deploy:cloudflare": "node scripts/deploy-cloudflare.mjs",
     "docs:build": "pnpm run seo:check && DOCUSAURUS_GENERATED_FILES_DIR_NAME=.docusaurus/production DOCUSAURUS_BASE_URL=/docs/ DOCUSAURUS_MAIN_SITE_BASE_URL=https://hermescn.org pnpm --filter docs-site build",
     "docs:dev": "NO_UPDATE_NOTIFIER=1 DOCUSAURUS_GENERATED_FILES_DIR_NAME=.docusaurus/development DOCUSAURUS_BASE_URL=/ DOCUSAURUS_MAIN_SITE_BASE_URL=http://localhost:3078 pnpm --filter docs-site exec docusaurus start --host localhost --port 3079 --no-open",
     "docs:sync": "node scripts/sync-docs.mjs",
