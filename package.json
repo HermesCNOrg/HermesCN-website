@@ -34,7 +34,7 @@
     "preview": "next build && pnpm run clean:build-cache && next start",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy && pnpm run clean:build-cache",
+    "deploy": "pnpm run deploy:cloudflare",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload && pnpm run clean:build-cache",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },

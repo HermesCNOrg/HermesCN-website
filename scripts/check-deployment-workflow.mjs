@@ -14,6 +14,11 @@ assert.equal(
   "the repository must expose its production deployment workflow",
 );
 assert.equal(
+  packageConfig.scripts.deploy,
+  "pnpm run deploy:cloudflare",
+  "the default deploy command must use the verified cleanup workflow",
+);
+assert.equal(
   packageConfig.scripts["clean:after-deploy"],
   "node scripts/clean-after-deploy.mjs",
   "the repository must expose the post-deployment cleanup workflow",
