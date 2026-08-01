@@ -1,42 +1,40 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { createPageMetadata } from "~/lib/seo";
-import { SkillDetail } from "../skill-detail";
-import { getSkill } from "../skills-data";
+import { SkillPageClient } from "./skill-page-client";
 
 type SkillPageProps = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ chunk?: string; offset?: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: SkillPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const skill = await getSkill(slug);
-
-  if (!skill) {
-    return {};
-  }
 
   return createPageMetadata({
-    title: `${skill.name} Skill`,
-    description: skill.summary,
-    path: `/skills/${skill.slug}`,
+    title: "Skill 详情",
+    description: "查看 Agent Skill 的用途、来源和安装信息。",
+    path: `/skills/${slug}`,
   });
 }
 
-export default async function SkillPage({ params }: SkillPageProps) {
-  const { slug } = await params;
-  const skill = await getSkill(slug);
-
-  if (!skill) {
-    notFound();
-  }
+export default async function SkillPage({
+  params,
+  searchParams,
+}: SkillPageProps) {
+  const [{ slug }, query] = await Promise.all([params, searchParams]);
+  const chunk = Number.parseInt(query.chunk ?? "", 10);
+  const offset = Number.parseInt(query.offset ?? "", 10);
 
   return (
     <main className="min-h-screen bg-[#f8f8ff] pt-24 text-[#0000f2]">
-      <SkillDetail skill={skill} />
+      <SkillPageClient
+        chunk={Number.isInteger(chunk) && chunk >= 0 ? chunk : -1}
+        id={slug}
+        offset={Number.isInteger(offset) && offset >= 0 ? offset : -1}
+      />
     </main>
   );
 }

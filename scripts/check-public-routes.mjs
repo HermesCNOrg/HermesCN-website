@@ -5,13 +5,15 @@ const [
   skillsData,
   skillsCatalog,
   skillsPage,
-  skillRoute,
-  workerEntrypoint,
+  skillDetail,
   workerConfig,
+  buildScript,
+  manifestText,
+  llmsRoute,
   docsCss,
 ] = await Promise.all([
   readFile(
-    new URL("../src/app/skills/skills-data.ts", import.meta.url),
+    new URL("../src/app/skills/skills-static-data.ts", import.meta.url),
     "utf8",
   ),
   readFile(
@@ -20,74 +22,100 @@ const [
   ),
   readFile(new URL("../src/app/skills/page.tsx", import.meta.url), "utf8"),
   readFile(
-    new URL("../src/app/api/skills/[slug]/route.ts", import.meta.url),
+    new URL("../src/app/skills/skill-detail.tsx", import.meta.url),
     "utf8",
   ),
-  readFile(new URL("../worker-entry.ts", import.meta.url), "utf8"),
   readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"),
+  readFile(new URL("./build-skills-data.mjs", import.meta.url), "utf8"),
+  readFile(
+    new URL("../public/skills-data/manifest.json", import.meta.url),
+    "utf8",
+  ),
+  readFile(new URL("../src/app/llms.txt/route.ts", import.meta.url), "utf8"),
   readFile(new URL("../docs-site/src/css/custom.css", import.meta.url), "utf8"),
 ]);
 
-for (const [name, source] of [
-  ["skills page data", skillsData],
-  ["skill detail route", skillRoute],
-]) {
-  assert.doesNotMatch(
-    source,
-    /from ["']~\/env["']/,
-    `${name} must not import the full app env schema for an optional public API token`,
-  );
-}
+const manifest = JSON.parse(manifestText);
 
+assert.match(
+  skillsData,
+  /\/skills-data\/manifest\.json/,
+  "the Skills page must resolve the current static data version from its manifest",
+);
+assert.match(
+  skillsData,
+  /\/skills-data\/search-index\.json\?v=\$\{version\}/,
+  "the Skills page must load the prepared static search index with its current version",
+);
+assert.match(
+  skillsData,
+  /skills-\$\{String\(chunk\)\.padStart\(3, "0"\)\}\.json/,
+  "Skill details must load from bounded static chunks",
+);
 assert.doesNotMatch(
-  skillsData,
-  /fetch\s*\(/,
-  "the public skills page must read the prepared catalog without blocking on ClawHub",
+  `${skillsData}\n${skillsCatalog}\n${skillDetail}`,
+  /SKILLS_CATALOG_KV|CLAWHUB_API_TOKEN|\/api\/skills\//,
+  "the public Skills UI must not depend on the removed KV or ClawHub API path",
 );
 assert.doesNotMatch(
-  skillsData,
-  /CLAWHUB_SKILLS_URL|CLAWHUB_API_TOKEN|fetchSkills|fetchPage/,
-  "ClawHub synchronization must stay outside the user request path",
-);
-assert.match(
-  skillsData,
-  /skillsCatalog\.items/,
-  "the public skills page must retain the prepared local catalog as fallback",
-);
-assert.match(
-  skillsData,
-  /SKILLS_CATALOG_KV/,
-  "the public skills page must read the website-managed catalog from KV",
-);
-assert.match(
   skillsPage,
-  /export const dynamic = ["']force-dynamic["']/,
-  "the public skills route must read the current website KV catalog at request time",
+  /force-dynamic|getSkills\(/,
+  "the public Skills page must remain static",
 );
 assert.match(
-  workerEntrypoint,
-  /async scheduled\(/,
-  "the website Worker must own the daily synchronization handler",
+  skillsData,
+  /NousResearch\/hermes-agent\/skills\/\$\{entry\.category\}\/\$\{name\}/,
+  "bundled Skills must expose a copyable installation command",
 );
 assert.match(
-  workerEntrypoint,
-  /syncSkillsCatalog/,
-  "the scheduled handler must synchronize the Skills catalog",
-);
-assert.match(
-  workerConfig,
-  /"main":\s*"worker-entry\.ts"/,
-  "Wrangler must deploy the custom website Worker entrypoint",
+  skillDetail,
+  /复制安装命令/,
+  "every Skill detail must render an installation command copy action",
 );
 assert.match(
   workerConfig,
-  /"crons":\s*\[\s*"30 19 \* \* \*"\s*\]/,
-  "Skills synchronization must run once daily at 19:30 UTC (03:30 China Standard Time)",
+  /"main":\s*"\.open-next\/worker\.js"/,
+  "Wrangler must deploy the generated OpenNext Worker directly",
+);
+assert.doesNotMatch(
+  workerConfig,
+  /SKILLS_CATALOG_KV|"crons"|"triggers"/,
+  "Wrangler must not retain the removed Skills KV or scheduled trigger",
 );
 assert.match(
-  workerConfig,
-  /"binding":\s*"SKILLS_CATALOG_KV"/,
-  "the website Worker must own a KV binding for its Skills catalog",
+  buildScript,
+  /const chunkSize = 1_000/,
+  "the static catalog must keep each generated chunk bounded",
+);
+assert.equal(
+  manifest.totalSkills > 0,
+  true,
+  "the static catalog cannot be empty",
+);
+assert.equal(
+  manifest.chunks.length,
+  Math.ceil(manifest.totalSkills / manifest.chunkSize),
+  "the manifest must list every generated chunk",
+);
+assert.equal(
+  manifest.categories.length,
+  16,
+  "the public catalog must expose the curated main categories only",
+);
+assert.equal(
+  manifest.categories.reduce((total, category) => total + category.count, 0),
+  manifest.totalSkills,
+  "the curated categories must retain every source Skill",
+);
+assert.equal(
+  manifest.categories.at(-1)?.id,
+  "other",
+  "the long-tail category must remain last",
+);
+assert.equal(
+  typeof manifest.catalogSha256,
+  "string",
+  "the manifest must version the generated catalog assets",
 );
 assert.match(
   skillsCatalog,
@@ -96,14 +124,33 @@ assert.match(
 );
 assert.match(
   skillsCatalog,
+  /const \[selectedSource, setSelectedSource\] = useState\("all"\)/,
+  "the catalog must provide an independent source filter",
+);
+assert.match(
+  skillsCatalog,
+  /<p className="text-sm font-medium">来源<\/p>/,
+  "the source filter must appear as its own section",
+);
+assert.match(
+  skillsCatalog,
   /filteredSkills\.slice\(0, visibleCount\)/,
   "the catalog should progressively reveal filtered skills",
 );
-
+assert.match(
+  skillsCatalog,
+  /<ScrollShadow[\s\S]*hideScrollBar[\s\S]*orientation="vertical"/,
+  "the category list must use HeroUI ScrollShadow without a visible scrollbar",
+);
+assert.match(
+  llmsRoute,
+  /skills-data\/manifest\.json/,
+  "llms.txt must advertise the current machine-readable Skills catalog",
+);
 assert.match(
   docsCss,
   /\.hermes-section-link--documentation::before\s*\{[^}]*content:\s*"\\eadb"\s*!important;/s,
   "the active documentation nav item must retain its book icon",
 );
 
-console.log("Public skills static catalog and docs nav icon checks passed.");
+console.log("Public static Skills catalog and docs nav icon checks passed.");

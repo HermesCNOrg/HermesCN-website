@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 
 import { siteConfig } from "~/lib/seo";
-import { getSkills } from "./skills/skills-data";
 
 const routes = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
@@ -10,20 +9,10 @@ const routes = [
   { path: "/services", changeFrequency: "monthly", priority: 0.7 },
 ] as const;
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const skills = await getSkills();
-  const staticRoutes: MetadataRoute.Sitemap = routes.map(
-    ({ path, changeFrequency, priority }) => ({
-      url: `${siteConfig.url}${path}`,
-      changeFrequency,
-      priority,
-    }),
-  );
-  const skillRoutes: MetadataRoute.Sitemap = skills.map((skill) => ({
-    url: `${siteConfig.url}/skills/${encodeURIComponent(skill.slug)}`,
-    changeFrequency: "weekly",
-    priority: 0.7,
+export default function sitemap(): MetadataRoute.Sitemap {
+  return routes.map(({ path, changeFrequency, priority }) => ({
+    url: `${siteConfig.url}${path}`,
+    changeFrequency,
+    priority,
   }));
-
-  return [...staticRoutes, ...skillRoutes];
 }

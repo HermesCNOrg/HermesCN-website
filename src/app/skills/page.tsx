@@ -2,7 +2,6 @@ import { type Metadata } from "next";
 
 import { createPageMetadata } from "~/lib/seo";
 import { SkillsCatalog } from "./skills-catalog";
-import { getSkills } from "./skills-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Hermes Agent Skills 中文生态",
@@ -11,11 +10,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/skills",
 });
 
-export const dynamic = "force-dynamic";
-
-export default async function SkillsPage() {
-  const skills = await getSkills();
-
+export default function SkillsPage() {
   return (
     <main className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
       <section className="border-b border-[#f5f5f5]/20 bg-[#0000f2]">
@@ -34,7 +29,7 @@ export default async function SkillsPage() {
         </div>
       </section>
 
-      <SkillsCatalog skills={skills} />
+      <SkillsCatalog />
     </main>
   );
 }

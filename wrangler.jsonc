@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": "worker-entry.ts",
+  "main": ".open-next/worker.js",
   "name": "hermescn-community",
   "compatibility_date": "2026-07-20",
   "compatibility_flags": ["nodejs_compat"],
@@ -16,15 +16,6 @@
   ],
   "images": {
     "binding": "IMAGES",
-  },
-  "kv_namespaces": [
-    {
-      "binding": "SKILLS_CATALOG_KV",
-      "id": "f2a4575739a54bef889ef15ed4b8c6bf",
-    },
-  ],
-  "triggers": {
-    "crons": ["30 19 * * *"],
   },
   "routes": [
     {

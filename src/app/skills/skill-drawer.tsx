@@ -4,7 +4,7 @@ import { Drawer } from "@heroui/react";
 import { useEffect, useState } from "react";
 
 import { SkillDetail } from "./skill-detail";
-import type { SkillCard } from "./skills-catalog";
+import type { SkillCard } from "./skills-static-data";
 
 export function SkillDrawer({
   onClose,

@@ -1,119 +1,132 @@
 "use client";
 
+import { ScrollShadow } from "@heroui/react";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+import { MarkdownRenderer } from "~/components/markdown-renderer";
 import { SkillDrawer } from "./skill-drawer";
-
-export type SkillCard = {
-  slug: string;
-  name: string;
-  summary: string;
-  sourceSummary?: string;
-  description: string;
-  topics: string[];
-  version: string;
-  downloads: number;
-  installs: number;
-  stars: number;
-  comments: number;
-  versions: number;
-  changelog: string;
-};
-
-const sortOptions = [
-  { label: "推荐", value: "recommended" },
-  { label: "Stars", value: "stars" },
-  { label: "Downloads", value: "downloads" },
-  { label: "Installs", value: "installs" },
-] as const;
-
-type SortValue = (typeof sortOptions)[number]["value"];
+import {
+  loadSkill,
+  loadSkillIndex,
+  type SkillCard,
+  type SkillIndexEntry,
+} from "./skills-static-data";
 
 const INITIAL_VISIBLE_SKILLS = 48;
 const VISIBLE_SKILLS_STEP = 48;
 
-function formatCount(value: number) {
-  if (value >= 10000) {
-    return `${(value / 10000).toFixed(value >= 100000 ? 0 : 1)}万`;
-  }
-
-  return value.toLocaleString("zh-CN");
-}
-
-export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
+export function SkillsCatalog() {
+  const [skills, setSkills] = useState<SkillIndexEntry[]>([]);
+  const [details, setDetails] = useState<Map<string, SkillCard>>(new Map());
+  const [loadError, setLoadError] = useState(false);
   const [query, setQuery] = useState("");
-  const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedSource, setSelectedSource] = useState("all");
   const [selectedSkill, setSelectedSkill] = useState<SkillCard | null>(null);
-  const [sortBy, setSortBy] = useState<SortValue>("recommended");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_SKILLS);
 
-  const topicOptions = useMemo(() => {
+  useEffect(() => {
+    let active = true;
+
+    void loadSkillIndex().then(
+      (items) => {
+        if (active) setSkills(items);
+      },
+      () => {
+        if (active) setLoadError(true);
+      },
+    );
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const categories = useMemo(() => {
+    const counts = new Map<string, { label: string; count: number }>();
+
+    for (const skill of skills) {
+      const current = counts.get(skill.category);
+      counts.set(skill.category, {
+        label: skill.categoryLabel,
+        count: (current?.count ?? 0) + 1,
+      });
+    }
+
+    return Array.from(counts.entries())
+      .map(([value, item]) => ({ value, ...item }))
+      .sort((a, b) => {
+        if (a.value === "other") return 1;
+        if (b.value === "other") return -1;
+        return b.count - a.count;
+      });
+  }, [skills]);
+
+  const sources = useMemo(() => {
     const counts = new Map<string, number>();
 
     for (const skill of skills) {
-      for (const topic of skill.topics) {
-        counts.set(topic, (counts.get(topic) ?? 0) + 1);
-      }
+      counts.set(skill.source, (counts.get(skill.source) ?? 0) + 1);
     }
 
-    const topics = Array.from(counts.entries())
-      .map(([label, count]) => ({ count, label }))
-      .sort((a, b) => a.label.localeCompare(b.label, "zh-CN"));
-
-    return [{ count: skills.length, label: "全部" }, ...topics];
+    return Array.from(counts, ([value, count]) => ({ value, count })).sort(
+      (a, b) => b.count - a.count,
+    );
   }, [skills]);
 
   const filteredSkills = useMemo(() => {
     const keyword = query.trim().toLowerCase();
     const filtered = skills.filter((skill) => {
-      const matchesTopic =
-        selectedTopics.size === 0 ||
-        skill.topics.some((topic) => selectedTopics.has(topic));
-      const searchable =
-        `${skill.name} ${skill.slug} ${skill.summary} ${skill.description} ${skill.topics.join(" ")}`.toLowerCase();
-      const matchesQuery = !keyword || searchable.includes(keyword);
+      if (selectedCategory !== "all" && skill.category !== selectedCategory) {
+        return false;
+      }
+      if (selectedSource !== "all" && skill.source !== selectedSource) {
+        return false;
+      }
 
-      return matchesTopic && matchesQuery;
+      if (!keyword) return true;
+      return `${skill.name} ${skill.categoryLabel} ${skill.source} ${skill.identifier}`
+        .toLowerCase()
+        .includes(keyword);
     });
 
-    return [...filtered].sort((a, b) => {
-      if (sortBy === "stars") return b.stars - a.stars;
-      if (sortBy === "downloads") return b.downloads - a.downloads;
-      if (sortBy === "installs") return b.installs - a.installs;
+    return filtered;
+  }, [query, selectedCategory, selectedSource, skills]);
 
-      return 0;
-    });
-  }, [query, selectedTopics, skills, sortBy]);
+  const visibleSkills = filteredSkills.slice(0, visibleCount);
 
   useEffect(() => {
     setVisibleCount(INITIAL_VISIBLE_SKILLS);
-  }, [query, selectedTopics, sortBy]);
+  }, [query, selectedCategory, selectedSource]);
 
-  const visibleSkills = filteredSkills.slice(0, visibleCount);
-  const hasMoreSkills = visibleCount < filteredSkills.length;
+  useEffect(() => {
+    let active = true;
+    const missing = visibleSkills.filter((skill) => !details.has(skill.id));
+
+    if (missing.length === 0) return;
+
+    void Promise.all(missing.map(loadSkill)).then(
+      (loaded) => {
+        if (!active) return;
+        setDetails((current) => {
+          const next = new Map(current);
+          for (const skill of loaded) next.set(skill.id, skill);
+          return next;
+        });
+      },
+      () => {
+        if (active) setLoadError(true);
+      },
+    );
+
+    return () => {
+      active = false;
+    };
+  }, [details, visibleSkills]);
 
   const hasActiveFilters =
-    selectedTopics.size > 0 || sortBy !== "recommended" || Boolean(query);
-  const closeDrawer = useCallback(() => setSelectedSkill(null), []);
-
-  function toggleTopic(topic: string) {
-    setSelectedTopics((current) => {
-      if (topic === "全部") {
-        return new Set();
-      }
-
-      const next = new Set(current);
-
-      if (next.has(topic)) {
-        next.delete(topic);
-      } else {
-        next.add(topic);
-      }
-
-      return next;
-    });
-  }
+    selectedCategory !== "all" || selectedSource !== "all" || Boolean(query);
 
   return (
     <section className="bg-white text-[#0000f2]">
@@ -121,21 +134,25 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-sm text-[#0000f2]/65">02 · Catalog</p>
-            <h2 className="mt-3 text-3xl leading-tight font-normal text-[#0000f2] sm:text-5xl">
+            <h2 className="mt-3 text-3xl leading-tight font-normal sm:text-5xl">
               Skills 目录
             </h2>
             <p className="mt-3 text-sm text-[#0000f2]/65">
-              共匹配 {filteredSkills.length} 个
+              {skills.length > 0
+                ? `共匹配 ${filteredSkills.length.toLocaleString("zh-CN")} 个`
+                : loadError
+                  ? "目录加载失败"
+                  : "正在加载目录"}
             </p>
           </div>
 
           {hasActiveFilters ? (
             <button
-              className="border border-[#0000f2] bg-white px-4 py-2 text-sm font-medium text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
+              className="border border-[#0000f2] px-4 py-2 text-sm font-medium transition hover:bg-[#0000f2] hover:text-white"
               type="button"
               onClick={() => {
-                setSelectedTopics(new Set());
-                setSortBy("recommended");
+                setSelectedCategory("all");
+                setSelectedSource("all");
                 setQuery("");
               }}
             >
@@ -147,8 +164,8 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
         <div className="py-6">
           <input
             aria-label="搜索 Skills"
-            className="h-12 w-full border border-[#0000f2]/15 bg-white px-4 text-sm text-[#0000f2] shadow-none transition outline-none placeholder:text-[#0000f2]/38 hover:border-[#0000f2] focus:border-[#0000f2]"
-            placeholder="搜索名称、用途或分类"
+            className="h-12 w-full border border-[#0000f2]/15 px-4 text-sm outline-none placeholder:text-[#0000f2]/38 hover:border-[#0000f2] focus:border-[#0000f2]"
+            placeholder="搜索名称、分类或来源"
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -156,155 +173,152 @@ export function SkillsCatalog({ skills }: { skills: SkillCard[] }) {
 
           <div className="mt-6 grid gap-6">
             <div>
-              <div className="flex items-center gap-3">
-                <p className="text-sm font-medium text-[#0000f2]">方向</p>
-                <span className="h-px flex-1 bg-[#0000f2]/15" />
-              </div>
-              <div className="relative mt-3 max-h-40 overflow-hidden">
-                <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-5 bg-gradient-to-b from-white to-transparent" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-6 bg-gradient-to-t from-white to-transparent" />
-                <div className="scrollbar-hide max-h-40 [scrollbar-width:none] overflow-y-auto pt-4 pr-1 pb-3 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                  <div className="flex flex-wrap gap-2">
-                    {topicOptions.map((topic) => {
-                      const active =
-                        topic.label === "全部"
-                          ? selectedTopics.size === 0
-                          : selectedTopics.has(topic.label);
-
-                      return (
-                        <button
-                          aria-pressed={active}
-                          className={`group border px-3 py-1.5 text-sm transition ${
-                            active
-                              ? "border-[#0000f2] bg-[#0000f2] text-white"
-                              : "border-[#0000f2]/15 bg-white text-[#0000f2]/75 hover:border-[#0000f2] hover:bg-[#0000f2] hover:text-white"
-                          }`}
-                          key={topic.label}
-                          type="button"
-                          onClick={() => toggleTopic(topic.label)}
-                        >
-                          {topic.label}
-                          <span
-                            className={`ml-1 text-xs transition ${
-                              active
-                                ? "text-white/75"
-                                : "text-[#0000f2]/45 group-hover:text-white/70"
-                            }`}
-                          >
-                            {topic.count}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
+              <p className="text-sm font-medium">分类</p>
+              <ScrollShadow
+                hideScrollBar
+                className="mt-3 flex max-h-40 flex-wrap content-start gap-2"
+                orientation="vertical"
+                size={24}
+              >
+                <button
+                  className={`border px-3 py-1.5 text-sm transition ${selectedCategory === "all" ? "border-[#0000f2] bg-[#0000f2] text-white" : "border-[#0000f2]/15"}`}
+                  type="button"
+                  onClick={() => setSelectedCategory("all")}
+                >
+                  全部 {skills.length.toLocaleString("zh-CN")}
+                </button>
+                {categories.map((category) => (
+                  <button
+                    className={`border px-3 py-1.5 text-sm transition ${selectedCategory === category.value ? "border-[#0000f2] bg-[#0000f2] text-white" : "border-[#0000f2]/15 hover:border-[#0000f2]"}`}
+                    key={category.value}
+                    type="button"
+                    onClick={() => setSelectedCategory(category.value)}
+                  >
+                    {category.label} {category.count.toLocaleString("zh-CN")}
+                  </button>
+                ))}
+              </ScrollShadow>
             </div>
 
             <div>
-              <div className="flex items-center gap-3">
-                <p className="text-sm font-medium text-[#0000f2]">排序</p>
-                <span className="h-px flex-1 bg-[#0000f2]/15" />
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {sortOptions.map((option) => {
-                  const active = sortBy === option.value;
-
-                  return (
-                    <button
-                      aria-pressed={active}
-                      className={`border px-3 py-1.5 text-sm transition ${
-                        active
-                          ? "border-[#0000f2] bg-[#0000f2] text-white"
-                          : "border-[#0000f2]/15 bg-white text-[#0000f2]/75 hover:border-[#0000f2] hover:bg-[#0000f2] hover:text-white"
-                      }`}
-                      key={option.value}
-                      type="button"
-                      onClick={() => setSortBy(option.value)}
-                    >
-                      {option.label}
-                    </button>
-                  );
-                })}
-              </div>
+              <p className="text-sm font-medium">来源</p>
+              <ScrollShadow
+                hideScrollBar
+                className="mt-3 flex max-h-32 flex-wrap content-start gap-2"
+                orientation="vertical"
+                size={24}
+              >
+                <button
+                  className={`border px-3 py-1.5 text-sm transition ${selectedSource === "all" ? "border-[#0000f2] bg-[#0000f2] text-white" : "border-[#0000f2]/15"}`}
+                  type="button"
+                  onClick={() => setSelectedSource("all")}
+                >
+                  全部 {skills.length.toLocaleString("zh-CN")}
+                </button>
+                {sources.map((source) => (
+                  <button
+                    className={`border px-3 py-1.5 text-sm transition ${selectedSource === source.value ? "border-[#0000f2] bg-[#0000f2] text-white" : "border-[#0000f2]/15 hover:border-[#0000f2]"}`}
+                    key={source.value}
+                    type="button"
+                    onClick={() => setSelectedSource(source.value)}
+                  >
+                    {source.value} {source.count.toLocaleString("zh-CN")}
+                  </button>
+                ))}
+              </ScrollShadow>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 grid gap-0 border-t border-l border-[#0000f2]/15 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {visibleSkills.map((skill) => (
-            <Link
-              className="group flex min-h-[17rem] flex-col border-r border-b border-[#0000f2]/15 bg-white p-5 text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
-              href={`/skills/${encodeURIComponent(skill.slug)}`}
-              key={skill.slug}
-              onClick={(event) => {
-                if (
-                  event.button === 0 &&
-                  !event.metaKey &&
-                  !event.ctrlKey &&
-                  !event.shiftKey &&
-                  !event.altKey
-                ) {
-                  event.preventDefault();
-                  setSelectedSkill(skill);
-                }
-              }}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="line-clamp-2 origin-left text-lg leading-6 font-normal text-current transition-transform duration-200 group-hover:scale-[1.03]">
-                    {skill.name}
-                  </h2>
-                  <p className="mt-1 text-xs text-[#0000f2]/55 transition group-hover:text-white/65">
-                    {skill.slug} · v{skill.version}
-                  </p>
-                </div>
-                <span className="grid h-8 w-8 shrink-0 origin-right place-items-center border border-[#0000f2]/15 text-[#0000f2] transition-transform duration-200 group-hover:scale-125 group-hover:border-white/35 group-hover:text-white">
+        <div className="mt-10 grid border-t border-l border-[#0000f2]/15 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {visibleSkills.map((entry) => {
+            const skill = details.get(entry.id);
+            const href = `/skills/${entry.id}?chunk=${entry.chunk}&offset=${entry.offset}`;
+
+            return (
+              <article
+                className="group relative flex min-h-[17rem] flex-col border-r border-b border-[#0000f2]/15 p-5 transition hover:bg-[#0000f2] hover:text-white"
+                key={entry.id}
+              >
+                <Link
+                  aria-label={`查看 ${entry.name} 详情`}
+                  className="absolute inset-0"
+                  href={href}
+                  onClick={(event) => {
+                    if (
+                      event.button !== 0 ||
+                      event.metaKey ||
+                      event.ctrlKey ||
+                      event.shiftKey ||
+                      event.altKey
+                    ) {
+                      return;
+                    }
+
+                    event.preventDefault();
+                    if (skill) {
+                      setSelectedSkill(skill);
+                    } else {
+                      void loadSkill(entry).then(setSelectedSkill, () => {
+                        setLoadError(true);
+                      });
+                    }
+                  }}
+                />
+                <div className="pointer-events-none relative flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="line-clamp-2 text-lg leading-6 font-normal">
+                      {entry.name}
+                    </h3>
+                    <p className="mt-1 text-xs text-[#0000f2]/55 group-hover:text-white/65">
+                      {entry.source} · {entry.categoryLabel}
+                    </p>
+                  </div>
                   <i aria-hidden="true" className="ri-arrow-right-up-line" />
-                </span>
-              </div>
+                </div>
 
-              <p className="mt-4 line-clamp-4 flex-1 text-sm leading-6 text-[#0000f2]/65 transition group-hover:text-white/75">
-                {skill.summary}
-              </p>
+                <MarkdownRenderer
+                  className="pointer-events-none relative mt-4 max-h-[7.5rem] flex-1 overflow-hidden text-sm leading-6 text-[#0000f2]/65 group-hover:text-white/75 [&_a]:pointer-events-auto [&_a]:relative [&_a]:z-10"
+                  content={skill?.summary ?? "正在加载 Skill 说明…"}
+                />
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {(skill.topics.length > 0 ? skill.topics : ["Skill"]).map(
-                  (topic) => (
-                    <span
-                      className="border border-[#0000f2]/15 px-2.5 py-1 text-xs text-[#0000f2]/65 transition group-hover:border-white/25 group-hover:text-white/75"
-                      key={topic}
-                    >
-                      {topic}
-                    </span>
-                  ),
-                )}
-              </div>
-
-              <div className="mt-4 flex items-center justify-between border-t border-[#0000f2]/15 pt-4 text-xs text-[#0000f2]/55 transition group-hover:border-white/25 group-hover:text-white/65">
-                <span>{formatCount(skill.stars)} stars</span>
-                <span>{formatCount(skill.downloads)} downloads</span>
-              </div>
-            </Link>
-          ))}
+                <div className="pointer-events-none relative mt-4 flex flex-wrap gap-2">
+                  {(skill?.tags.slice(0, 3) ?? [entry.categoryLabel]).map(
+                    (tag) => (
+                      <span
+                        className="border border-[#0000f2]/15 px-2.5 py-1 text-xs group-hover:border-white/25"
+                        key={tag}
+                      >
+                        {tag}
+                      </span>
+                    ),
+                  )}
+                </div>
+              </article>
+            );
+          })}
         </div>
 
-        {hasMoreSkills ? (
+        {visibleCount < filteredSkills.length ? (
           <div className="mt-10 flex justify-center">
             <button
-              className="border border-[#0000f2] bg-white px-6 py-3 text-sm font-medium text-[#0000f2] transition hover:bg-[#0000f2] hover:text-white"
+              className="border border-[#0000f2] px-6 py-3 text-sm font-medium transition hover:bg-[#0000f2] hover:text-white"
               type="button"
               onClick={() =>
                 setVisibleCount((current) => current + VISIBLE_SKILLS_STEP)
               }
             >
-              加载更多（已显示 {visibleSkills.length} / {filteredSkills.length}
-              ）
+              加载更多（已显示 {visibleSkills.length.toLocaleString("zh-CN")} /{" "}
+              {filteredSkills.length.toLocaleString("zh-CN")}）
             </button>
           </div>
         ) : null}
       </div>
-      <SkillDrawer skill={selectedSkill} onClose={closeDrawer} />
+
+      <SkillDrawer
+        skill={selectedSkill}
+        onClose={() => setSelectedSkill(null)}
+      />
     </section>
   );
 }
