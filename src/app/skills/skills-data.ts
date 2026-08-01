@@ -1,6 +1,11 @@
 import "server-only";
 
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import skillsCatalog from "~/data/skills-catalog.json";
+import {
+  SKILLS_CATALOG_KEY,
+  type StoredSkillsCatalog,
+} from "~/lib/skills-sync";
 import type { SkillCard } from "./skills-catalog";
 
 type CatalogSkill = {
@@ -22,6 +27,10 @@ type CatalogSkill = {
     changelog?: string | null;
     license?: string | null;
   };
+};
+
+type SkillsCatalogKv = {
+  get<T = unknown>(key: string, type: "json"): Promise<T | null>;
 };
 
 const localizedSummaries: Record<string, string> = {
@@ -83,12 +92,36 @@ function toSkillCard(skill: CatalogSkill): SkillCard {
   };
 }
 
-const preparedSkills = (skillsCatalog.items as CatalogSkill[]).map(toSkillCard);
+const fallbackSkills = (skillsCatalog.items as CatalogSkill[]).map(toSkillCard);
+
+async function readWebsiteCatalog() {
+  try {
+    const { env } = await getCloudflareContext({ async: true });
+    const store = (
+      env as CloudflareEnv & {
+        SKILLS_CATALOG_KV?: SkillsCatalogKv;
+      }
+    ).SKILLS_CATALOG_KV;
+    const catalog = await store?.get<StoredSkillsCatalog>(
+      SKILLS_CATALOG_KEY,
+      "json",
+    );
+
+    if (catalog?.items?.length) {
+      return (catalog.items as CatalogSkill[]).map(toSkillCard);
+    }
+  } catch {
+    // Local development and failed KV reads use the build-time catalog.
+  }
+
+  return fallbackSkills;
+}
 
 export async function getSkills() {
-  return preparedSkills;
+  return readWebsiteCatalog();
 }
 
 export async function getSkill(slug: string) {
-  return preparedSkills.find((item) => item.slug === slug);
+  const skills = await readWebsiteCatalog();
+  return skills.find((item) => item.slug === slug);
 }
