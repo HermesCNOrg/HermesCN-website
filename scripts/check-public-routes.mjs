@@ -81,8 +81,8 @@ assert.match(
 );
 assert.match(
   workerConfig,
-  /"crons":\s*\[\s*"0 2 \* \* \*"\s*\]/,
-  "Skills synchronization must run once daily at 02:00 UTC",
+  /"crons":\s*\[\s*"30 19 \* \* \*"\s*\]/,
+  "Skills synchronization must run once daily at 19:30 UTC (03:30 China Standard Time)",
 );
 assert.match(
   workerConfig,

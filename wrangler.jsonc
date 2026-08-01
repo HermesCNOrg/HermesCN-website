@@ -3,39 +3,37 @@
   "main": "worker-entry.ts",
   "name": "hermescn-community",
   "compatibility_date": "2026-07-20",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
   },
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "hermescn-community"
-    }
+      "service": "hermescn-community",
+    },
   ],
   "images": {
-    "binding": "IMAGES"
+    "binding": "IMAGES",
   },
   "kv_namespaces": [
     {
       "binding": "SKILLS_CATALOG_KV",
-      "id": "f2a4575739a54bef889ef15ed4b8c6bf"
-    }
+      "id": "f2a4575739a54bef889ef15ed4b8c6bf",
+    },
   ],
   "triggers": {
-    "crons": ["0 2 * * *"]
+    "crons": ["30 19 * * *"],
   },
   "routes": [
     {
       "pattern": "hermescn.org",
-      "custom_domain": true
-    }
+      "custom_domain": true,
+    },
   ],
   "workers_dev": false,
   "observability": {
-    "enabled": true
-  }
+    "enabled": true,
+  },
 }
