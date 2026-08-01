@@ -145,7 +145,7 @@ html.blog-wrapper .avatar.margin-bottom--sm .avatar__photo {
 }
 
 .hermes-section-link--documentation::before {
-  content: "\eadb";
+  content: "\eadb" !important;
 }
 
 .hermes-section-link--tutorial::before {

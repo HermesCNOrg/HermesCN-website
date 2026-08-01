@@ -1,8 +1,9 @@
 import "server-only";
 
 import skillsCatalog from "~/data/skills-catalog.json";
-import { env } from "~/env";
 import type { SkillCard } from "./skills-catalog";
+
+const clawHubApiToken = process.env.CLAWHUB_API_TOKEN;
 
 type ClawHubSkill = {
   slug: string;
@@ -106,8 +107,8 @@ async function fetchPage(cursor?: string) {
   const response = await fetch(url, {
     headers: {
       Accept: "application/json",
-      ...(env.CLAWHUB_API_TOKEN
-        ? { Authorization: `Bearer ${env.CLAWHUB_API_TOKEN}` }
+      ...(clawHubApiToken
+        ? { Authorization: `Bearer ${clawHubApiToken}` }
         : {}),
     },
     next: {

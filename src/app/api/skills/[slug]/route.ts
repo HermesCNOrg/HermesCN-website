@@ -1,4 +1,4 @@
-import { env } from "~/env";
+const clawHubApiToken = process.env.CLAWHUB_API_TOKEN;
 
 type RouteContext = {
   params: Promise<{ slug: string }>;
@@ -27,8 +27,8 @@ function fetchClawHub(url: URL, slug: string) {
   return fetch(url, {
     headers: {
       Accept: "application/json",
-      ...(env.CLAWHUB_API_TOKEN
-        ? { Authorization: `Bearer ${env.CLAWHUB_API_TOKEN}` }
+      ...(clawHubApiToken
+        ? { Authorization: `Bearer ${clawHubApiToken}` }
         : {}),
     },
     next: {
