@@ -91,7 +91,17 @@ assert.match(
 assert.match(
   deployScript,
   /https:\/\/hermescn\.org\/sitemap\.xml/,
-  "deployment must verify the public sitemap",
+  "deployment must verify the public sitemap index",
+);
+assert.match(
+  deployScript,
+  /https:\/\/hermescn\.org\/sitemap-main\.xml/,
+  "deployment must verify the main-site sitemap",
+);
+assert.match(
+  deployScript,
+  /https:\/\/hermescn\.org\/docs\/sitemap\.xml/,
+  "deployment must verify the documentation sitemap",
 );
 
 console.log("Cloudflare deployment workflow checks passed.");

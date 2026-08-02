@@ -22,7 +22,8 @@ HermesCN 是独立的 Hermes Agent 中文社区与协作网络，不代表 Nous 
 - [文档精选索引](${siteConfig.url}/docs/llms.txt)
 - [完整文档语料](${siteConfig.url}/docs/llms-full.txt)
 - [Skill 静态目录](${siteConfig.url}/skills-data/manifest.json)：Skills 数据版本、数量、多语言状态和分片索引
-- [主站 Sitemap](${siteConfig.url}/sitemap.xml)
+- [Sitemap 索引](${siteConfig.url}/sitemap.xml)：统一索引主站与文档 Sitemap
+- [主站 Sitemap](${siteConfig.url}/sitemap-main.xml)
 - [文档 Sitemap](${siteConfig.url}/docs/sitemap.xml)
 
 ## 内容原则

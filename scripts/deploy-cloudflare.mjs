@@ -17,6 +17,8 @@ const publicRoutes = [
   "https://hermescn.org/shenma-site-verification.txt",
   "https://hermescn.org/docs/",
   "https://hermescn.org/sitemap.xml",
+  "https://hermescn.org/sitemap-main.xml",
+  "https://hermescn.org/docs/sitemap.xml",
 ];
 
 function run(command, args, options = {}) {
