@@ -12,6 +12,9 @@ const publicRoutes = [
   "https://hermescn.org/skills-data/search-index.json",
   "https://hermescn.org/skills-data/skills-000.json",
   "https://hermescn.org/skills-data/skills-000.zh-Hans.json",
+  "https://hermescn.org/BingSiteAuth.xml",
+  "https://hermescn.org/baidu_verify_codeva-bOmrgYlnmW.html",
+  "https://hermescn.org/shenma-site-verification.txt",
   "https://hermescn.org/docs/",
   "https://hermescn.org/sitemap.xml",
 ];

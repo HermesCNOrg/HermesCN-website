@@ -7,6 +7,7 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
+    "run_worker_first": ["/baidu_verify_codeva-bOmrgYlnmW.html"],
   },
   "services": [
     {
