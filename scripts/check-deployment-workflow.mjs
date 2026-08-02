@@ -70,6 +70,26 @@ assert.match(
 );
 assert.match(
   deployScript,
+  /https:\/\/hermescn\.org\/skills-data\/manifest\.json/,
+  "deployment must verify the static Skills manifest",
+);
+assert.match(
+  deployScript,
+  /https:\/\/hermescn\.org\/skills-data\/search-index\.json/,
+  "deployment must verify the static Skills search index",
+);
+assert.match(
+  deployScript,
+  /https:\/\/hermescn\.org\/skills-data\/skills-000\.json/,
+  "deployment must verify a static Skills data chunk",
+);
+assert.match(
+  deployScript,
+  /https:\/\/hermescn\.org\/skills-data\/skills-000\.zh-Hans\.json/,
+  "deployment must verify a translated static Skills data chunk",
+);
+assert.match(
+  deployScript,
   /https:\/\/hermescn\.org\/sitemap\.xml/,
   "deployment must verify the public sitemap",
 );

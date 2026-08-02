@@ -8,6 +8,10 @@ const backupRoot = "/mnt/data/artifacts/hermescn";
 const expectedUuid = "a5046901-0837-4ae1-8ddf-694d208c4018";
 const publicRoutes = [
   "https://hermescn.org/skills",
+  "https://hermescn.org/skills-data/manifest.json",
+  "https://hermescn.org/skills-data/search-index.json",
+  "https://hermescn.org/skills-data/skills-000.json",
+  "https://hermescn.org/skills-data/skills-000.zh-Hans.json",
   "https://hermescn.org/docs/",
   "https://hermescn.org/sitemap.xml",
 ];
