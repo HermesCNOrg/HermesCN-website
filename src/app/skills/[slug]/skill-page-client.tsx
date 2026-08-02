@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { useLocale } from "~/i18n/use-locale";
 import { SkillDetail } from "../skill-detail";
 import { loadSkillAt, type SkillCard } from "../skills-static-data";
 
@@ -15,12 +16,14 @@ export function SkillPageClient({
   id: string;
   offset: number;
 }) {
+  const locale = useLocale();
   const [skill, setSkill] = useState<SkillCard | null>();
 
   useEffect(() => {
     let active = true;
+    setSkill(undefined);
 
-    void loadSkillAt(id, chunk, offset).then(
+    void loadSkillAt(id, chunk, offset, locale).then(
       (item) => {
         if (active) setSkill(item);
       },
@@ -32,7 +35,7 @@ export function SkillPageClient({
     return () => {
       active = false;
     };
-  }, [chunk, id, offset]);
+  }, [chunk, id, locale, offset]);
 
   if (skill === undefined) {
     return <p className="px-5 py-20 text-center">正在加载 Skill…</p>;

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { MarkdownRenderer } from "~/components/markdown-renderer";
+import { toIntlLocale } from "~/i18n/config";
+import { useLocale } from "~/i18n/use-locale";
 import { SkillDrawer } from "./skill-drawer";
 import {
   loadSkill,
@@ -17,6 +19,8 @@ const INITIAL_VISIBLE_SKILLS = 48;
 const VISIBLE_SKILLS_STEP = 48;
 
 export function SkillsCatalog() {
+  const locale = useLocale();
+  const intlLocale = toIntlLocale(locale);
   const [skills, setSkills] = useState<SkillIndexEntry[]>([]);
   const [details, setDetails] = useState<Map<string, SkillCard>>(new Map());
   const [loadError, setLoadError] = useState(false);
@@ -25,6 +29,11 @@ export function SkillsCatalog() {
   const [selectedSource, setSelectedSource] = useState("all");
   const [selectedSkill, setSelectedSkill] = useState<SkillCard | null>(null);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_SKILLS);
+
+  useEffect(() => {
+    setDetails(new Map());
+    setSelectedSkill(null);
+  }, [locale]);
 
   useEffect(() => {
     let active = true;
@@ -106,7 +115,7 @@ export function SkillsCatalog() {
 
     if (missing.length === 0) return;
 
-    void Promise.all(missing.map(loadSkill)).then(
+    void Promise.all(missing.map((entry) => loadSkill(entry, locale))).then(
       (loaded) => {
         if (!active) return;
         setDetails((current) => {
@@ -123,7 +132,7 @@ export function SkillsCatalog() {
     return () => {
       active = false;
     };
-  }, [details, visibleSkills]);
+  }, [details, locale, visibleSkills]);
 
   const hasActiveFilters =
     selectedCategory !== "all" || selectedSource !== "all" || Boolean(query);
@@ -139,7 +148,7 @@ export function SkillsCatalog() {
             </h2>
             <p className="mt-3 text-sm text-[#0000f2]/65">
               {skills.length > 0
-                ? `共匹配 ${filteredSkills.length.toLocaleString("zh-CN")} 个`
+                ? `共匹配 ${filteredSkills.length.toLocaleString(intlLocale)} 个`
                 : loadError
                   ? "目录加载失败"
                   : "正在加载目录"}
@@ -185,7 +194,7 @@ export function SkillsCatalog() {
                   type="button"
                   onClick={() => setSelectedCategory("all")}
                 >
-                  全部 {skills.length.toLocaleString("zh-CN")}
+                  全部 {skills.length.toLocaleString(intlLocale)}
                 </button>
                 {categories.map((category) => (
                   <button
@@ -194,7 +203,7 @@ export function SkillsCatalog() {
                     type="button"
                     onClick={() => setSelectedCategory(category.value)}
                   >
-                    {category.label} {category.count.toLocaleString("zh-CN")}
+                    {category.label} {category.count.toLocaleString(intlLocale)}
                   </button>
                 ))}
               </ScrollShadow>
@@ -213,7 +222,7 @@ export function SkillsCatalog() {
                   type="button"
                   onClick={() => setSelectedSource("all")}
                 >
-                  全部 {skills.length.toLocaleString("zh-CN")}
+                  全部 {skills.length.toLocaleString(intlLocale)}
                 </button>
                 {sources.map((source) => (
                   <button
@@ -222,7 +231,7 @@ export function SkillsCatalog() {
                     type="button"
                     onClick={() => setSelectedSource(source.value)}
                   >
-                    {source.value} {source.count.toLocaleString("zh-CN")}
+                    {source.value} {source.count.toLocaleString(intlLocale)}
                   </button>
                 ))}
               </ScrollShadow>
@@ -259,9 +268,12 @@ export function SkillsCatalog() {
                     if (skill) {
                       setSelectedSkill(skill);
                     } else {
-                      void loadSkill(entry).then(setSelectedSkill, () => {
-                        setLoadError(true);
-                      });
+                      void loadSkill(entry, locale).then(
+                        setSelectedSkill,
+                        () => {
+                          setLoadError(true);
+                        },
+                      );
                     }
                   }}
                 />
@@ -278,7 +290,7 @@ export function SkillsCatalog() {
                 </div>
 
                 <MarkdownRenderer
-                  className="pointer-events-none relative mt-4 max-h-[7.5rem] flex-1 overflow-hidden text-sm leading-6 text-[#0000f2]/65 group-hover:text-white/75 [&_a]:pointer-events-auto [&_a]:relative [&_a]:z-10"
+                  className="pointer-events-none relative mt-4 max-h-[5.4rem] flex-1 !space-y-0 overflow-hidden text-[13px] leading-[1.35rem] text-[#0000f2]/65 group-hover:text-white/75 [&_a]:pointer-events-auto [&_a]:relative [&_a]:z-10 [&_p]:line-clamp-4 [&_p]:leading-[1.35rem]"
                   content={skill?.summary ?? "正在加载 Skill 说明…"}
                 />
 
@@ -308,8 +320,8 @@ export function SkillsCatalog() {
                 setVisibleCount((current) => current + VISIBLE_SKILLS_STEP)
               }
             >
-              加载更多（已显示 {visibleSkills.length.toLocaleString("zh-CN")} /{" "}
-              {filteredSkills.length.toLocaleString("zh-CN")}）
+              加载更多（已显示 {visibleSkills.length.toLocaleString(intlLocale)}{" "}
+              / {filteredSkills.length.toLocaleString(intlLocale)}）
             </button>
           </div>
         ) : null}

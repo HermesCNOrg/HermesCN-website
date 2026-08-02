@@ -2,9 +2,10 @@ export const locales = ["en", "zh"] as const;
 
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = "en";
+export const defaultLocale: Locale = "zh";
 export const localeStorageKey = "hermescn.locale";
 export const localeCookieName = "hermescn_locale";
+export const localeChangeEvent = "hermescn:locale-change";
 
 export function isLocale(value: unknown): value is Locale {
   return typeof value === "string" && locales.includes(value as Locale);

@@ -2,12 +2,17 @@
 
 import { Dropdown } from "@heroui/react";
 
+import { isLocale } from "~/i18n/config";
+import { setLocale, useLocale } from "~/i18n/use-locale";
+
 type LanguageSwitcherProps = {
   variant?: "dark" | "light";
 };
 
 export function LanguageSwitcher({ variant = "dark" }: LanguageSwitcherProps) {
   const isLight = variant === "light";
+  const locale = useLocale();
+  const label = locale === "zh" ? "简体中文" : "English";
 
   return (
     <Dropdown>
@@ -21,26 +26,29 @@ export function LanguageSwitcher({ variant = "dark" }: LanguageSwitcherProps) {
         ].join(" ")}
       >
         <i aria-hidden="true" className="ri-translate-2 text-base" />
-        简体中文
+        {label}
         <i aria-hidden="true" className="ri-arrow-down-s-line" />
       </Dropdown.Trigger>
       <Dropdown.Popover placement="bottom end">
         <Dropdown.Menu
           aria-label="语言"
-          selectedKeys={["zh-CN"]}
+          selectedKeys={[locale]}
           selectionMode="single"
+          onAction={(key) => {
+            if (isLocale(key)) setLocale(key);
+          }}
         >
-          <Dropdown.Item id="zh-CN" textValue="简体中文">
+          <Dropdown.Item id="zh" textValue="简体中文">
             <span className="flex items-center gap-2">
               <Dropdown.ItemIndicator />
               简体中文
             </span>
           </Dropdown.Item>
-          <Dropdown.Item id="zh-TW" isDisabled textValue="繁體中文（即将上线）">
-            繁體中文（即将上线）
-          </Dropdown.Item>
-          <Dropdown.Item id="en" isDisabled textValue="English（即将上线）">
-            English（即将上线）
+          <Dropdown.Item id="en" textValue="English">
+            <span className="flex items-center gap-2">
+              <Dropdown.ItemIndicator />
+              English
+            </span>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>

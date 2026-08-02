@@ -26,6 +26,7 @@
     "seo:check": "node scripts/check-docs-seo.mjs",
     "seo:indexnow": "node scripts/submit-indexnow.mjs",
     "skills:build-data": "node scripts/build-skills-data.mjs",
+    "skills:translate:zh": "node scripts/translate-skills.mjs",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "postinstall": "prisma generate",

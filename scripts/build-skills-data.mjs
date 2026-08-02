@@ -17,6 +17,12 @@ const defaultInput = path.join(
   "skills.json",
 );
 const inputPath = path.resolve(process.argv[2] ?? defaultInput);
+const translationInputPath = path.join(
+  projectRoot,
+  ".cache",
+  "hermes-skills",
+  "skills.zh-Hans.json",
+);
 const outputDir = path.join(projectRoot, "public", "skills-data");
 const chunkSize = 1_000;
 
@@ -298,6 +304,7 @@ async function removeOldGeneratedFiles() {
       .filter(
         (name) =>
           /^skills-\d{3}\.json$/.test(name) ||
+          /^skills-\d{3}\.zh-Hans\.json$/.test(name) ||
           name === "manifest.json" ||
           name === "search-index.json",
       )
@@ -305,13 +312,63 @@ async function removeOldGeneratedFiles() {
   );
 }
 
+async function loadTranslations(sourceSha256) {
+  const translationText = await readFile(translationInputPath, "utf8").catch(
+    () => "",
+  );
+
+  if (translationText) {
+    const state = JSON.parse(translationText);
+    if (state.sourceSha256 !== sourceSha256) {
+      throw new Error(
+        "Chinese translations belong to a different Skills source",
+      );
+    }
+    return state.translations ?? {};
+  }
+
+  const manifest = await readFile(path.join(outputDir, "manifest.json"), "utf8")
+    .then(JSON.parse)
+    .catch(() => null);
+
+  if (manifest?.sourceSha256 !== sourceSha256) return {};
+
+  const translations = {};
+  for (const [chunk, item] of (manifest.chunks ?? []).entries()) {
+    const file = `skills-${String(chunk).padStart(3, "0")}.zh-Hans.json`;
+    const rows = await readFile(path.join(outputDir, file), "utf8")
+      .then(JSON.parse)
+      .catch(() => []);
+
+    for (const [offset, row] of rows.entries()) {
+      if (!row) continue;
+      translations[chunk * chunkSize + offset] = {
+        description: row[0] ?? "",
+        overview: row[1] ?? "",
+      };
+    }
+
+    if (item.count !== rows.length) {
+      throw new Error(`Invalid Chinese translation chunk: ${file}`);
+    }
+  }
+
+  return translations;
+}
+
 async function main() {
   const sourceText = await readFile(inputPath, "utf8");
   const source = JSON.parse(sourceText);
+  const sourceSha256 = createHash("sha256").update(sourceText).digest("hex");
 
   if (!Array.isArray(source) || source.length === 0) {
     throw new Error("Skills source must be a non-empty JSON array");
   }
+
+  const translations = await loadTranslations(sourceSha256);
+  const translationSha256 = createHash("sha256")
+    .update(compactJson(translations))
+    .digest("hex");
 
   await mkdir(outputDir, { recursive: true });
   await removeOldGeneratedFiles();
@@ -327,6 +384,7 @@ async function main() {
       .map((skill) => categorizeSkill(skill));
     const chunk = chunks.length;
     const file = `skills-${String(chunk).padStart(3, "0")}.json`;
+    const translationFile = `skills-${String(chunk).padStart(3, "0")}.zh-Hans.json`;
 
     for (const [offset, skill] of items.entries()) {
       categoryCounts.set(
@@ -346,6 +404,15 @@ async function main() {
     }
 
     await writeAtomic(path.join(outputDir, file), items);
+    await writeAtomic(
+      path.join(outputDir, translationFile),
+      items.map((_, offset) => {
+        const translation = translations[start + offset];
+        return translation
+          ? [translation.description ?? "", translation.overview ?? ""]
+          : null;
+      }),
+    );
     chunks.push({ file, count: items.length });
   }
 
@@ -356,7 +423,14 @@ async function main() {
     catalogSha256: createHash("sha256")
       .update(compactJson(searchIndex))
       .digest("hex"),
-    sourceSha256: createHash("sha256").update(sourceText).digest("hex"),
+    sourceSha256,
+    translations: {
+      "zh-Hans": {
+        sha256: translationSha256,
+        translatedSkills: Object.keys(translations).length,
+        complete: Object.keys(translations).length === source.length,
+      },
+    },
     totalSkills: source.length,
     chunkSize,
     searchIndex: "search-index.json",
