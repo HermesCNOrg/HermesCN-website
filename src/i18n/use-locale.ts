@@ -4,7 +4,6 @@ import { useSyncExternalStore } from "react";
 
 import {
   defaultLocale,
-  isLocale,
   localeChangeEvent,
   localeCookieName,
   localeStorageKey,
@@ -13,8 +12,7 @@ import {
 } from "./config";
 
 function getLocale() {
-  const stored = window.localStorage.getItem(localeStorageKey);
-  return isLocale(stored) ? stored : defaultLocale;
+  return defaultLocale;
 }
 
 function subscribe(listener: () => void) {
