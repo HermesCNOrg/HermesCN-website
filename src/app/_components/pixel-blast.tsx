@@ -313,7 +313,10 @@ export function PixelBlast({
       const bounds = renderer.domElement.getBoundingClientRect();
       const scaleX = renderer.domElement.width / bounds.width;
       const scaleY = renderer.domElement.height / bounds.height;
-      uniforms.uClickPos.value[clickIndex].set(
+      const clickPosition = uniforms.uClickPos.value[clickIndex];
+      if (!clickPosition) return;
+
+      clickPosition.set(
         (event.clientX - bounds.left) * scaleX,
         (bounds.height - (event.clientY - bounds.top)) * scaleY,
       );
