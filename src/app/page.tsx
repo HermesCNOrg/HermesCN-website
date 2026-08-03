@@ -4,13 +4,24 @@ import Link from "next/link";
 import { BannerDescription } from "~/app/_components/banner-description";
 import { HermesVsOpenClaw } from "~/app/_components/hermes-vs-openclaw";
 import { InstallTerminal } from "~/app/_components/install-terminal";
+import { MagicRings } from "~/app/_components/magic-rings";
 import { tutorialHref } from "~/lib/docs-links";
 import { createPageMetadata, siteConfig } from "~/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Hermes Agent 中文社区与协作网络",
+  title: "Hermes Agent 中文社区｜文档、安装教程、Skills 与实践案例",
   description: siteConfig.description,
   path: "/",
+  keywords: [
+    "Hermes Agent 中文社区",
+    "Hermes Agent 中文文档",
+    "Hermes Agent 安装教程",
+    "Hermes Agent 中文教程",
+    "Hermes Agent 实践案例",
+    "Hermes Agent 使用案例",
+    "Hermes 中文社区",
+    "HermesCN",
+  ],
 });
 
 const features = [
@@ -69,17 +80,21 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
       <section className="relative isolate overflow-hidden border-b border-[#f5f5f5]/20 bg-[#0000f2]">
-        <div className="px-5 sm:px-6">
+        <MagicRings
+          anchorId="banner-artwork"
+          className="pointer-events-none absolute inset-0 z-0"
+        />
+        <div className="relative z-10 px-5 sm:px-6">
           <div className="mx-auto grid min-h-[max(100svh,760px)] w-full max-w-7xl items-center gap-8 pt-28 pb-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10 lg:py-24">
             <div className="relative z-10 flex min-h-0 min-w-0 items-center justify-center py-4 lg:h-full lg:py-0">
               <div className="w-full max-w-lg min-w-0">
                 <h1 className="max-w-4xl text-[clamp(1.75rem,8vw,3rem)] leading-[1.2] font-bold whitespace-nowrap text-[#f5f5f5] xl:text-[3.5rem]">
-                  HermesCN 中文社区
+                  Hermes Agent 中文社区
                 </h1>
                 <BannerDescription />
 
                 <div className="mt-6 w-full max-w-full min-w-0 space-y-5">
-                  <div className="grid w-full max-w-full min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.8fr)] overflow-hidden border border-[#f5f5f5]/25 bg-[#0000b8]/30">
+                  <div className="grid w-full max-w-full min-w-0 grid-cols-[minmax(0,0.9fr)_minmax(0,1.8fr)] overflow-hidden border border-[#f5f5f5]/25 bg-[#0000f2]/45 backdrop-blur-xl">
                     <a
                       aria-label="加入知识星球"
                       className="group flex min-w-0 flex-col items-center justify-center overflow-hidden border-r border-[#f5f5f5]/20 p-2 sm:px-3 sm:py-3"
@@ -133,12 +148,12 @@ export default function Home() {
                     下载客户端
                   </a>
                   <Link
-                    className="inline-flex items-center gap-1.5 border border-[#f5f5f5]/70 px-6 py-3 text-sm font-medium text-[#f5f5f5] transition hover:border-white hover:bg-white hover:text-[#0000f2]"
+                    className="inline-flex items-center gap-1.5 border border-[#f5f5f5]/70 bg-[#0000f2]/45 px-6 py-3 text-sm font-medium text-[#f5f5f5] backdrop-blur-xl transition hover:border-white hover:bg-white hover:text-[#0000f2]"
                     href={tutorialHref}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <span>从入门到精通</span>
+                    <span>查看中文文档</span>
                     <i
                       aria-hidden="true"
                       className="ri-arrow-right-up-line text-base leading-none"
@@ -148,21 +163,21 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative hidden min-w-0 translate-y-5 items-center justify-center overflow-hidden pl-12 lg:flex xl:pl-16">
-              <img
-                alt=""
-                aria-hidden="true"
-                className="relative h-auto w-full object-contain object-center"
-                src="/logo_ip2.png"
-              />
+            <div className="relative mx-auto w-full pb-8 lg:flex lg:min-w-0 lg:translate-y-5 lg:items-center lg:justify-center lg:overflow-visible lg:pb-0 lg:pl-12 xl:pl-16">
+              <div className="relative w-full">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute top-1/2 left-1/2 aspect-square w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0000f2]/90 blur-[48px] lg:w-[90%] lg:blur-[72px]"
+                />
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  className="relative h-auto w-full object-contain object-center"
+                  id="banner-artwork"
+                  src="/logo_ip2.png"
+                />
+              </div>
             </div>
-
-            <img
-              alt=""
-              aria-hidden="true"
-              className="mx-auto block w-full pb-8 lg:hidden"
-              src="/logo_ip2.png"
-            />
           </div>
         </div>
       </section>

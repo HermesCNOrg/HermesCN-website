@@ -1,10 +1,11 @@
 ---
 sidebar_position: 1
-title: "快速入门"
-description: "与 Hermes Agent 的第一次对话——从安装到开始聊天，5 分钟内完成"
+title: "Hermes Agent 快速入门：安装、配置与首次对话"
+description: "Hermes Agent 中文入门指南：完成安装和模型配置，开始第一次对话，并验证本地 AI Agent 可以正常运行。"
+keywords: [Hermes Agent 入门, Hermes Agent 教程, Hermes Agent 配置, Hermes Agent 第一次对话]
 ---
 
-# 快速入门
+# Hermes Agent 快速入门
 
 本指南带你从零开始搭建一个能够应对实际使用的 Hermes 环境。完成安装、选择 provider（服务提供商）、验证对话正常运行，并了解出现问题时的处理方法。
 

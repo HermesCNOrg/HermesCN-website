@@ -2,7 +2,7 @@
 title: "Hermes Agent 安装教程：完成第一次对话"
 sidebar_label: "02 · 安装与首次运行"
 description: "从 Desktop 与 CLI 中选择合适入口，安装 Hermes Agent、配置模型来源并完成首次对话和环境检查。"
-keywords: [Hermes Agent 安装, Hermes CLI, Hermes Desktop]
+keywords: [Hermes Agent 安装教程, Hermes Agent 中文教程, Hermes CLI 安装, Hermes Desktop 安装]
 last_update:
   date: 2026-07-31
 ---

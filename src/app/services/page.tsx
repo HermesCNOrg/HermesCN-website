@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 import Image from "next/image";
 
+import { PixelBlast } from "~/app/_components/pixel-blast";
 import { createPageMetadata } from "~/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -64,8 +65,13 @@ const industries = [
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-[#0000f2] text-[#f5f5f5]">
-      <section className="border-b border-[#f5f5f5]/20 bg-[#0000f2]">
-        <div className="mx-auto max-w-7xl px-5 pt-32 pb-16 sm:px-8">
+      <section className="relative isolate overflow-hidden border-b border-[#f5f5f5]/20">
+        <PixelBlast
+          className="pointer-events-none absolute inset-0 z-0 opacity-[0.15]"
+          edgeFade={0.18}
+          enableRipples={false}
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-5 pt-32 pb-16 sm:px-8">
           <div className="max-w-4xl">
             <p className="text-sm text-[#d8dcff]">01 · Industry Solutions</p>
             <h1 className="mt-5 text-5xl leading-[1.02] font-normal text-[#f5f5f5] sm:text-6xl">

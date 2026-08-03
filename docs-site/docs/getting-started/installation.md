@@ -1,10 +1,11 @@
 ---
 sidebar_position: 2
-title: "安装"
-description: "在 Linux、macOS、WSL2、原生 Windows 或通过 Termux 在 Android 上安装 Hermes Agent"
+title: "Hermes Agent 安装教程（Windows、macOS 与 Linux）"
+description: "Hermes Agent 中文安装教程：在 Windows、macOS、Linux、WSL2 或 Android Termux 上完成安装，并了解 Desktop 与 CLI 安装方式。"
+keywords: [Hermes Agent 安装, Hermes Agent 安装教程, Hermes Agent Windows, Hermes Agent macOS, Hermes Agent Linux]
 ---
 
-# 安装
+# Hermes Agent 安装教程
 
 使用一行安装命令，两分钟内即可启动并运行 Hermes Agent。
 

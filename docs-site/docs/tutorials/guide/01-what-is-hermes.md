@@ -2,7 +2,7 @@
 title: "Hermes Agent 是什么：能力、边界与适用任务"
 sidebar_label: "01 · 能力与边界"
 description: "了解 Hermes Agent 与聊天机器人、代码助手和自动化脚本的区别，认识工具、记忆、Skills、Gateway 与安全边界。"
-keywords: [Hermes Agent 是什么, AI Agent, Hermes 中文教程]
+keywords: [Hermes Agent 是什么, Hermes Agent 中文, Hermes AI Agent, 开源 AI Agent]
 last_update:
   date: 2026-07-31
 ---

@@ -4,7 +4,7 @@ import { blogHref, docsHref } from "~/lib/docs-links";
 
 const sitemap = [
   { href: "/", label: "首页" },
-  { href: docsHref, label: "文档" },
+  { href: docsHref, label: "中文文档" },
   { href: blogHref, label: "博客" },
   { href: "/skills", label: "Skills" },
   { href: "/best-practices", label: "实践案例" },
@@ -39,14 +39,14 @@ export function Footer() {
         <div>
           <Link className="inline-flex items-center" href="/">
             <img
-              alt="HermesCN 中文社区"
+              alt="Hermes Agent 中文社区"
               className="h-12 w-auto"
               src="/logo.svg"
             />
           </Link>
           <p className="mt-5 max-w-md text-sm leading-7 text-[#d8dcff]">
-            Hermes Agent
-            中文社区与协作网络，帮助个人探索前沿实践，连接生态伙伴与真实项目。
+            面向中文用户的 Hermes Agent 社区，提供中文文档、安装教程、Skills
+            与实践案例。
           </p>
         </div>
 
@@ -120,7 +120,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-[#f5f5f5]/20 px-5 py-5 text-center text-xs text-[#d8dcff] sm:px-8">
-        © {new Date().getFullYear()} HermesCN 中文社区. All rights reserved.
+        © {new Date().getFullYear()} Hermes Agent 中文社区. All rights reserved.
       </div>
     </footer>
   );

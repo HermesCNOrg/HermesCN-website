@@ -52,6 +52,7 @@
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "remixicon": "^4.9.1",
+    "three": "^0.180.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -62,6 +63,7 @@
     "@types/nodemailer": "^8.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.185.3",
     "eslint": "^9.23.0",
     "eslint-config-next": "^15.2.3",
     "postcss": "^8.5.3",

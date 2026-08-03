@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "HermesCN 中文社区",
+  name: "HermesCN",
   shortName: "HermesCN",
   url: "https://hermescn.org",
   description:
-    "Hermes Agent 中文社区与协作网络，聚合中文文档、Agent Skills、前沿实践与真实项目，帮助个人成长，连接生态伙伴，并为企业提供 AI Agent 场景探索与落地服务。",
+    "HermesCN 是面向中文用户的 Hermes Agent 社区，提供中文文档、安装教程、Agent Skills 与实践案例，帮助你更快完成安装、配置，并把 Hermes Agent 用到真实任务中。",
   locale: "zh_CN",
   language: "zh-CN",
   social: {
@@ -18,16 +18,19 @@ type PageMetadata = {
   title: string;
   description: string;
   path: `/${string}` | "/";
+  keywords?: string[];
 };
 
 export function createPageMetadata({
   title,
   description,
   path,
+  keywords,
 }: PageMetadata): Metadata {
   return {
     title,
     description,
+    keywords,
     alternates: {
       canonical: path,
     },

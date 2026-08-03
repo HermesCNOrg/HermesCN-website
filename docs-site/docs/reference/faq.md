@@ -1,7 +1,8 @@
 ---
 sidebar_position: 3
-title: "常见问题与故障排查"
-description: "Hermes Agent 常见问题解答及常见问题解决方案"
+title: "Hermes Agent 常见问题与故障排查"
+description: "汇总 Hermes Agent 安装、模型配置、Windows、WSL2、Termux、本地模型与数据安全等常见问题和解决方法。"
+keywords: [Hermes Agent 常见问题, Hermes Agent 故障排查, Hermes Agent 安装失败, Hermes Agent 配置]
 ---
 
 # 常见问题与故障排查

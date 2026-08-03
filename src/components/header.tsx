@@ -16,7 +16,7 @@ const navItems: MobileMenuItem[] = [
   { href: "/services", label: "解决方案" },
   {
     href: tutorialHref,
-    label: "文档 & 教程",
+    label: "文档与教程",
     opensInNewTab: true,
   },
 ];
@@ -93,7 +93,7 @@ export function Header() {
         <div className="flex items-center gap-8">
           <Link className="flex items-center" href="/">
             <img
-              alt="HermesCN 中文社区"
+              alt="Hermes Agent 中文社区"
               className="h-8 w-auto"
               src="/logo.svg"
             />

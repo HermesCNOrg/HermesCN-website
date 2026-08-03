@@ -13,7 +13,7 @@ const docsBaseUrl = process.env.DOCUSAURUS_BASE_URL ?? "/";
 
 const mainSiteHref = (pathname: string) => `${mainSiteBaseUrl}${pathname}`;
 const siteDescription =
-  "Hermes Agent 中文社区与协作网络，提供中文文档、实践教程、Agent Skills、项目案例与企业落地经验。";
+  "Hermes Agent 中文文档与教程，覆盖安装、配置、Agent Skills、常见问题和实践案例。";
 
 type SearchIndexItem = {
   title: string;
@@ -88,8 +88,8 @@ function createSearchIndex(): SearchIndexItem[] {
 }
 
 const config: Config = {
-  title: "HermesCN 中文文档",
-  tagline: "Hermes Agent 中文社区与实践网络",
+  title: "HermesCN",
+  tagline: "Hermes Agent 安装、配置与实践指南",
   favicon: "img/favicon.png",
   headTags: [
     {
@@ -102,7 +102,8 @@ const config: Config = {
         "@type": "WebSite",
         "@id": "https://hermescn.org/#website",
         url: "https://hermescn.org",
-        name: "HermesCN 中文社区",
+        name: "HermesCN",
+        alternateName: ["Hermes Agent 中文社区", "Hermes 中文社区"],
         description: siteDescription,
         inLanguage: "zh-CN",
         publisher: {
